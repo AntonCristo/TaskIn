@@ -1,12 +1,26 @@
 .landingPageSpinner {
   position: relative;
-  width: 128px;
-  height: 128px;
+  z-index: 0;
+  width: 60px;
+  height: 60px;
   margin-top: -60px;
-  background-color: #fff;
-  box-shadow: 2px 2px 10px rgba(0, 6, 6, 0.6);
+  box-shadow: 0px 0px 10px 2px rgb(161, 162, 163);
+  border-radius: 50%;
+  animation: spinRainbow 0.4s linear infinite;
+}
+.centerDot {
+  z-index: 1;
+  position: absolute;
+  left: calc(50% - 3px);
+  top: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  background-color: #046dfb;
+  opacity: 0.6;
   border-radius: 50%;
 }
+
+/* spinner cloros theme  */
 .rainbowDiv {
   width: 6px;
   height: 100%;
@@ -15,7 +29,6 @@
 }
 .rainbowPurple {
   background-color: #9c4f96;
-  animation: spinRainbow 2s linear infinite;
 }
 .rainbowRed {
   background-color: #ff6355;
@@ -32,6 +45,10 @@
 .rainbowGreen {
   background-color: #8bd448;
   transform: rotate(120deg);
+}
+.rainbowDeeperGreen {
+  background-color: #019e12;
+  transform: rotate(105deg);
 }
 .rainbowBlue {
   background-color: #2aa8f2;
