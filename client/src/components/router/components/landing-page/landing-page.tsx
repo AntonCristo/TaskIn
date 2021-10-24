@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { routerLocationSetter } from "../../../../actions/location-actions";
 import { LandingPageSpinner } from "../../../../shared";
 
 import classes from "./landing-page.module.css";
@@ -7,9 +8,19 @@ import classes from "./landing-page.module.css";
 type LandingPagePros = {};
 
 export const LandingPage: React.FC = (props: LandingPagePros) => {
-  return (
+  const [shouldRedirectToHome, setShouldRedirectToHome] = useState(false);
+
+  if (!shouldRedirectToHome) {
+    setTimeout(() => {
+      setShouldRedirectToHome(true);
+    }, 2000);
+  } else {
+    routerLocationSetter("/home");
+  }
+
+  return !shouldRedirectToHome ? (
     <div className={classes.landingPage}>
       <LandingPageSpinner />
     </div>
-  );
+  ) : null;
 };
