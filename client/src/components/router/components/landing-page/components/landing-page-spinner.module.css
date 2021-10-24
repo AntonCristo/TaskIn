@@ -1,0 +1,48 @@
+.landingPageSpinner {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  margin-top: -60px;
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 6, 6, 0.6);
+  border-radius: 50%;
+}
+.rainbowDiv {
+  width: 6px;
+  height: 100%;
+  position: absolute;
+  left: calc(50% - 3px);
+}
+.rainbowPurple {
+  background-color: #9c4f96;
+  animation: spinRainbow 2s linear infinite;
+}
+.rainbowRed {
+  background-color: #ff6355;
+  transform: rotate(30deg);
+}
+.rainbowOrange {
+  background-color: #fba949;
+  transform: rotate(60deg);
+}
+.rainbowYellow {
+  background-color: #fae442;
+  transform: rotate(90deg);
+}
+.rainbowGreen {
+  background-color: #8bd448;
+  transform: rotate(120deg);
+}
+.rainbowBlue {
+  background-color: #2aa8f2;
+  transform: rotate(150deg);
+}
+
+@keyframes spinRainbow {
+  0% {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
