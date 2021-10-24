@@ -13,7 +13,7 @@ export const LandingPage: React.FC = (props: LandingPagePros) => {
   if (!shouldRedirectToHome) {
     setTimeout(() => {
       setShouldRedirectToHome(true);
-    }, 1300);
+    }, 2500);
   } else {
     routerLocationSetter("/home");
   }

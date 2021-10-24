@@ -6,7 +6,7 @@ body {
 /* Titles and header font */
 @font-face {
   font-family: "Oxygen-bold";
-  src: url("./assets/fonts/Oxygen/Oxygen-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Oxygen/Oxygen-Bold.ttf");
 }
 
 /* text fonts */
