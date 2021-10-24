@@ -1,0 +1,25 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Oxygen-bold";
+  font-size: 64px;
+  animation: appear 0.2s ease-in;
+}
+
+.home > div:nth-child(2) {
+  font-family: "Ubuntu-regular";
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
