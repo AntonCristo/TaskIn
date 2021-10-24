@@ -12,6 +12,13 @@
   width: 800px;
   height: fit-content;
 }
+.elementsWrapper {
+  margin-top: 20px;
+  width: 100%;
+  margin-left: 2px;
+  display: flex;
+  justify-content: space-between;
+}
 
 @keyframes appear {
   0% {
