@@ -13,6 +13,7 @@ export const Home: React.FC = observer((props: HomeProps) => {
       <div className={classes.homeCenterItems}>
         <Title />
         <TitleUnderline />
+        <div className={classes.elementsWrapper}></div>
       </div>
     </div>
   );
