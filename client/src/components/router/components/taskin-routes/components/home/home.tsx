@@ -1,7 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { Title, TitleUnderline } from "./components/";
+import {
+  Title,
+  TitleUnderline,
+  ElementsBox,
+  TriangleElement,
+  CircleElement,
+  SqaureElement,
+} from "./components/";
 
 import classes from "./home.module.css";
 
@@ -13,7 +20,21 @@ export const Home: React.FC = observer((props: HomeProps) => {
       <div className={classes.homeCenterItems}>
         <Title />
         <TitleUnderline />
-        <div className={classes.elementsWrapper}></div>
+        <div className={classes.elementsWrapper}>
+          <ElementsBox>
+            <TriangleElement />
+            <div>- Define -</div>
+          </ElementsBox>
+          <ElementsBox>
+            <CircleElement />
+            <div>- Create -</div>
+          </ElementsBox>
+          <ElementsBox>
+            <SqaureElement />
+            <div>- Implement -</div>
+          </ElementsBox>
+        </div>
+        <TitleUnderline />
       </div>
     </div>
   );
