@@ -1,6 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
 
+import { Title, TitleUnderline } from "./components/";
+
 import classes from "./home.module.css";
 
 type HomeProps = {};
@@ -8,8 +10,10 @@ type HomeProps = {};
 export const Home: React.FC = observer((props: HomeProps) => {
   return (
     <div className={classes.home}>
-      <div>T-Ask-In</div>
-      <div>some sub text in Ubuntu style</div>
+      <div className={classes.homeCenterItems}>
+        <Title />
+        <TitleUnderline />
+      </div>
     </div>
   );
 });

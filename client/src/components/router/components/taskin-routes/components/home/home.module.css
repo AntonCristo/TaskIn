@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Oxygen-bold";
   font-size: 64px;
-  animation: appear 0.2s ease-in;
+  animation: appear 1.2s ease-in;
 }
-
-.home > div:nth-child(2) {
-  font-family: "Ubuntu-regular";
+.homeCenterItems {
+  margin-top: 128px;
+  width: 800px;
+  height: fit-content;
 }
 
 @keyframes appear {
