@@ -5,8 +5,12 @@ import classes from "./landing-page-spinner.module.css";
 export const LandingPageSpinner: React.FC = () => {
   return (
     <div className={classes.landingPageSpinner}>
+      <div className={classes.centerDot}></div>
       <div
         className={[classes.rainbowDiv, classes.rainbowPurple].join(" ")}
+      ></div>
+      <div
+        className={[classes.rainbowDiv, classes.rainbowPurpleOpace].join(" ")}
       ></div>
       <div className={[classes.rainbowDiv, classes.rainbowRed].join(" ")}></div>
       <div
@@ -14,6 +18,9 @@ export const LandingPageSpinner: React.FC = () => {
       ></div>
       <div
         className={[classes.rainbowDiv, classes.rainbowYellow].join(" ")}
+      ></div>
+      <div
+        className={[classes.rainbowDiv, classes.rainbowDeeperGreen].join(" ")}
       ></div>
       <div
         className={[classes.rainbowDiv, classes.rainbowGreen].join(" ")}

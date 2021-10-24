@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LandingPageSpinner } from "./components";
+import { LandingPageSpinner } from "../../../../shared";
 
 import classes from "./landing-page.module.css";
 
