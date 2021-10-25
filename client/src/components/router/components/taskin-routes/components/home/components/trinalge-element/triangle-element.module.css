@@ -38,9 +38,9 @@
     border-bottom: 60px solid #000;
   }
   .triangle::before {
-    margin-left: -35px;
-    border-left: 35px solid transparent;
-    border-right: 35px solid transparent;
-    border-bottom: 60px solid #585ea7;
+    margin-left: -30px;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 50px solid #585ea7;
   }
 }

@@ -1,0 +1,14 @@
+/*TODO: properties that cannot be overriden with inline style should be !important */
+.defaultButtonStyle {
+  background-color: #fff;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #c3676c;
+  border: 1px solid #c3676c;
+  user-select: none;
+}
+.clickedButtonAnimation {
+  transform: translate3d(-1px, 1px, 0px);
+}

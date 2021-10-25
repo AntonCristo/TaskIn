@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 
 import { locationStore } from "../../stores/location-store";
 import { LandingPage } from "./components/landing-page";
-import { Home } from "./components/taskin-routes/components/home";
+import { Home } from "./components/taskin-routes";
 
 type RouterProps = {};
 

@@ -10,14 +10,22 @@ import {
   SqaureElement,
   FooterParagraph,
 } from "./components/";
+import { Button } from "../../../../../../shared";
 
 import classes from "./home.module.css";
 
 type HomeProps = {};
 
 export const Home: React.FC = observer((props: HomeProps) => {
+  const onLoginClickHandler = () => {
+    alert("login button clicked");
+  };
+
   return (
     <div className={classes.home}>
+      <div className={classes.loginButtonWrapper}>
+        <Button onClick={onLoginClickHandler} title="Log In" />
+      </div>
       <div className={classes.homeCenterItems}>
         <Title />
         <TitleUnderline />
