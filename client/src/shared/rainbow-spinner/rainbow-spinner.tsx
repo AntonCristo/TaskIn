@@ -8,13 +8,8 @@ export const RainbowSpinner = (props: RainbowSpinnerProps) => {
   const { isRainbow = true } = props;
 
   return (
-    <div className={classes.landingPageSpinner}>
-      <div
-        className={[
-          classes.centerDot,
-          !isRainbow && classes.grayBackgroundColor,
-        ].join(" ")}
-      ></div>
+    <div className={classes.rainbowSpinner}>
+      <div className={classes.centerDot}></div>
       <div
         className={[
           classes.rainbowDiv,
