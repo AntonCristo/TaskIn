@@ -9,17 +9,36 @@
   color: #fff;
   width: 300px;
   font-size: 64px;
-  line-height: 64px;
   text-shadow: 1px 2px 6px rgba(161, 162, 163, 1);
 }
 .subText {
   color: #c3676c;
-  font-size: 32px;
   letter-spacing: 0.025px;
-  line-height: 38px;
+  font-size: 32px;
+
   margin-left: 10px;
 }
 img {
   height: 100%;
   width: 48px;
+}
+
+@media screen and (max-width: 1600px) {
+  .overallTitle {
+    margin-bottom: 10px;
+    margin-left: calc(50% - 280px);
+    width: 560px;
+  }
+  .mainHeaderText {
+    font-size: 56px;
+    line-height: 50px;
+  }
+  .subText {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  img {
+    margin-top: 10px;
+    width: 36px;
+  }
 }
