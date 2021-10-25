@@ -55,6 +55,14 @@
   transform: rotate(150deg);
 }
 
+.grayBackgroundColor {
+  background-color: gray;
+}
+.blackBackgroundColor {
+  background-color: #000;
+  opacity: 0.2;
+}
+
 @keyframes spinRainbow {
   0% {
     transform: rotate3d(0, 0, 1, 0deg);
