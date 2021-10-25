@@ -2,6 +2,14 @@
   margin-top: 37px;
   font-family: "Ubuntu-regular";
   font-size: 20px;
+  color: #c3676c;
+}
+.footerParagraph > strong:nth-child(1) {
+  color: #000;
+}
+.footerParagraph > strong:nth-child(2) {
+  color: #fff;
+  text-shadow: 1px 2px 6px rgb(161, 162, 163);
 }
 
 @media screen and (max-width: 1600px) {
@@ -15,8 +23,7 @@
   .footerParagraph {
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 20px;
-    margin-top: auto;
+    margin-top: 160px;
     text-align: center;
     width: 86%;
   }
