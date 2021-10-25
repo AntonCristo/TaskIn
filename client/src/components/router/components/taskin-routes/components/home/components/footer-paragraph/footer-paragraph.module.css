@@ -10,3 +10,14 @@
     margin-top: 20px;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .footerParagraph {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 20px;
+    margin-top: auto;
+    text-align: center;
+    width: 86%;
+  }
+}

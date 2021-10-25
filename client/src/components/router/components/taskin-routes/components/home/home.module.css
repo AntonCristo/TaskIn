@@ -33,6 +33,17 @@
   }
 }
 
+@media screen and (max-width: 800px) {
+  .homeCenterItems {
+    margin-top: 125px;
+    width: 330px;
+  }
+  .elementsWrapper {
+    margin-top: 25px;
+    margin-bottom: 18px;
+  }
+}
+
 @keyframes appear {
   0% {
     opacity: 0;

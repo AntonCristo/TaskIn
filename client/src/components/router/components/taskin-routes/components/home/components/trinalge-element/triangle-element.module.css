@@ -30,3 +30,17 @@
     border-bottom: 130px solid #585ea7;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .triangle {
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 60px solid #a7a158;
+  }
+  .triangle::before {
+    margin-left: -35px;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 60px solid #585ea7;
+  }
+}
