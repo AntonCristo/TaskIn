@@ -1,6 +1,6 @@
 .squareElement {
   width: 160px;
   height: 160px;
-  background-color: #00aa16;
-  opacity: 0.8;
+  background-color: #50af59;
+  box-shadow: 1px 2px 6px rgb(161, 162, 163);
 }
