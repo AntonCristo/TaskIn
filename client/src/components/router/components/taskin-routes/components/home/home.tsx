@@ -8,6 +8,7 @@ import {
   TriangleElement,
   CircleElement,
   SqaureElement,
+  FooterParagraph,
 } from "./components/";
 
 import classes from "./home.module.css";
@@ -23,19 +24,20 @@ export const Home: React.FC = observer((props: HomeProps) => {
         <div className={classes.elementsWrapper}>
           <ElementsBox>
             <TriangleElement />
-            <div>- Define -</div>
+            <div>Define</div>
           </ElementsBox>
           <ElementsBox>
             <CircleElement />
-            <div>- Create -</div>
+            <div>Create</div>
           </ElementsBox>
           <ElementsBox>
             <SqaureElement />
-            <div>- Implement -</div>
+            <div>Implement</div>
           </ElementsBox>
         </div>
         <TitleUnderline />
       </div>
+      <FooterParagraph />
     </div>
   );
 });

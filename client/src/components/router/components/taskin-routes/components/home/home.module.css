@@ -22,6 +22,12 @@
   margin-bottom: 37px;
 }
 
+@media screen and (max-width: 1600px) {
+  .homeCenterItems {
+    margin-top: 20px;
+  }
+}
+
 @keyframes appear {
   0% {
     opacity: 0;

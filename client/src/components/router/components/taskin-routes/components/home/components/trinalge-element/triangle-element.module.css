@@ -3,6 +3,27 @@
   height: 0;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
-  border-bottom: 160px solid #585ea7;
+  border-bottom: 160px solid #a7a158;
   opacity: 0.6;
 }
+.triangle::before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  margin-left: -100px;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 160px solid #585ea7;
+  opacity: 0.9;
+}
+
+/* .innerTriangle {
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 90px solid transparent;
+  border-right: 90px solid transparent;
+  border-bottom: 150px solid gray;
+  opacity: 0.6;
+} */
