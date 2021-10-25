@@ -12,3 +12,10 @@
     height: 130px;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .circleElement {
+    width: 65px;
+    height: 65px;
+  }
+}

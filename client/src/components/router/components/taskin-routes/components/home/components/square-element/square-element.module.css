@@ -11,3 +11,10 @@
     height: 130px;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .squareElement {
+    width: 65px;
+    height: 65px;
+  }
+}

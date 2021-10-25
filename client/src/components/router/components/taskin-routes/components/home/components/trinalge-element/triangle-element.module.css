@@ -3,7 +3,7 @@
   height: 0;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
-  border-bottom: 160px solid #a7a158;
+  border-bottom: 160px solid #000;
   opacity: 0.6;
 }
 .triangle::before {
@@ -21,12 +21,26 @@
   .triangle {
     border-left: 70px solid transparent;
     border-right: 70px solid transparent;
-    border-bottom: 130px solid #a7a158;
+    border-bottom: 130px solid #000;
   }
   .triangle::before {
     margin-left: -70px;
     border-left: 70px solid transparent;
     border-right: 70px solid transparent;
     border-bottom: 130px solid #585ea7;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .triangle {
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 60px solid #000;
+  }
+  .triangle::before {
+    margin-left: -35px;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 60px solid #585ea7;
   }
 }

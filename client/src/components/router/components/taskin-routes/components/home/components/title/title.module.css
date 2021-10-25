@@ -15,7 +15,6 @@
   color: #c3676c;
   letter-spacing: 0.025px;
   font-size: 32px;
-
   margin-left: 10px;
 }
 img {
@@ -40,5 +39,30 @@ img {
   img {
     margin-top: 10px;
     width: 36px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .overallTitle {
+    position: relative;
+    margin-left: calc(50% - 160px);
+    width: 320px;
+    height: 90px;
+    justify-content: start;
+  }
+  .mainHeaderText {
+    font-size: 48px;
+    line-height: 48px;
+    display: block;
+    margin-bottom: -40px;
+  }
+  .subText {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  img {
+    position: absolute;
+    right: 0;
+    bottom: 18px;
   }
 }

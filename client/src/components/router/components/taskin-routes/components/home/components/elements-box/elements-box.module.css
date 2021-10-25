@@ -20,3 +20,9 @@
     line-height: 22px;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .elementsBox {
+    height: 160px;
+  }
+}
