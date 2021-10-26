@@ -14,6 +14,7 @@ export const Router = observer((props: RouterProps) => {
     case "/":
       return <LandingPage />;
     case "/home":
+    case "/home/login":
       return <Home />;
     default:
       return <div>default</div>;

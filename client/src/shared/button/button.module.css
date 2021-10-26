@@ -3,11 +3,13 @@
   background-color: #fff;
   font-size: 16px;
   padding: 6px 12px;
+  min-width: 80px;
   border-radius: 4px;
   cursor: pointer;
   color: #c3676c;
   border: 1px solid #c3676c;
   user-select: none;
+  text-align: center;
 }
 .clickedButtonAnimation {
   transform: translate3d(-1px, 1px, 0px);

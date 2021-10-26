@@ -1,0 +1,44 @@
+.loginCard {
+  margin-top: -150px;
+  width: 810px;
+  height: 352px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 1px 2px 6px rgb(161, 162, 163);
+  display: flex;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+}
+.loginCardHeader {
+  font-family: "Ubuntu-medium";
+  padding: 12px;
+  border-bottom: 1px solid #c3676c;
+}
+.loginCardContent {
+  font-family: "Ubuntu-regular";
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1600px) {
+  .loginCard {
+    width: 660px;
+    height: 282px;
+    margin-top: -50px;
+    margin-left: 8px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .loginCard {
+    width: 90%;
+    height: 282px;
+    margin-top: -80px;
+    margin-left: 0;
+  }
+}

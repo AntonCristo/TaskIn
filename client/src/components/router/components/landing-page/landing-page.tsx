@@ -20,7 +20,7 @@ export const LandingPage: React.FC = (props: LandingPagePros) => {
 
   return !shouldRedirectToHome ? (
     <div className={classes.landingPage}>
-      <RainbowSpinner isRainbow={false} />
+      <RainbowSpinner />
     </div>
   ) : null;
 };
