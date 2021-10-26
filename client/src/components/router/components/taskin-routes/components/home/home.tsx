@@ -1,4 +1,3 @@
-import React from "react";
 import { observer } from "mobx-react";
 
 import {
@@ -10,15 +9,20 @@ import {
   SqaureElement,
   FooterParagraph,
 } from "./components/";
+import { LoginPage } from "../login-page";
 import { Button } from "../../../../../../shared";
+import { locationStore } from "../../../../../../stores";
+import { routerLocationSetter } from "../../../../../../actions";
 
 import classes from "./home.module.css";
 
 type HomeProps = {};
 
-export const Home: React.FC = observer((props: HomeProps) => {
+export const Home = observer((props: HomeProps) => {
+  const { router_view } = locationStore;
+
   const onLoginClickHandler = () => {
-    alert("login button clicked");
+    routerLocationSetter("/home/login");
   };
 
   return (
@@ -26,6 +30,7 @@ export const Home: React.FC = observer((props: HomeProps) => {
       <div className={classes.loginButtonWrapper}>
         <Button onClick={onLoginClickHandler} title="Log In" />
       </div>
+      {router_view.startsWith("/home/login") ? <LoginPage /> : null}
       <div className={classes.homeCenterItems}>
         <Title />
         <TitleUnderline />

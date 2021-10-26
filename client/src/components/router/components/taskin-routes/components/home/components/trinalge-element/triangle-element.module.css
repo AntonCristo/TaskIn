@@ -3,8 +3,7 @@
   height: 0;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
-  border-bottom: 160px solid #000;
-  opacity: 0.6;
+  border-bottom: 160px solid #fff;
 }
 .triangle::before {
   content: "";
@@ -21,7 +20,7 @@
   .triangle {
     border-left: 70px solid transparent;
     border-right: 70px solid transparent;
-    border-bottom: 130px solid #000;
+    border-bottom: 130px solid #fff;
   }
   .triangle::before {
     margin-left: -70px;
@@ -35,7 +34,7 @@
   .triangle {
     border-left: 35px solid transparent;
     border-right: 35px solid transparent;
-    border-bottom: 60px solid #000;
+    border-bottom: 60px solid #fff;
   }
   .triangle::before {
     margin-left: -30px;
