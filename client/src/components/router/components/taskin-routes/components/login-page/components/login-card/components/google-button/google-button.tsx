@@ -1,3 +1,6 @@
+import { routerLocationSetter } from "../../../../../../../../../../actions";
+import { userStore } from "../../../../../../../../../../stores";
+
 import classes from "./google-button.module.css";
 
 export const GoogleButton = () => {
@@ -8,5 +11,16 @@ export const GoogleButton = () => {
   //save to local storage on successful login => redirect to main page
 
   //Current behavior: Mock user is saved into local storage until google login is fully implemented
-  return <div className={classes.googleButton}>Sign-in with google</div>;
+  const { saveMockUser } = userStore;
+
+  const onSuccessfullLoginHandler = () => {
+    saveMockUser();
+    routerLocationSetter("/taskin");
+  };
+
+  return (
+    <div onClick={onSuccessfullLoginHandler} className={classes.googleButton}>
+      Sign-in with google
+    </div>
+  );
 };
