@@ -1,16 +1,25 @@
 import { CSSProperties, useState } from "react";
+
 import classes from "./button.module.css";
 
 type ButtonProps = {
   title: string;
+  icon?: string;
   onClick: () => void;
   isDisabled?: boolean;
   styleOverride?: CSSProperties;
+  //TODO: consider defining variant props for some core default styles
 };
 
 export const Button = (props: ButtonProps) => {
   const [isMouseDown, setIsMouseDown] = useState(false);
-  const { title, onClick, isDisabled = false, styleOverride = {} } = props;
+  const {
+    title,
+    onClick,
+    isDisabled = false,
+    styleOverride = {},
+    icon = "",
+  } = props;
 
   const mouseIsDownHandler = () => {
     setIsMouseDown(true);
@@ -33,7 +42,16 @@ export const Button = (props: ButtonProps) => {
         isMouseDown && classes.clickedButtonAnimation,
       ].join(" ")}
     >
-      {title}
+      <div>{title}</div>
+      <div>
+        {icon ? (
+          <img
+            className={title ? classes.buttonIconWithTitle : ""}
+            src={icon}
+            alt="button-icon"
+          />
+        ) : null}
+      </div>
     </div>
   );
 };
