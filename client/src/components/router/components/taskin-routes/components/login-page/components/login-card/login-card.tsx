@@ -1,5 +1,6 @@
 import { CSSProperties, MouseEvent } from "react";
 
+import { GoogleButton } from "./components";
 import { Button } from "../../../../../../../../shared";
 import { routerLocationSetter } from "../../../../../../../../actions";
 import closeIcon from "../../../../../../../../assets/svg/close_black_24dp.svg";
@@ -24,22 +25,26 @@ export const LoginCard = () => {
     routerLocationSetter("/home");
   };
 
+  const isMobile: boolean = window.innerWidth <= 800;
+
   return (
     <div onClick={preventParentClickEventHandler} className={classes.loginCard}>
       <div className={classes.loginCardHeader}>
         Log in options
-        <Button
-          title=""
-          icon={closeIcon}
-          onClick={onCloseIconClickedHandler}
-          styleOverride={closeIconButtonStyleOverride}
-        />
+        {isMobile ? null : (
+          <Button
+            title=""
+            icon={closeIcon}
+            onClick={onCloseIconClickedHandler}
+            styleOverride={closeIconButtonStyleOverride}
+          />
+        )}
       </div>
       <div className={classes.loginCardContent}>
-        Log in with your Google account
-        <div style={{ border: "1px solid #c3676c", marginTop: "12px" }}>
-          google button (needs implement)
+        <div className={classes.googleButtonIntroText}>
+          Log in with your Google account
         </div>
+        <GoogleButton />
       </div>
     </div>
   );

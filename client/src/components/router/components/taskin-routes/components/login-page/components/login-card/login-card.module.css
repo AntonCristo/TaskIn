@@ -28,6 +28,9 @@
   align-items: center;
   justify-content: center;
 }
+.googleButtonIntroText {
+  margin-bottom: 12px;
+}
 
 @media screen and (max-width: 1600px) {
   .loginCard {
