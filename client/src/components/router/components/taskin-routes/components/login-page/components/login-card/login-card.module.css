@@ -12,8 +12,12 @@
 }
 .loginCardHeader {
   font-family: "Ubuntu-medium";
-  padding: 12px;
+  height: 48px;
+  padding: 0 12px;
   border-bottom: 1px solid #c3676c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .loginCardContent {
   font-family: "Ubuntu-regular";
