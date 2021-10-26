@@ -2,12 +2,13 @@ import { observer } from "mobx-react";
 
 import { locationStore } from "../../stores/location-store";
 import { LandingPage } from "./components/landing-page";
-import { Home } from "./components/taskin-routes";
+import { Home, TaskinPage } from "./components/taskin-routes";
 
 type RouterProps = {};
 
 export const Router = observer((props: RouterProps) => {
   const { router_view } = locationStore;
+
   //TODO: add gurads after setting auto logins and other protected locations
 
   switch (router_view) {
@@ -16,6 +17,8 @@ export const Router = observer((props: RouterProps) => {
     case "/home":
     case "/home/login":
       return <Home />;
+    case "/taskin":
+      return <TaskinPage />;
     default:
       return <div>default</div>;
   }

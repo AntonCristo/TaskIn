@@ -11,7 +11,7 @@ import {
 } from "./components/";
 import { LoginPage } from "../login-page";
 import { Button } from "../../../../../../shared";
-import { locationStore } from "../../../../../../stores";
+import { locationStore, userStore } from "../../../../../../stores";
 import { routerLocationSetter } from "../../../../../../actions";
 
 import classes from "./home.module.css";
@@ -20,6 +20,12 @@ type HomeProps = {};
 
 export const Home = observer((props: HomeProps) => {
   const { router_view } = locationStore;
+  const { getMockUserFromLocalStorage } = userStore;
+
+  if (getMockUserFromLocalStorage()) {
+    routerLocationSetter("/taskin");
+    return null;
+  }
 
   const onLoginClickHandler = () => {
     routerLocationSetter("/home/login");
