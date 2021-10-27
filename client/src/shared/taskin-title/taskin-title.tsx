@@ -12,7 +12,7 @@ export const TaskinTitle = (props: TaskinTitleProps) => {
       style={fontSize ? { fontSize: `${fontSize}px` } : {}}
       className={classes.taskinTitle}
     >
-      T-Ask-in
+      T-Ask-In
     </div>
   );
 };
