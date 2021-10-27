@@ -1,5 +1,7 @@
+import { Button } from "../../../../../../shared";
 import { userStore } from "../../../../../../stores";
 import { routerLocationSetter } from "../../../../../../actions";
+import { TaskinTitle } from "../../../../../../shared/taskin-title/taskin-title";
 
 import classes from "./taskin-page.module.css";
 
@@ -21,8 +23,12 @@ export const TaskinPage = () => {
 
   return (
     <div className={classes.taskinPage}>
-      TASKINPAGE [{_user.fullName}]::[{_user.email}]
-      <button onClick={logOutButtonHandler}>Logout</button>
+      <TaskinTitle />
+      <Button
+        styleOverride={{ width: "70px" }}
+        onClick={logOutButtonHandler}
+        title="log-out"
+      />
     </div>
   );
 };
