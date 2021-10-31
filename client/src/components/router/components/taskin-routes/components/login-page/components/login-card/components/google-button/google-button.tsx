@@ -1,26 +1,34 @@
+import { GoogleLogin } from "react-google-login";
+
 import { routerLocationSetter } from "../../../../../../../../../../actions";
 import { userStore } from "../../../../../../../../../../stores";
 
 import classes from "./google-button.module.css";
 
+const GOOGLE_CLIENT_ID =
+  "7392791014-jeh8om3gkge6e7eme8jts9j7gtcm6vsj.apps.googleusercontent.com";
+
 export const GoogleButton = () => {
-  //TODO: implement with window.gapi
-  //create client id in google developers console
-  //implement offline sign in
-  //translate google payload into "Taskin" USER type
-  //save to local storage on successful login => redirect to main page
+  const { saveGoogleUserData } = userStore;
 
-  //Current behavior: Mock user is saved into local storage until google login is fully implemented
-  const { saveMockUser } = userStore;
-
-  const onSuccessfullLoginHandler = () => {
-    saveMockUser();
+  const onSuccessfullLoginHandler = (googleResponse: any) => {
+    saveGoogleUserData(googleResponse);
     routerLocationSetter("/taskin");
   };
 
+  const onUNsucessfullLoginHandler = (googleResponse: any) => {
+    alert("Failed to login, check logged error in browsers console");
+    console.log(googleResponse);
+    routerLocationSetter("/home");
+  };
+
   return (
-    <div onClick={onSuccessfullLoginHandler} className={classes.googleButton}>
-      Sign-in with google
+    <div className={classes.googleButton}>
+      <GoogleLogin
+        clientId={GOOGLE_CLIENT_ID}
+        onSuccess={onSuccessfullLoginHandler}
+        onFailure={onUNsucessfullLoginHandler}
+      />
     </div>
   );
 };
