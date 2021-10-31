@@ -1,0 +1,9 @@
+.mainMenu {
+  height: 100%;
+  width: 225px;
+  box-shadow: 1px 1px 4px rgb(161, 162, 163);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
+}

@@ -1,12 +1,11 @@
-import { Button } from "../../../../../../shared";
 import { userStore } from "../../../../../../stores";
 import { routerLocationSetter } from "../../../../../../actions";
-import { TaskinTitle } from "../../../../../../shared/taskin-title/taskin-title";
+import { MainMenu } from "./components";
 
 import classes from "./taskin-page.module.css";
 
 export const TaskinPage = () => {
-  const { getUserFromLocalStorage, clearUserFromLocalStorage } = userStore;
+  const { getUserFromLocalStorage } = userStore;
 
   const _user = getUserFromLocalStorage();
 
@@ -16,19 +15,9 @@ export const TaskinPage = () => {
     return null;
   }
 
-  const logOutButtonHandler = () => {
-    clearUserFromLocalStorage();
-    routerLocationSetter("/home");
-  };
-
   return (
     <div className={classes.taskinPage}>
-      <TaskinTitle />
-      <Button
-        styleOverride={{ width: "70px" }}
-        onClick={logOutButtonHandler}
-        title="log-out"
-      />
+      <MainMenu />
     </div>
   );
 };
