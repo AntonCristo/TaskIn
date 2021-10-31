@@ -4,3 +4,7 @@
   height: 100%;
   display: flex;
 }
+.contentWrapper {
+  position: relative;
+  width: 100%;
+}

@@ -1,0 +1,10 @@
+.header {
+  width: 100%;
+  height: 60px;
+  box-shadow: 1px 1px 6px rgb(161, 162, 163);
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
