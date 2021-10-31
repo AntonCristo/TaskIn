@@ -9,14 +9,12 @@ import classes from "./main-menu.module.css";
 
 export const MainMenu = observer(() => {
   const { isOpen } = mainMenuStore;
-  return (
+  return isOpen ? (
     <>
       <MobileBackdrop onClick={mobileToggleMainMenuVisibility} />
-      {isOpen ? (
-        <div className={classes.mainMenu}>
-          <TaskinTitle />
-        </div>
-      ) : null}
+      <div className={classes.mainMenu}>
+        <TaskinTitle />
+      </div>
     </>
-  );
+  ) : null;
 });

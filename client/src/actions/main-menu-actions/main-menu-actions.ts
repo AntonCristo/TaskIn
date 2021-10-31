@@ -4,9 +4,9 @@ import { mainMenuStore } from "../../stores";
 
 export const mobileToggleMainMenuVisibility = action(() => {
   const { isOpen } = mainMenuStore;
-  const isCureentlyOnMobileResolution = window.innerWidth <= 800;
+  const isCurrentlyOnMobileResolution = window.innerWidth <= 800;
 
-  if (isCureentlyOnMobileResolution) {
+  if (isCurrentlyOnMobileResolution) {
     mainMenuStore.isOpen = !isOpen;
   }
 });
