@@ -12,7 +12,7 @@
   margin-left: -100px;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
-  border-bottom: 160px solid #585ea7;
+  border-bottom: 160px solid #3d3d39;
   opacity: 0.9;
 }
 
@@ -26,7 +26,7 @@
     margin-left: -70px;
     border-left: 70px solid transparent;
     border-right: 70px solid transparent;
-    border-bottom: 130px solid #585ea7;
+    border-bottom: 130px solid #3d3d39;
   }
 }
 
@@ -40,6 +40,6 @@
     margin-left: -30px;
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
-    border-bottom: 50px solid #585ea7;
+    border-bottom: 50px solid #3d3d39;
   }
 }

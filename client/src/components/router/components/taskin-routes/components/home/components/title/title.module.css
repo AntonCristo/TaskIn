@@ -6,20 +6,15 @@
   margin-bottom: 37px;
 }
 .mainHeaderText {
-  color: #c3676c;
-  width: 300px;
+  color: #bf9372;
   font-size: 64px;
   text-shadow: 1px 2px 3px rgba(161, 162, 163, 1);
 }
 .subText {
-  color: #000;
+  color: #3d3d39;
   letter-spacing: 0.025px;
   font-size: 32px;
-  margin-left: 10px;
-}
-img {
-  height: 100%;
-  width: 48px;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 1600px) {
@@ -35,10 +30,6 @@ img {
   .subText {
     font-size: 24px;
     line-height: 30px;
-  }
-  img {
-    margin-top: 10px;
-    width: 36px;
   }
 }
 
@@ -59,10 +50,6 @@ img {
   .subText {
     font-size: 16px;
     line-height: 18px;
-  }
-  img {
-    position: absolute;
-    right: 0;
-    bottom: 18px;
+    margin-left: 0;
   }
 }
