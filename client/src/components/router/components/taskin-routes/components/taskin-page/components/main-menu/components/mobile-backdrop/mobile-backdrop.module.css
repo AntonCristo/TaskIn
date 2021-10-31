@@ -1,0 +1,14 @@
+.mobileBackdrop {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .mobileBackdrop {
+    display: block;
+    position: absolute;
+    z-index: 499;
+    filter: blur(8px);
+    width: 100%;
+    height: 100%;
+  }
+}
