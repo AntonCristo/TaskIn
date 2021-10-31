@@ -6,9 +6,9 @@ import { TaskinTitle } from "../../../../../../shared/taskin-title/taskin-title"
 import classes from "./taskin-page.module.css";
 
 export const TaskinPage = () => {
-  const { getMockUserFromLocalStorage, clearUserFromLocalStorage } = userStore;
+  const { getUserFromLocalStorage, clearUserFromLocalStorage } = userStore;
 
-  const _user = getMockUserFromLocalStorage();
+  const _user = getUserFromLocalStorage();
 
   if (!_user) {
     alert("USER ERROR, redirected to home page");

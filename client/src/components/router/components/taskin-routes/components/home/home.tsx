@@ -20,9 +20,9 @@ type HomeProps = {};
 
 export const Home = observer((props: HomeProps) => {
   const { router_view } = locationStore;
-  const { getMockUserFromLocalStorage } = userStore;
+  const { getUserFromLocalStorage } = userStore;
 
-  if (getMockUserFromLocalStorage()) {
+  if (getUserFromLocalStorage()) {
     routerLocationSetter("/taskin");
     return null;
   }

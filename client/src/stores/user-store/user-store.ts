@@ -1,37 +1,42 @@
-import { v4 as uuid } from "uuid";
 import { action } from "mobx";
 
 import { User } from "../../client-types";
 
 const USER_TEMPLATE: User = {
-  uuid: uuid(),
+  version: "0.1",
+  uuid: "",
+  issuer: "GOOGLE",
   fullName: "",
   email: "",
+  apiAccessToken: "",
 };
 
 class UserStore {
-  private getMockUser = () => {
-    const mockUser: User = JSON.parse(JSON.stringify(USER_TEMPLATE));
-    mockUser.email = "mock_user@example.com";
-    mockUser.fullName = "Mock User";
+  public saveGoogleUserData = (googleAuthResponse: any) => {
+    try {
+      const newUserTemplate = { ...USER_TEMPLATE };
 
-    return mockUser;
+      newUserTemplate.uuid = googleAuthResponse.profileObj.googleId;
+      newUserTemplate.apiAccessToken = googleAuthResponse.accessToken;
+      newUserTemplate.email = googleAuthResponse.profileObj.email;
+      newUserTemplate.fullName = googleAuthResponse.profileObj.name;
+
+      localStorage.setItem("userData", JSON.stringify(newUserTemplate));
+    } catch (error) {
+      console.log(error);
+      throw Error("[saveGoogleUserData]:: Check console.log");
+    }
   };
 
-  //TODO: remove after google sign in implementation
-  public saveMockUser = () => {
-    localStorage.setItem("userData", JSON.stringify(this.getMockUser()));
-  };
-
-  public getMockUserFromLocalStorage = (): User | null => {
+  public getUserFromLocalStorage = (): User | null => {
     const userFromLocalStorage: string | null =
       localStorage.getItem("userData");
 
-    let parsedMockUser: User | null = userFromLocalStorage
+    let parsedUser: User | null = userFromLocalStorage
       ? JSON.parse(userFromLocalStorage)
       : null;
 
-    return parsedMockUser;
+    return parsedUser;
   };
 
   public clearUserFromLocalStorage = action(() => {
