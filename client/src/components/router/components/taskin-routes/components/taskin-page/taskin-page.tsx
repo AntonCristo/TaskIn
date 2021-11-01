@@ -10,7 +10,7 @@ export const TaskinPage = () => {
   const _user = getUserFromLocalStorage();
 
   if (!_user) {
-    alert("USER ERROR, redirected to home page");
+    alert("[taskin page]: USER ERROR, redirected to home page");
     routerLocationSetter("/home");
     return null;
   }

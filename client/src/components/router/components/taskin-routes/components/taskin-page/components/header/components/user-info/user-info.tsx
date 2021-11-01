@@ -5,17 +5,13 @@ import {
   dropdownMenuStore,
   userStore,
 } from "../../../../../../../../../../stores";
-import {
-  routerLocationSetter,
-  setDropdownMenuByNameOrNull,
-} from "../../../../../../../../../../actions";
+import { setDropdownMenuByNameOrNull } from "../../../../../../../../../../actions";
 import user from "../../../../../../../../../../assets/svg/account_circle_24dp.svg";
 import arrowDown from "../../../../../../../../../../assets/svg/arrow_drop_down_24dp.svg";
 
 import classes from "./user-info.module.css";
 
 export const UserInfo = observer(() => {
-  //TODO: define UserInfo style for mobile
   const { getUserFromLocalStorage } = userStore;
   const { activeDropdownMenu } = dropdownMenuStore;
   const [currentImgIconValue, setCurrentImgIconValue] = useState(user);
@@ -23,8 +19,6 @@ export const UserInfo = observer(() => {
   const _user = getUserFromLocalStorage();
 
   if (!_user) {
-    alert("USER ERROR, redirected to home page");
-    routerLocationSetter("/home");
     return null;
   }
 

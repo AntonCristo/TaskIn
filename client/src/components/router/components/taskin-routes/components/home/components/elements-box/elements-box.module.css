@@ -10,8 +10,8 @@
 }
 .elementsBox > div:nth-child(2) {
   font-family: "Ubuntu-medium";
-  color: #fff;
-  text-shadow: 1px 2px 2px rgb(161, 162, 163);
+  color: #3d3d39;
+  opacity: 0.9;
 }
 
 @media screen and (max-width: 1600px) {
