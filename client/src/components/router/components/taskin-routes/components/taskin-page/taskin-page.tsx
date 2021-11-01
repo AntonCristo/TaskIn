@@ -11,7 +11,7 @@ export const TaskinPage = () => {
 
   if (!_user) {
     alert("[taskin page]: USER ERROR, redirected to home page");
-    routerLocationSetter("/home");
+    routerLocationSetter("/");
     return null;
   }
 

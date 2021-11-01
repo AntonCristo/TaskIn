@@ -28,7 +28,7 @@ export const Home = observer((props: HomeProps) => {
   }
 
   const onLoginClickHandler = () => {
-    routerLocationSetter("/home/login");
+    routerLocationSetter("/login");
   };
 
   return (
@@ -36,7 +36,7 @@ export const Home = observer((props: HomeProps) => {
       <div className={classes.loginButtonWrapper}>
         <Button onClick={onLoginClickHandler} title="Log In" />
       </div>
-      {router_view.startsWith("/home/login") ? <LoginPage /> : null}
+      {router_view.startsWith("/login") ? <LoginPage /> : null}
       <div className={classes.homeCenterItems}>
         <Title />
         <TitleUnderline />

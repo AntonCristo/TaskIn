@@ -7,7 +7,7 @@ import classes from "./login-page.module.css";
 
 export const LoginPage = () => {
   const onClickAnywhereHandler = () => {
-    routerLocationSetter("/home");
+    routerLocationSetter("/");
   };
 
   return (
