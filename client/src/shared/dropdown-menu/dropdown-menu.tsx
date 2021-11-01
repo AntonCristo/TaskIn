@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { setDropdownMenuByNameOrNull } from "../../actions";
 import { dropdownMenuStore } from "../../stores";
 import { userMenuListItems } from "./menus-definition";
-import { MenuWrapper } from "./components";
+import { MenuWrapper, UserMenuHeader } from "./components";
 
 import classes from "./dropdown-menu.module.css";
 
@@ -28,7 +28,9 @@ export const DropdownMenu = observer(() => {
           <MenuWrapper
             position={{ top: "60px", right: "15px" }}
             listItems={userMenuListItems}
-          />
+          >
+            <UserMenuHeader />
+          </MenuWrapper>
         );
       default:
         throw Error("[DropdownMenu]:: default case should never happen!");
