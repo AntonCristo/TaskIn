@@ -1,7 +1,6 @@
 import { observer } from "mobx-react";
 
 import { locationStore } from "../../stores/location-store";
-import { LandingPage } from "./components/landing-page";
 import { Home, TaskinPage } from "./components/taskin-routes";
 
 type RouterProps = {};
@@ -13,13 +12,11 @@ export const Router = observer((props: RouterProps) => {
 
   switch (router_view) {
     case "/":
-      return <LandingPage />;
-    case "/home":
-    case "/home/login":
+    case "/login":
       return <Home />;
     case "/taskin":
       return <TaskinPage />;
     default:
-      return <div>default</div>;
+      return <div>404 not found</div>;
   }
 });

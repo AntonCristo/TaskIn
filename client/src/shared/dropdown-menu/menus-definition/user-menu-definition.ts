@@ -6,7 +6,7 @@ import accountIcon from "../../../assets/svg/account_circle_24dp.svg";
 
 const userMenuLogoutHandler = () => {
   userStore.clearUserFromLocalStorage();
-  routerLocationSetter("/home");
+  routerLocationSetter("/");
 };
 
 export const userMenuListItems: MenuListItem[] = [

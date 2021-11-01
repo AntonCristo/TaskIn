@@ -22,7 +22,7 @@ export const LoginCard = () => {
   };
 
   const onCloseIconClickedHandler = () => {
-    routerLocationSetter("/home");
+    routerLocationSetter("/");
   };
 
   const isMobile: boolean = window.innerWidth <= 800;
