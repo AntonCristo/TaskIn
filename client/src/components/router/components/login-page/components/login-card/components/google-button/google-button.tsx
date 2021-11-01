@@ -1,7 +1,7 @@
 import { GoogleLogin } from "react-google-login";
 
-import { routerLocationSetter } from "../../../../../../../../../../actions";
-import { userStore } from "../../../../../../../../../../stores";
+import { routerLocationSetter } from "../../../../../../../../actions";
+import { userStore } from "../../../../../../../../stores";
 
 import classes from "./google-button.module.css";
 
@@ -13,7 +13,7 @@ export const GoogleButton = () => {
 
   const onSuccessfullLoginHandler = (googleResponse: any) => {
     saveGoogleUserData(googleResponse);
-    routerLocationSetter("/taskin");
+    routerLocationSetter("/taskin/memos");
   };
 
   const onUNsucessfullLoginHandler = (googleResponse: any) => {

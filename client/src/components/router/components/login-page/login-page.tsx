@@ -1,5 +1,5 @@
-import { routerLocationSetter } from "../../../../../../actions";
-import { Button } from "../../../../../../shared";
+import { routerLocationSetter } from "../../../../actions";
+import { Button } from "../../../../shared";
 
 import { LoginCard } from "./components";
 

@@ -1,5 +1,5 @@
-import { userStore } from "../../../../../../stores";
-import { routerLocationSetter } from "../../../../../../actions";
+import { userStore } from "../../../../stores";
+import { routerLocationSetter } from "../../../../actions";
 import { MainMenu, Header } from "./components";
 
 import classes from "./taskin-page.module.css";

@@ -1,9 +1,9 @@
 import { CSSProperties, MouseEvent } from "react";
 
 import { GoogleButton } from "./components";
-import { Button } from "../../../../../../../../shared";
-import { routerLocationSetter } from "../../../../../../../../actions";
-import closeIcon from "../../../../../../../../assets/svg/close_black_24dp.svg";
+import { Button } from "../../../../../../shared";
+import { routerLocationSetter } from "../../../../../../actions";
+import closeIcon from "../../../../../../assets/svg/close_black_24dp.svg";
 
 import classes from "./login-card.module.css";
 
