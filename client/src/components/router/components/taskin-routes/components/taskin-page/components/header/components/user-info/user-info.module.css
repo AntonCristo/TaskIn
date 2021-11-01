@@ -1,14 +1,29 @@
 .userInfo {
+  position: relative;
   font-size: 14px;
-  font-family: "Ubuntu-regular";
+  font-family: "Ubuntu-medium";
   height: 30px;
   display: flex;
   align-items: center;
   cursor: pointer;
   user-select: none;
-  color: #3d3d39;
+  color: #f6f6f7;
   text-transform: capitalize;
+  padding-left: 6px;
+  padding-right: 9px;
+  border-radius: 8px;
+  background-color: #807f80;
+  box-shadow: 1px 1px 4px rgb(161, 162, 163);
 }
-.userInfo img {
-  margin-right: 5px;
+.userFullName {
+  margin-left: 5px;
+}
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 800px) {
+  .userFullName {
+    display: none;
+  }
 }
