@@ -1,44 +1,62 @@
+import { MouseEvent } from "react";
 import { observer } from "mobx-react";
 
 import { locationStore, TaskinRoutes } from "../../../../../../../../stores";
+import { routerLocationSetter } from "../../../../../../../../actions";
+import teamNotesIcon from "../../../../../../../../assets/svg/team_24dp.svg";
+import myMemosIcon from "../../../../../../../../assets/svg/memo_24dp.svg";
 
 import classes from "./navigation-menu.module.css";
 
-export const NavigationMenu = observer(() => {
-  const { taskinActiveRoute } = locationStore;
-  const navigationItems: TaskinRoutes[] = ["MEMOS", "TEAM_NOTES"];
+type NavigationItem = {
+  route: TaskinRoutes;
+  icon: string;
+};
 
-  const translateTaskinSystemRoutesToUserDisplay = (
-    taskinSystemRoute: TaskinRoutes
-  ) => {
-    switch (taskinSystemRoute) {
-      case "MEMOS":
-        return "Memos";
-      case "TEAM_NOTES":
-        return "Team Notes";
-      default:
-        throw Error(
-          "[NavigationMenu]:: default case should never happen, check !!!"
-        );
-    }
+export const NavigationMenu = observer(() => {
+  const {
+    translateTaskinSystemRoutesToUserDisplay,
+    translateTaskinSystemRoutesToUrlValue,
+    reduceActiveRouteFromUrl,
+  } = locationStore;
+
+  const navigationItems: NavigationItem[] = [
+    { route: "MEMOS", icon: myMemosIcon },
+    { route: "TEAM_NOTES", icon: teamNotesIcon },
+  ];
+
+  const activeMenuItem = reduceActiveRouteFromUrl();
+
+  const onNavigationItemClickHandler = (event: MouseEvent<HTMLLIElement>) => {
+    const clickedRouteSystemValue = event.currentTarget.getAttribute(
+      "data-route"
+    ) as TaskinRoutes;
+
+    const urlFormatOfClickedSystemValue = translateTaskinSystemRoutesToUrlValue(
+      clickedRouteSystemValue
+    );
+
+    routerLocationSetter(`/taskin/${urlFormatOfClickedSystemValue}`);
   };
 
   return (
     <div className={classes.navigationMenu}>
       {navigationItems.map((navigationItem, index) => {
-        const isActive = taskinActiveRoute === navigationItem;
+        const isActive = activeMenuItem === navigationItem.route;
         return (
           <li
-            data-route={navigationItem}
+            key={index}
+            onClick={onNavigationItemClickHandler}
+            data-route={navigationItem.route}
             className={[
               classes.listItem,
               isActive && classes.activeListItem,
             ].join(" ")}
-            key={index}
           >
             {translateTaskinSystemRoutesToUserDisplay(
-              navigationItem as TaskinRoutes
+              navigationItem.route as TaskinRoutes
             )}
+            <img src={navigationItem.icon} alt="nav-item-icon" />
           </li>
         );
       })}
