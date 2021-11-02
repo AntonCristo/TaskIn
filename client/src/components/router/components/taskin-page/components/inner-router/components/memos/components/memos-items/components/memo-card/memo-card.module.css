@@ -1,0 +1,29 @@
+.memoCard {
+  position: relative;
+  width: 200px;
+  max-height: 250px;
+  margin-right: 45px;
+  margin-bottom: 20px;
+  background-color: #c6c5c6;
+  border-radius: 6px;
+  box-shadow: 1px 1px 6px -1px #d2cbc9;
+  padding: 12px;
+}
+.memoTitle {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  font-family: "Ubuntu-bold";
+  letter-spacing: 0.005px;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #fff;
+}
+.memoContent {
+  font-family: "Ubuntu-regular";
+  font-size: 14px;
+  line-height: 18px;
+  height: 115px;
+}

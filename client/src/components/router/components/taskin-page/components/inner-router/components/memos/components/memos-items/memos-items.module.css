@@ -1,0 +1,16 @@
+.memosItems {
+  height: calc(100vh - 127px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .memosItems {
+    height: calc(100vh - 145px);
+    overflow-y: auto;
+    flex-direction: column;
+  }
+}
