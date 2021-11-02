@@ -57,14 +57,17 @@ export const MemosHeader = observer(() => {
           onClick={
             uiStoreInstance.memoSearchText
               ? clearMemoTextSearchHandler
-              : () => {}
+              : memoUIActions.toggleSearchBoxVisibility
           }
         />
-        <ControlledInput
-          placeholder="memos title..."
-          value={uiStoreInstance.memoSearchText}
-          onChange={searchMemoTextChangeHandler}
-        />
+        {uiStoreInstance.isSearchBoxVisible ? (
+          <ControlledInput
+            autoFocus={uiStoreInstance.isSearchBoxVisible}
+            placeholder="memos title..."
+            value={uiStoreInstance.memoSearchText}
+            onChange={searchMemoTextChangeHandler}
+          />
+        ) : null}
       </div>
     </div>
   );

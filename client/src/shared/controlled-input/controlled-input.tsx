@@ -5,10 +5,16 @@ type ControlledInputProps = {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  autoFocus?: boolean;
 };
 
 export const ControlledInput = (props: ControlledInputProps) => {
-  const { value, onChange, placeholder = "type here..." } = props;
+  const {
+    value,
+    onChange,
+    placeholder = "type here...",
+    autoFocus = false,
+  } = props;
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const afterChangeValue = event.target.value;
@@ -18,6 +24,7 @@ export const ControlledInput = (props: ControlledInputProps) => {
 
   return (
     <input
+      autoFocus={autoFocus}
       onChange={onChangeHandler}
       value={value}
       placeholder={placeholder}
