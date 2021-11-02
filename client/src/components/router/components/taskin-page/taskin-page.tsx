@@ -1,6 +1,6 @@
 import { userStore } from "../../../../stores";
 import { routerLocationSetter } from "../../../../actions";
-import { MainMenu, Header } from "./components";
+import { MainMenu, Header, InnerRouter } from "./components";
 
 import classes from "./taskin-page.module.css";
 
@@ -20,7 +20,7 @@ export const TaskinPage = () => {
       <MainMenu />
       <div className={classes.contentWrapper}>
         <Header />
-        {/* inner router component location */}
+        <InnerRouter />
       </div>
     </div>
   );
