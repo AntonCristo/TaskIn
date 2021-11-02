@@ -2,7 +2,7 @@
   position: relative;
   z-index: 500;
   height: 100%;
-  width: 225px;
+  min-width: 225px;
   box-shadow: 1px 1px 4px rgb(161, 162, 163);
   background-color: #807f80;
   padding-top: 10px;

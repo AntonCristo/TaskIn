@@ -26,14 +26,15 @@
 .clickedButtonAnimation {
   transform: translate3d(-1px, 1px, 0px);
 }
+.defaultButtonStyle:hover {
+  background-color: #f4f6f6;
+}
 
 @media screen and (max-width: 1600px) {
   .defaultButtonStyle {
-    height: 24px;
+    font-size: 14px;
   }
   .defaultButtonStyle img {
     width: 16px;
-    margin-bottom: calc(100% - 10px);
-    opacity: 0.6;
   }
 }
