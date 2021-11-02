@@ -4,6 +4,7 @@ export type Memo = {
   createdBy: string;
   title: string;
   creationDate: number;
+  dueDate: number;
   content: string;
   label?: string;
 };
