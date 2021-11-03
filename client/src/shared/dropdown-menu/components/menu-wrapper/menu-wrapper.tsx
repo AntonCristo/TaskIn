@@ -1,8 +1,8 @@
 import { MouseEvent, ReactNode } from "react";
 import { observer } from "mobx-react";
+import { setDropdownMenuByNameOrNull } from "src/actions";
 
 import { MenuListItem } from "../../dropdown-menu";
-import { setDropdownMenuByNameOrNull } from "../../../../actions";
 
 import classes from "./menu-wrapper.module.css";
 

@@ -1,4 +1,7 @@
 import { observer } from "mobx-react";
+import { Button } from "src/shared";
+import { locationStore, userStore } from "src/stores";
+import { routerLocationSetter } from "src/actions";
 
 import {
   Title,
@@ -10,9 +13,6 @@ import {
   FooterParagraph,
 } from "./components/";
 import { LoginPage } from "../login-page";
-import { Button } from "../../../../shared";
-import { locationStore, userStore } from "../../../../stores";
-import { routerLocationSetter } from "../../../../actions";
 
 import classes from "./home.module.css";
 

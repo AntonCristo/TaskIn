@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { observer } from "mobx-react";
-
-import { dropdownMenuStore, userStore } from "../../../../../../../../stores";
-import { setDropdownMenuByNameOrNull } from "../../../../../../../../actions";
-import user from "../../../../../../../../assets/svg/account_circle_24dp.svg";
-import arrowDown from "../../../../../../../../assets/svg/arrow_drop_down_24dp.svg";
+import { dropdownMenuStore, userStore } from "src/stores";
+import { setDropdownMenuByNameOrNull } from "src/actions";
+import user from "src/assets/svg/account_circle_24dp.svg";
+import arrowDown from "src/assets/svg/arrow_drop_down_24dp.svg";
 
 import classes from "./user-info.module.css";
 

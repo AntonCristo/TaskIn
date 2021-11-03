@@ -1,9 +1,8 @@
 import { observer } from "mobx-react";
+import { Memo } from "src/client-types";
+import { Spinner, TaskinTitle } from "src/shared";
+import { memoStore } from "src/stores";
 
-import { Memo } from "../../../../../../../../../../client-types";
-import { Spinner } from "../../../../../../../../../../shared";
-import { TaskinTitle } from "../../../../../../../../../../shared/taskin-title/taskin-title";
-import { memoStore } from "../../../../../../../../../../stores";
 import { MemoCard } from "./components";
 
 import classes from "./memos-items.module.css";

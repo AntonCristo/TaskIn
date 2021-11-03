@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
-import { Memo } from "../../client-types";
-import { memosService } from "../../services";
+import { Memo } from "src/client-types";
+import { memosService } from "src/services";
 
 export type MemosDataMap = { [x: string]: Memo };
 
@@ -29,7 +29,6 @@ export class MemosDataStore {
     try {
       !this._memosMap && console.log("[initMemosDataStore]:: start");
       !this._memosMap && memosService.getMemosFromApiByInitiatorUUID();
-      this._memosMap && console.log("[initMemosDataStore]:: finished");
     } catch (error) {
       !this._memosMap && console.log("[initMemosDataStore]:: Error");
     }

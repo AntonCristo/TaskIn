@@ -1,6 +1,5 @@
 import { action } from "mobx";
-
-import { User } from "../../client-types";
+import { User } from "src/client-types";
 
 const USER_TEMPLATE: User = {
   version: "0.1",

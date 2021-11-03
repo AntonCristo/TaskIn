@@ -1,10 +1,9 @@
 import { MouseEvent } from "react";
 import { observer } from "mobx-react";
-
-import { locationStore, TaskinRoutes } from "../../../../../../../../stores";
-import { routerLocationSetter } from "../../../../../../../../actions";
-import teamNotesIcon from "../../../../../../../../assets/svg/team_24dp.svg";
-import myMemosIcon from "../../../../../../../../assets/svg/memo_24dp.svg";
+import { locationStore, TaskinRoutes } from "src/stores";
+import { routerLocationSetter } from "src/actions";
+import teamNotesIcon from "src/assets/svg/team_24dp.svg";
+import myMemosIcon from "src/assets/svg/memo_24dp.svg";
 
 import classes from "./navigation-menu.module.css";
 

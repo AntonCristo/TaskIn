@@ -1,5 +1,5 @@
-import { Memo } from "../../../../../../../../../../../../client-types";
-import { textUtils } from "../../../../../../../../../../../../utils";
+import { Memo } from "src/client-types";
+import { textUtils } from "src/utils";
 
 import { MemoDotPins, ControlPanel } from "./components";
 

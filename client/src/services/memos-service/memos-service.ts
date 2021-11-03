@@ -1,8 +1,9 @@
 import dayjs from "dayjs";
-import { updateMemosDataMap } from "../../actions/memos-actions/memo-crud";
-import { Memo } from "../../client-types";
-import { IMemoService } from "../../contracts";
-import { MemosDataMap } from "../../stores";
+import { v4 as uuid } from "uuid";
+import { updateMemosDataMap } from "src/actions/memos-actions/memo-crud";
+import { Memo } from "src/client-types";
+import { IMemoService } from "src/contracts";
+import { MemosDataMap } from "src/stores";
 
 const memoMocks: Memo[] = [
   {
@@ -11,7 +12,7 @@ const memoMocks: Memo[] = [
     creationDate: dayjs().valueOf(),
     dueDate: dayjs().add(4, "day").valueOf(),
     title: "Mock Mock",
-    uuid: "zxc-yukyuk-2rrr23eds-r32re",
+    uuid: uuid(),
     version: "0.1",
     label: "Urgent",
     isDone: false,
@@ -23,7 +24,7 @@ const memoMocks: Memo[] = [
     creationDate: dayjs().valueOf(),
     dueDate: dayjs().add(4, "day").valueOf(),
     title: "My Memo 12",
-    uuid: "zqc-yukyuk-2rrr23eds-r32re",
+    uuid: uuid(),
     version: "0.1",
     label: "Ok",
     isDone: true,
@@ -35,7 +36,7 @@ const memoMocks: Memo[] = [
     creationDate: dayjs().valueOf(),
     dueDate: dayjs().add(4, "day").valueOf(),
     title: "My Memo 25",
-    uuid: "zql-yukyuk-2rrr23eds-r32re",
+    uuid: uuid(),
     version: "0.1",
     label: "Ok",
     isDone: true,
@@ -47,10 +48,153 @@ const memoMocks: Memo[] = [
     creationDate: dayjs().valueOf(),
     dueDate: dayjs().add(4, "day").valueOf(),
     title: "My Memo",
-    uuid: "zqz-yukyuk-2rrr23eds-r32re",
+    uuid: uuid(),
     version: "0.1",
     label: "Ok",
     isDone: false,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "Homework #2",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: false,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "A memo to remember a thing",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: false,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "Add a spinner",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: true,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "Eat three times a day",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: true,
+  },
+  {
+    content: "Mock memo content, this text is a description of the memo card",
+    createdBy: "asbn-qwe234-asdassd-1qwerq",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "Mock Mock",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Urgent",
+    isDone: false,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "My Memo 12",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: true,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "My Memo 25",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: true,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "My Memo",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: false,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "Homework #2",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: false,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "A memo to remember a thing",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: false,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "Add a spinner",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: true,
+  },
+  {
+    content:
+      "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
+    createdBy: "asd-qwe234-asdassd-jaskldj",
+    creationDate: dayjs().valueOf(),
+    dueDate: dayjs().add(4, "day").valueOf(),
+    title: "Eat three times a day",
+    uuid: uuid(),
+    version: "0.1",
+    label: "Ok",
+    isDone: true,
   },
 ];
 

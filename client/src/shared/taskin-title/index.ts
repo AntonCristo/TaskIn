@@ -1,1 +1,1 @@
-export {} from "./taskin-title";
+export { TaskinTitle } from "./taskin-title";

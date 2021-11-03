@@ -1,8 +1,8 @@
-import { MenuListItem } from "../dropdown-menu";
-import { userStore } from "../../../stores";
-import { routerLocationSetter } from "../../../actions";
-import logoutIcon from "../../../assets/svg/logout_24dp.svg";
-import accountIcon from "../../../assets/svg/account_circle_24dp.svg";
+import { MenuListItem } from "src/shared";
+import { userStore } from "src/stores";
+import { routerLocationSetter } from "src/actions";
+import logoutIcon from "src/assets/svg/logout_24dp.svg";
+import accountIcon from "src/assets/svg/account_circle_24dp.svg";
 
 const userMenuLogoutHandler = () => {
   userStore.clearUserFromLocalStorage();
