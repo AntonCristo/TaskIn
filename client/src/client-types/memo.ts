@@ -6,5 +6,6 @@ export type Memo = {
   creationDate: number;
   dueDate: number;
   content: string;
+  isDone: boolean;
   label?: string;
 };

@@ -4,10 +4,14 @@
   max-height: 250px;
   margin-right: 45px;
   margin-bottom: 20px;
-  background-color: #c6c5c6;
+  background-color: #73bfa1;
   border-radius: 6px;
   box-shadow: 1px 1px 6px -1px #d2cbc9;
   padding: 12px;
+  cursor: default;
+}
+.completedMemoBackground {
+  background-color: #c6c5c6;
 }
 .memoTitle {
   width: 100%;
