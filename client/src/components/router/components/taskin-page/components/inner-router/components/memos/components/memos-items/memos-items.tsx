@@ -10,13 +10,13 @@ import classes from "./memos-items.module.css";
 export const MemosItems = observer(() => {
   const { uiStoreInstance, dataStoreInstance } = memoStore;
 
-  const memosFromStore = dataStoreInstance.getMemos();
-  if (!memosFromStore) {
+  const memosFromDataStore = dataStoreInstance.getMemos();
+  if (!memosFromDataStore) {
     return <div>spinner</div>;
   }
 
   const memosRenderPipeline = () => {
-    const titleSearchResults = memosFromStore.filter((memo) =>
+    const titleSearchResults = memosFromDataStore.filter((memo) =>
       memo.title.includes(uiStoreInstance.memoSearchText)
     );
     //TODO: after filtering and sorting is implemented
@@ -34,7 +34,7 @@ export const MemosItems = observer(() => {
         renderPipelineResults.map((memo, index) => (
           <MemoCard key={memo.uuid} memo={memo} />
         ))
-      ) : !memosFromStore ? (
+      ) : !memosFromDataStore ? (
         <div>spinner</div>
       ) : (
         <div className={classes.emptyMapPlacholder}>

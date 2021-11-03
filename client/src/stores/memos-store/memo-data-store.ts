@@ -9,8 +9,6 @@ export class MemosDataStore {
     makeAutoObservable(this);
   }
 
-  //TODO: add store initialization check
-
   private _memosMap: MemosDataMap | null = null;
   public getMemos = () => {
     if (!this._memosMap) {
