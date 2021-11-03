@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { observer } from "mobx-react";
 
 import { Memo } from "../../../../../../../../../../client-types";
+import { TaskinTitle } from "../../../../../../../../../../shared/taskin-title/taskin-title";
 import { memoStore } from "../../../../../../../../../../stores";
 import { MemoCard } from "./components";
 
@@ -80,7 +81,9 @@ export const MemosItems = observer(() => {
           <MemoCard key={memo.uuid} memo={memo} />
         ))
       ) : (
-        <div>empty</div>
+        <div className={classes.emptyMapPlacholder}>
+          <TaskinTitle />
+        </div>
       )}
     </div>
   );
