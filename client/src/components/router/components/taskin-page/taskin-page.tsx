@@ -1,4 +1,4 @@
-import { userStore } from "../../../../stores";
+import { userStore, memoStore } from "../../../../stores";
 import { routerLocationSetter } from "../../../../actions";
 import { MainMenu, Header, InnerRouter } from "./components";
 
@@ -14,6 +14,8 @@ export const TaskinPage = () => {
     routerLocationSetter("/");
     return null;
   }
+
+  memoStore.dataStoreInstance.initMemosDataStore();
 
   return (
     <div className={classes.taskinPage}>

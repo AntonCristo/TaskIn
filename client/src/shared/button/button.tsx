@@ -8,7 +8,6 @@ type ButtonProps = {
   onClick: () => void;
   isDisabled?: boolean;
   styleOverride?: CSSProperties;
-  //TODO: consider defining variant props for some core default styles
 };
 
 export const Button = (props: ButtonProps) => {
