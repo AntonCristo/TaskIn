@@ -12,6 +12,7 @@
 }
 .completedMemoBackground {
   background-color: #c6c5c6;
+  opacity: 0.6;
 }
 .memoTitle {
   width: 100%;

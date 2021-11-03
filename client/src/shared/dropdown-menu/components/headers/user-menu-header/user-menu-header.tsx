@@ -1,4 +1,4 @@
-import { userStore } from "../../../../../stores";
+import { userStore } from "src/stores";
 
 import classes from "./user-menu-header.module.css";
 

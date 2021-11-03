@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
+import { locationStore } from "src/stores";
 
 import { Memos } from "./components";
-import { locationStore } from "../../../../../../stores";
 
 export const InnerRouter = observer(() => {
   const { reduceActiveRouteFromUrl } = locationStore;

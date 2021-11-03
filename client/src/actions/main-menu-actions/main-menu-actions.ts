@@ -1,6 +1,5 @@
 import { action } from "mobx";
-
-import { mainMenuStore } from "../../stores";
+import { mainMenuStore } from "src/stores";
 
 export const mobileToggleMainMenuVisibility = action(() => {
   const { isOpen } = mainMenuStore;

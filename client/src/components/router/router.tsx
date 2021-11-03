@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 
-import { locationStore } from "../../stores/location-store";
+import { locationStore } from "src/stores";
 import { Home, TaskinPage } from "./components";
 
 type RouterProps = {};

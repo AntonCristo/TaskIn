@@ -1,8 +1,8 @@
 import { observer } from "mobx-react";
+import { setDropdownMenuByNameOrNull } from "src/actions";
+import { dropdownMenuStore } from "src/stores";
+import { userMenuListItems } from "src/shared/dropdown-menu/menus-definition";
 
-import { setDropdownMenuByNameOrNull } from "../../actions";
-import { dropdownMenuStore } from "../../stores";
-import { userMenuListItems } from "./menus-definition";
 import { MenuWrapper, UserMenuHeader } from "./components";
 
 import classes from "./dropdown-menu.module.css";

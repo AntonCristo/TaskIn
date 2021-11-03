@@ -1,14 +1,13 @@
 import { CSSProperties } from "react";
 import { observer } from "mobx-react";
-
-import { memoUIActions } from "../../../../../../../../../../actions";
-import { Button, ControlledInput } from "../../../../../../../../../../shared";
-import { memoStore } from "../../../../../../../../../../stores";
-import newMemoIcon from "../../../../../../../../../../assets/svg/add_circle_24dp.svg";
-import filterIcon from "../../../../../../../../../../assets/svg/filter_list_24dp.svg";
-import sortIcon from "../../../../../../../../../../assets/svg/sort_24dp.svg";
-import searchIcon from "../../../../../../../../../../assets/svg/search_24dp.svg";
-import clearTextIcon from "../../../../../../../../../../assets/svg/close_black_24dp.svg";
+import { memoUIActions } from "src/actions";
+import { Button, ControlledInput } from "src/shared";
+import { memoStore } from "src/stores";
+import newMemoIcon from "src/assets/svg/add_circle_24dp.svg";
+import filterIcon from "src/assets/svg/filter_list_24dp.svg";
+import sortIcon from "src/assets/svg/sort_24dp.svg";
+import searchIcon from "src/assets/svg/search_24dp.svg";
+import clearTextIcon from "src/assets/svg/close_black_24dp.svg";
 
 import classes from "./memos-header.module.css";
 

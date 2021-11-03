@@ -1,11 +1,11 @@
 import { CSSProperties } from "react";
 import dayjs from "dayjs";
-import { Memo } from "../../../../../../../../../../../../../../client-types";
-import rightArrowIcon from "../../../../../../../../../../../../../../assets/svg/east_24dp.svg";
-import doneIcon from "../../../../../../../../../../../../../../assets/svg/done_24dp.svg";
-import removeDoneIcon from "../../../../../../../../../../../../../../assets/svg/remove_done_24dp.svg";
-import deleteIcon from "../../../../../../../../../../../../../../assets/svg/delete_24dp.svg";
-import { Button } from "../../../../../../../../../../../../../../shared";
+import { Memo } from "src/client-types";
+import rightArrowIcon from "src/assets/svg/east_24dp.svg";
+import doneIcon from "src/assets/svg/done_24dp.svg";
+import removeDoneIcon from "src/assets/svg/remove_done_24dp.svg";
+import deleteIcon from "src/assets/svg/delete_24dp.svg";
+import { Button } from "src/shared";
 
 import classes from "./control-panel.module.css";
 
@@ -22,7 +22,6 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   return (
     <div className={classes.controlPanel}>
-      {/* [date/edit/show/del] */}
       <div className={classes.memoDates}>
         <span
           className={[

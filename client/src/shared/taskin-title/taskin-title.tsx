@@ -1,4 +1,4 @@
-import { SmallTriangle } from "..";
+import { SmallTriangle } from "src/shared";
 
 import classes from "./taskin-title.module.css";
 

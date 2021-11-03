@@ -1,7 +1,6 @@
 import { GoogleLogin } from "react-google-login";
-
-import { routerLocationSetter } from "../../../../../../../../actions";
-import { userStore } from "../../../../../../../../stores";
+import { routerLocationSetter } from "src/actions";
+import { userStore } from "src/stores";
 
 import classes from "./google-button.module.css";
 
