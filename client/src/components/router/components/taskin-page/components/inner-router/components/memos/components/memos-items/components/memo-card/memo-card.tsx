@@ -1,7 +1,7 @@
 import { Memo } from "../../../../../../../../../../../../client-types";
 import { textUtils } from "../../../../../../../../../../../../utils";
 
-import { MemoDotPins } from "./components";
+import { MemoDotPins, ControlPanel } from "./components";
 
 import classes from "./memo-card.module.css";
 
@@ -21,7 +21,7 @@ export const MemoCard = (props: MemoCardProps) => {
       <div className={classes.memoContent}>
         {textUtils.sliceTextAndAddEllipsis(memo.content, MAX_CONTENT_LENGTH)}
       </div>
-      <div>date/edit/show/del</div>
+      <ControlPanel />
     </div>
   );
 };
