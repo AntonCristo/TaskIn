@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
 
 import { Memo } from "../../../../../../../../../../client-types";
+import { Spinner } from "../../../../../../../../../../shared";
 import { TaskinTitle } from "../../../../../../../../../../shared/taskin-title/taskin-title";
 import { memoStore } from "../../../../../../../../../../stores";
 import { MemoCard } from "./components";
@@ -12,12 +13,18 @@ export const MemosItems = observer(() => {
 
   const memosFromDataStore = dataStoreInstance.getMemos();
   if (!memosFromDataStore) {
-    return <div>spinner</div>;
+    return (
+      <div className={classes.spinnerWrapper}>
+        <Spinner />
+      </div>
+    );
   }
 
   const memosRenderPipeline = () => {
     const titleSearchResults = memosFromDataStore.filter((memo) =>
-      memo.title.includes(uiStoreInstance.memoSearchText)
+      memo.title
+        .toLowerCase()
+        .includes(uiStoreInstance.memoSearchText.toLowerCase())
     );
     //TODO: after filtering and sorting is implemented
     //continue the pipeline
@@ -34,8 +41,6 @@ export const MemosItems = observer(() => {
         renderPipelineResults.map((memo, index) => (
           <MemoCard key={memo.uuid} memo={memo} />
         ))
-      ) : !memosFromDataStore ? (
-        <div>spinner</div>
       ) : (
         <div className={classes.emptyMapPlacholder}>
           <TaskinTitle />
