@@ -18,6 +18,7 @@ export const addNewValidatedMemoToMap = action(() => {
   copyOfMemosDataMap[newMemo.uuid] = newMemo;
 
   updateMemosDataMap(copyOfMemosDataMap);
+  return newMemo.uuid;
 });
 
 export const getCopyOfMemoFromMap = action(

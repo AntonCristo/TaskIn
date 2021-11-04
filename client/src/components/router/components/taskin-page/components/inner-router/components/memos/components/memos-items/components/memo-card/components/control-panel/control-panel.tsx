@@ -5,8 +5,10 @@ import rightArrowIcon from "src/assets/svg/east_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
 import removeDoneIcon from "src/assets/svg/remove_done_24dp.svg";
 import deleteIcon from "src/assets/svg/delete_24dp.svg";
+import expandLessIcon from "src/assets/svg/expand_less_24dp.svg";
+import expandMoreIcon from "src/assets/svg/expand_more_24dp.svg";
 import { Button } from "src/shared";
-import { memosCrudActions } from "src/actions";
+import { memosCrudActions, memoUIActions } from "src/actions";
 
 import classes from "./control-panel.module.css";
 
@@ -19,6 +21,11 @@ const controlPanelButtonsStyleOverride: CSSProperties = {
   minWidth: "40px",
 };
 
+const controlPanelToggleCollapseButtonStyleOverride: CSSProperties = {
+  border: "none",
+  backgroundColor: "transparent",
+};
+
 export const ControlPanel = (props: ControlPanelProps) => {
   const { memo, isCollapsed } = props;
 
@@ -28,6 +35,11 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const deleteMemoFromMapHandler = () => {
     memosCrudActions.deleteSingleMemoFromMap(memo.uuid);
+    memoUIActions.deleteSingleMemoCollapseState(memo.uuid);
+  };
+
+  const toggleMemoCollapsedState = () => {
+    memoUIActions.toggleSingleMemoCollapseState(memo.uuid);
   };
 
   return (
@@ -64,6 +76,12 @@ export const ControlPanel = (props: ControlPanelProps) => {
           title=""
           icon={memo.isDone ? removeDoneIcon : doneIcon}
           onClick={isMemoDoneToggler}
+        />
+        <Button
+          styleOverride={controlPanelToggleCollapseButtonStyleOverride}
+          title=""
+          icon={isCollapsed ? expandMoreIcon : expandLessIcon}
+          onClick={toggleMemoCollapsedState}
         />
         <Button
           styleOverride={controlPanelButtonsStyleOverride}

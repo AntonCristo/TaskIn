@@ -26,6 +26,12 @@ export const MemosHeader = observer(() => {
     memoUIActions.onChangeMemoSearchText("");
   };
 
+  const addNewMemoToMapWithoutValidation = () => {
+    //TODO:this method should open a wizard dialog with validation inside
+    const newMemoUUID = memosCrudActions.addNewValidatedMemoToMap();
+    memoUIActions.initSingleMemoCollapseState(newMemoUUID);
+  };
+
   return (
     <div className={classes.memosHeader}>
       <div className={classes.headerButtons}>
@@ -33,7 +39,7 @@ export const MemosHeader = observer(() => {
           styleOverride={headerButtonStyleOverride}
           title="New Memo"
           icon={newMemoIcon}
-          onClick={memosCrudActions.addNewValidatedMemoToMap}
+          onClick={addNewMemoToMapWithoutValidation}
         />
         <Button
           styleOverride={headerButtonStyleOverride}

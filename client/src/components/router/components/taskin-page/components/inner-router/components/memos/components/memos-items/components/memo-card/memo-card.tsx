@@ -1,18 +1,21 @@
+import { observer } from "mobx-react";
 import { Memo } from "src/client-types";
+import { memoStore } from "src/stores";
 import { textUtils } from "src/utils";
 
 import { MemoDotPins, ControlPanel } from "./components";
 
 import classes from "./memo-card.module.css";
 
-const MAX_CONTENT_LENGTH = 142;
+const MAX_CONTENT_LENGTH = window.innerWidth <= 800 ? 260 : 142;
 
 type MemoCardProps = {
   memo: Memo;
 };
 
-export const MemoCard = (props: MemoCardProps) => {
+export const MemoCard = observer((props: MemoCardProps) => {
   const { memo } = props;
+  const { uiStoreInstance } = memoStore;
 
   //TODO: create style updates accordion to diff between creation date and due date for the dots and title
   //like road light => green orange red
@@ -22,7 +25,7 @@ export const MemoCard = (props: MemoCardProps) => {
   //red #f75f3b
 
   //memo ui store map to hold collapsion
-  const isCollapsed = false;
+  const isCollapsed = uiStoreInstance.memosCollapseStateMap[memo.uuid];
 
   return (
     <div
@@ -42,4 +45,4 @@ export const MemoCard = (props: MemoCardProps) => {
       <ControlPanel isCollapsed={isCollapsed} memo={memo} />
     </div>
   );
-};
+});

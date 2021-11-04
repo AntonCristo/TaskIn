@@ -1,5 +1,5 @@
 import { userStore, memoStore } from "src/stores";
-import { routerLocationSetter } from "src/actions";
+import { routerLocationSetter, memoUIActions } from "src/actions";
 
 import { MainMenu, Header, InnerRouter } from "./components";
 
@@ -16,7 +16,12 @@ export const TaskinPage = () => {
     return null;
   }
 
-  memoStore.dataStoreInstance.initMemosDataStore();
+  const fetchedMemos = memoStore.dataStoreInstance.initMemosDataStore();
+  if (fetchedMemos) {
+    [...Object.keys(fetchedMemos)].forEach((memoUUID) => {
+      memoUIActions.initSingleMemoCollapseState(memoUUID);
+    });
+  }
 
   return (
     <div className={classes.taskinPage}>
