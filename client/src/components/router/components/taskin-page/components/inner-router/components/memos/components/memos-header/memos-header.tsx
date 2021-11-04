@@ -1,6 +1,10 @@
 import { CSSProperties } from "react";
 import { observer } from "mobx-react";
-import { memoUIActions, memosCrudActions } from "src/actions";
+import {
+  memoUIActions,
+  memosCrudActions,
+  setDropdownMenuByNameOrNull,
+} from "src/actions";
 import { Button, ControlledInput } from "src/shared";
 import { memoStore } from "src/stores";
 import newMemoIcon from "src/assets/svg/add_circle_24dp.svg";
@@ -18,11 +22,13 @@ export const MemosHeader = observer(() => {
   const buttonStylesOverride: { [x: string]: CSSProperties } = {
     headerButton: {
       border: "none",
+      width: "96px",
     },
     headerMenuButton: {
-      border: "none",
-      minWidth: "30px",
-      marginLeft: "4px",
+      borderColor: "#ff853b",
+      minWidth: "20px",
+      marginLeft: "auto",
+      marginRight: "8px",
     },
   };
 
@@ -40,12 +46,16 @@ export const MemosHeader = observer(() => {
     memoUIActions.initSingleMemoCollapseState(newMemoUUID);
   };
 
+  const onMoreActionsMenuClicked = () => {
+    setDropdownMenuByNameOrNull("/taskin/memos-memosMenu");
+  };
+
   return (
     <div className={classes.memosHeader}>
       <div className={classes.headerButtons}>
         <Button
           styleOverride={buttonStylesOverride.headerButton}
-          title="New Memo"
+          title="Memo"
           icon={newMemoIcon}
           onClick={addNewMemoToMapWithoutValidation}
         />
@@ -64,10 +74,7 @@ export const MemosHeader = observer(() => {
       </div>
       <div className={classes.searchInputWrapper}>
         <Button
-          styleOverride={{
-            ...buttonStylesOverride.headerButton,
-            width: "86px",
-          }}
+          styleOverride={buttonStylesOverride.headerButton}
           title={uiStoreInstance.memoSearchText ? "Clear" : "Search"}
           icon={uiStoreInstance.memoSearchText ? clearTextIcon : searchIcon}
           onClick={
@@ -88,7 +95,7 @@ export const MemosHeader = observer(() => {
           styleOverride={buttonStylesOverride.headerMenuButton}
           icon={moreIcon}
           title=""
-          onClick={() => {}}
+          onClick={onMoreActionsMenuClicked}
         />
       </div>
     </div>

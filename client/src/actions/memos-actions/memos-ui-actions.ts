@@ -40,3 +40,15 @@ export const toggleSingleMemoCollapseState = action((memoUUID: Uuid) => {
 
   memoStore.uiStoreInstance.memosCollapseStateMap = copyOfCollapseStateMap;
 });
+
+export const shouldCollapseAllMemos = action((isCollapsed: boolean) => {
+  const copyOfCollapseStateMap: MemosCollapseStateMap = JSON.parse(
+    JSON.stringify(memoStore.uiStoreInstance.memosCollapseStateMap)
+  );
+
+  [...Object.keys(copyOfCollapseStateMap)].forEach(
+    (key) => (copyOfCollapseStateMap[key] = isCollapsed)
+  );
+
+  memoStore.uiStoreInstance.memosCollapseStateMap = copyOfCollapseStateMap;
+});
