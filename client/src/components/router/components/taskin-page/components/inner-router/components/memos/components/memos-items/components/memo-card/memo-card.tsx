@@ -22,7 +22,7 @@ export const MemoCard = (props: MemoCardProps) => {
   //red #f75f3b
 
   //memo ui store map to hold collapsion
-  const isCollapsed = true;
+  const isCollapsed = false;
 
   return (
     <div
@@ -33,11 +33,11 @@ export const MemoCard = (props: MemoCardProps) => {
     >
       <MemoDotPins />
       <div className={classes.memoTitle}>{memo.title}</div>
-      {isCollapsed ? (
+      {isCollapsed ? null : (
         <div className={classes.memoContent}>
           {textUtils.sliceTextAndAddEllipsis(memo.content, MAX_CONTENT_LENGTH)}
         </div>
-      ) : null}
+      )}
 
       <ControlPanel isCollapsed={isCollapsed} memo={memo} />
     </div>

@@ -36,9 +36,7 @@ export const updateSingleMemo = action(
       JSON.stringify(memoStore.dataStoreInstance.memosMap)
     );
 
-    const memoFromMap: Memo | undefined = copyOfMemosDataMap[memoUUID]
-      ? copyOfMemosDataMap[memoUUID]
-      : undefined;
+    const memoFromMap: Memo | undefined = copyOfMemosDataMap[memoUUID];
 
     if (!memoFromMap) {
       throw Error(

@@ -34,10 +34,10 @@ export const ControlPanel = (props: ControlPanelProps) => {
     <div
       className={[
         classes.controlPanel,
-        !isCollapsed && classes.minimizedControlPanel,
+        isCollapsed && classes.minimizedControlPanel,
       ].join(" ")}
     >
-      {isCollapsed ? (
+      {isCollapsed ? null : (
         <div className={classes.memoDates}>
           <span
             className={[
@@ -57,7 +57,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
             {dayjs(memo.dueDate).format("DD.MM.YYYY")}
           </span>
         </div>
-      ) : null}
+      )}
       <div className={classes.memoButtons}>
         <Button
           styleOverride={controlPanelButtonsStyleOverride}
