@@ -1,7 +1,9 @@
 .controlPanel {
   width: 100%;
   height: 80px;
-  border-top: 1px solid #fff;
+}
+.minimizedControlPanel {
+  height: 45px;
 }
 .memoDates {
   display: flex;

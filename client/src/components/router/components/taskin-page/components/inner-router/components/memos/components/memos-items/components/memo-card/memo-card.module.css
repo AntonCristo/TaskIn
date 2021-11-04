@@ -23,12 +23,13 @@
   font-family: "Ubuntu-bold";
   letter-spacing: 0.005px;
   padding-bottom: 4px;
-  margin-bottom: 6px;
-  border-bottom: 1px solid #fff;
 }
 .memoContent {
   font-family: "Ubuntu-regular";
   font-size: 14px;
   line-height: 18px;
   height: 115px;
+  margin-top: 6px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
