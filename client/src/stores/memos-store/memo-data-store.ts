@@ -8,7 +8,8 @@ import { v4 as uuid } from "uuid";
 export type MemosDataMap = { [x: string]: Memo };
 
 export const MEMO_TEMPLATE: Memo = {
-  content: "",
+  content:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae consectetur enim. Vivamus malesuada fringilla eros, finibus semper lacus fermentum ut. Proin maximus, sapien sit amet lacinia tincidunt, ante neque dignissim sapien, a commodo felis massa et diam. Cras id felis commodo, lacinia metus sed, suscipit leo. Nam sagittis sapien vitae elit facilisis mattis. Fusce accumsan volutpat venenatis. Aliquam erat volutpat. Ut laoreet aliquam ex id malesuada. Donec venenatis lorem quis tortor faucibus aliquam. Duis viverra, urna non maximus venenatis, magna nulla tincidunt sapien, in porttitor mauris libero malesuada lorem. Ut id ligula sit amet nunc pretium commodo vitae sit amet massa. Suspendisse consectetur nibh vitae lorem vehicula ornare.",
   createdBy: "",
   creationDate: dayjs().valueOf(),
   dueDate: dayjs().add(1, "days").valueOf(),
@@ -49,6 +50,7 @@ export class MemosDataStore {
     try {
       !this._memosMap && console.log("[initMemosDataStore]:: start");
       !this._memosMap && memosService.getMemosFromApiByInitiatorUUID();
+      return this._memosMap;
     } catch (error) {
       !this._memosMap && console.log("[initMemosDataStore]:: Error");
     }

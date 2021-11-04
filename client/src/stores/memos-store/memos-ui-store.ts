@@ -1,8 +1,21 @@
 import { makeAutoObservable } from "mobx";
 
+export type MemosCollapseStateMap = {
+  [x: string]: boolean;
+};
+
 export class MemosUIStore {
   constructor() {
     makeAutoObservable(this);
+  }
+
+  private _memosCollapseStateMap: MemosCollapseStateMap = {};
+  get memosCollapseStateMap() {
+    return this._memosCollapseStateMap;
+  }
+  set memosCollapseStateMap(updatedMap: MemosCollapseStateMap) {
+    this._memosCollapseStateMap = updatedMap;
+    console.log(JSON.parse(JSON.stringify(updatedMap)));
   }
 
   private _isSearchBoxVisible: boolean = false;

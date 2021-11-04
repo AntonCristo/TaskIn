@@ -10,6 +10,9 @@ class LocationStore {
   get router_view() {
     return this._router_view;
   }
+  set router_view(routeUpdate: string) {
+    this._router_view = routeUpdate;
+  }
 
   public translateTaskinSystemRoutesToUserDisplay = (
     taskinSystemRoute: TaskinRoutes
