@@ -15,7 +15,6 @@ export class MemosUIStore {
   }
   set memosCollapseStateMap(updatedMap: MemosCollapseStateMap) {
     this._memosCollapseStateMap = updatedMap;
-    console.log(JSON.parse(JSON.stringify(updatedMap)));
   }
 
   private _isSearchBoxVisible: boolean = false;
