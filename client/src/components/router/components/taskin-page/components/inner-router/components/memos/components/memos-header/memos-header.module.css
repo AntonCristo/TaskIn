@@ -12,6 +12,7 @@
   justify-content: space-between;
 }
 .searchInputWrapper {
+  margin-top: 2px;
   margin-left: 25px;
   display: flex;
   align-items: center;
@@ -32,6 +33,7 @@
     padding: 5px 0;
   }
   .searchInputWrapper {
+    height: 100%;
     width: 100%;
     margin-left: 0;
   }

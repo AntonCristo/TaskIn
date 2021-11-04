@@ -8,14 +8,22 @@ import filterIcon from "src/assets/svg/filter_list_24dp.svg";
 import sortIcon from "src/assets/svg/sort_24dp.svg";
 import searchIcon from "src/assets/svg/search_24dp.svg";
 import clearTextIcon from "src/assets/svg/close_black_24dp.svg";
+import moreIcon from "src/assets/svg/more_vert_24dp.svg";
 
 import classes from "./memos-header.module.css";
 
 export const MemosHeader = observer(() => {
   const { uiStoreInstance } = memoStore;
 
-  const headerButtonStyleOverride: CSSProperties = {
-    border: "none",
+  const buttonStylesOverride: { [x: string]: CSSProperties } = {
+    headerButton: {
+      border: "none",
+    },
+    headerMenuButton: {
+      border: "none",
+      minWidth: "30px",
+      marginLeft: "4px",
+    },
   };
 
   const searchMemoTextChangeHandler = (typedValue: string) => {
@@ -36,19 +44,19 @@ export const MemosHeader = observer(() => {
     <div className={classes.memosHeader}>
       <div className={classes.headerButtons}>
         <Button
-          styleOverride={headerButtonStyleOverride}
+          styleOverride={buttonStylesOverride.headerButton}
           title="New Memo"
           icon={newMemoIcon}
           onClick={addNewMemoToMapWithoutValidation}
         />
         <Button
-          styleOverride={headerButtonStyleOverride}
+          styleOverride={buttonStylesOverride.headerButton}
           title="Filter"
           icon={filterIcon}
           onClick={() => {}}
         />
         <Button
-          styleOverride={headerButtonStyleOverride}
+          styleOverride={buttonStylesOverride.headerButton}
           title="Sort"
           icon={sortIcon}
           onClick={() => {}}
@@ -56,7 +64,10 @@ export const MemosHeader = observer(() => {
       </div>
       <div className={classes.searchInputWrapper}>
         <Button
-          styleOverride={{ ...headerButtonStyleOverride, width: "86px" }}
+          styleOverride={{
+            ...buttonStylesOverride.headerButton,
+            width: "86px",
+          }}
           title={uiStoreInstance.memoSearchText ? "Clear" : "Search"}
           icon={uiStoreInstance.memoSearchText ? clearTextIcon : searchIcon}
           onClick={
@@ -73,6 +84,12 @@ export const MemosHeader = observer(() => {
             onChange={searchMemoTextChangeHandler}
           />
         ) : null}
+        <Button
+          styleOverride={buttonStylesOverride.headerMenuButton}
+          icon={moreIcon}
+          title=""
+          onClick={() => {}}
+        />
       </div>
     </div>
   );
