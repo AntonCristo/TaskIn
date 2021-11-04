@@ -21,7 +21,7 @@ export const MenuWrapper = observer((props: MenuWrapperProps) => {
 
   return (
     <div
-      style={{ top: position.top, right: position.right }}
+      style={{ top: position.top, right: position.right, left: position.left }}
       onClick={preventClickEventPropogation}
       className={classes.menuWrapper}
     >

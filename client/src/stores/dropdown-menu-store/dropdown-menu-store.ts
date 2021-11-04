@@ -1,7 +1,10 @@
 import { makeAutoObservable } from "mobx";
 
 //api => [/routeName-menuName]
-export type TaskinDropDownMenuName = "/taskin-userMenu" | null;
+export type TaskinDropDownMenuName =
+  | "/taskin-userMenu"
+  | "/taskin/memos-memosMenu"
+  | null;
 
 class DropdownMenuStore {
   constructor() {

@@ -27,7 +27,7 @@
 @media screen and (max-width: 800px) {
   .memosItems {
     height: calc(100vh - 145px);
-    max-width: 100vw;
+    max-width: 100%;
     overflow-y: scroll;
     flex-wrap: nowrap;
     flex-direction: column;

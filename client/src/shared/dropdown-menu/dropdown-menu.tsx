@@ -1,7 +1,10 @@
 import { observer } from "mobx-react";
 import { setDropdownMenuByNameOrNull } from "src/actions";
 import { dropdownMenuStore } from "src/stores";
-import { userMenuListItems } from "src/shared/dropdown-menu/menus-definition";
+import {
+  userMenuListItems,
+  memosMenuListItems,
+} from "src/shared/dropdown-menu/menus-definition";
 
 import { MenuWrapper, UserMenuHeader } from "./components";
 
@@ -31,6 +34,13 @@ export const DropdownMenu = observer(() => {
           >
             <UserMenuHeader />
           </MenuWrapper>
+        );
+      case "/taskin/memos-memosMenu":
+        return (
+          <MenuWrapper
+            listItems={memosMenuListItems}
+            position={{ top: "110px", right: "15px" }}
+          />
         );
       default:
         throw Error("[DropdownMenu]:: default case should never happen!");

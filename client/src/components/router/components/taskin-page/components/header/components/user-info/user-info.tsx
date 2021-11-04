@@ -38,8 +38,14 @@ export const UserInfo = observer(() => {
       className={classes.userInfo}
     >
       <img
-        className={activeDropdownMenu ? classes.rotate180 : {}}
-        src={activeDropdownMenu ? arrowDown : currentImgIconValue}
+        className={
+          activeDropdownMenu === "/taskin-userMenu" ? classes.rotate180 : {}
+        }
+        src={
+          activeDropdownMenu === "/taskin-userMenu"
+            ? arrowDown
+            : currentImgIconValue
+        }
         alt=""
       />
       <span className={classes.userFullName}>{_user.fullName}</span>
