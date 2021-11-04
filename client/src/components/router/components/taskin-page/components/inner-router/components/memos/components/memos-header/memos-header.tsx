@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { observer } from "mobx-react";
-import { memoUIActions } from "src/actions";
+import { memoUIActions, memosCrudActions } from "src/actions";
 import { Button, ControlledInput } from "src/shared";
 import { memoStore } from "src/stores";
 import newMemoIcon from "src/assets/svg/add_circle_24dp.svg";
@@ -33,7 +33,7 @@ export const MemosHeader = observer(() => {
           styleOverride={headerButtonStyleOverride}
           title="New Memo"
           icon={newMemoIcon}
-          onClick={() => {}}
+          onClick={memosCrudActions.addNewValidatedMemoToMap}
         />
         <Button
           styleOverride={headerButtonStyleOverride}

@@ -1,8 +1,23 @@
+import dayjs from "dayjs";
 import { makeAutoObservable } from "mobx";
 import { Memo } from "src/client-types";
 import { memosService } from "src/services";
+import { userStore } from "src/stores";
+import { v4 as uuid } from "uuid";
 
 export type MemosDataMap = { [x: string]: Memo };
+
+export const MEMO_TEMPLATE: Memo = {
+  content: "",
+  createdBy: "",
+  creationDate: dayjs().valueOf(),
+  dueDate: dayjs().add(1, "days").valueOf(),
+  isDone: false,
+  title: "New Memo",
+  uuid: "",
+  version: "0.1",
+  label: "",
+};
 
 export class MemosDataStore {
   constructor() {
@@ -10,7 +25,7 @@ export class MemosDataStore {
   }
 
   private _memosMap: MemosDataMap | null = null;
-  public getMemos = () => {
+  public getMemosAsArray = () => {
     if (!this._memosMap) {
       return null;
     }
@@ -21,8 +36,13 @@ export class MemosDataStore {
     }
     return memosMapAsArray;
   };
+  get memosMap() {
+    if (!this._memosMap) return {};
+    else return this._memosMap;
+  }
   set memosMap(mapUpdate: MemosDataMap) {
     this._memosMap = mapUpdate;
+    //TODO: add upsert method to api
   }
 
   public initMemosDataStore = () => {
@@ -32,5 +52,21 @@ export class MemosDataStore {
     } catch (error) {
       !this._memosMap && console.log("[initMemosDataStore]:: Error");
     }
+  };
+
+  public getMemoTemplate = () => {
+    const _user = userStore.getUserFromLocalStorage();
+
+    if (!_user) {
+      throw Error(
+        "[getMemoTemplate]:: userData is not present in local storage"
+      );
+    }
+
+    const memoTemplate: Memo = JSON.parse(JSON.stringify(MEMO_TEMPLATE));
+    memoTemplate.uuid = uuid();
+    memoTemplate.createdBy = _user.uuid;
+
+    return memoTemplate;
   };
 }
