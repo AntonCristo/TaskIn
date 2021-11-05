@@ -19,12 +19,11 @@ export const MemoCard = observer((props: MemoCardProps) => {
 
   //TODO: create style updates accordion to diff between creation date and due date for the dots and title
   //like road light => green orange red
-  //done #c6c5c6
-  //green  #73bfa1
-  //orange #d2cbc9
-  //red #f75f3b
+  // Low = "#73bfa1",
+  // Medium = "#ff853b",
+  // High = "#ff4833",
+  // Done = "#c6c5c6",
 
-  //memo ui store map to hold collapsion
   const isCollapsed = uiStoreInstance.memosCollapseStateMap[memo.uuid];
 
   return (

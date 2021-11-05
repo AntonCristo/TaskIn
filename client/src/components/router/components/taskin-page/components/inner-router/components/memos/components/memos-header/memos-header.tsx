@@ -28,7 +28,7 @@ export const MemosHeader = observer(() => {
       borderColor: "#ff853b",
       minWidth: "20px",
       marginLeft: "auto",
-      marginRight: "8px",
+      marginRight: "12px",
     },
   };
 
@@ -59,6 +59,7 @@ export const MemosHeader = observer(() => {
           icon={newMemoIcon}
           onClick={addNewMemoToMapWithoutValidation}
         />
+        {/* //TODO: if filter is selcetd, icon should be replaced to refresh icon */}
         <Button
           styleOverride={buttonStylesOverride.headerButton}
           title="Filter"

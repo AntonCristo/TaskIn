@@ -1,0 +1,18 @@
+.mapItem {
+  height: 20px;
+  width: 20px;
+  margin-right: 4px;
+  border-radius: 2px;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.mapItem > div {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: #000;
+}

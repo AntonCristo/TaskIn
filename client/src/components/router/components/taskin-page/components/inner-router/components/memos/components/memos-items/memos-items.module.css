@@ -17,13 +17,12 @@
 .emptyMapPlacholder > div {
   width: 190px;
 }
-
 .spinnerWrapper {
-  height: calc(100vh - 127px);
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin-top: 16%;
 }
+
 @media screen and (max-width: 800px) {
   .memosItems {
     height: calc(100vh - 145px);
@@ -34,8 +33,5 @@
   }
   .emptyMapPlacholder > div {
     width: 150px;
-  }
-  .spinnerWrapper {
-    height: calc(100vh - 145px);
   }
 }
