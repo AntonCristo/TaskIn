@@ -1,0 +1,21 @@
+.memosColorMap {
+  display: flex;
+  align-items: center;
+}
+.memosColorMap > img {
+  opacity: 0.6;
+  margin-left: 6px;
+  cursor: pointer;
+}
+.rotateImageOnClick {
+  animation: rotate360 0.4s linear;
+}
+
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
