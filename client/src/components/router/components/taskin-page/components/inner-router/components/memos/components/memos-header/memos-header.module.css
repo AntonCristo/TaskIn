@@ -13,7 +13,7 @@
 }
 .searchInputWrapper {
   margin-top: 2px;
-
+  height: 32px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -34,7 +34,6 @@
     padding: 5px 0;
   }
   .searchInputWrapper {
-    height: 100%;
     width: 100%;
     margin-left: 0;
   }

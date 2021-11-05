@@ -61,6 +61,27 @@ class LocationStore {
         );
     }
   };
+
+  public reduceMemoUUIDFromUrl = () => {
+    const v4 = new RegExp(
+      /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
+    );
+
+    const routeValues = this.router_view
+      .split("/")
+      .filter((routeValue) => routeValue);
+
+    if (
+      routeValues.length >= 3 &&
+      this.router_view.startsWith("/taskin/memos/uuid=")
+    ) {
+      const memoUUID = routeValues[2].split("=")[1];
+
+      return v4.test(memoUUID) ? memoUUID : undefined;
+    }
+
+    return undefined;
+  };
 }
 
 export const locationStore = new LocationStore();

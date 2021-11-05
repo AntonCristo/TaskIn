@@ -7,12 +7,12 @@
   align-items: center;
   cursor: pointer;
   user-select: none;
-  color: #f6f6f7;
+  color: #807f80;
   text-transform: capitalize;
   padding-left: 6px;
   padding-right: 9px;
   border-radius: 8px;
-  background-color: #807f80;
+  background-color: #dcdcdc;
   box-shadow: 1px 1px 4px rgb(161, 162, 163);
 }
 .userFullName {

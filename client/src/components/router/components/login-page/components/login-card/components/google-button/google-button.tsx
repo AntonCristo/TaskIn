@@ -17,7 +17,6 @@ export const GoogleButton = () => {
 
   const onUNsucessfullLoginHandler = (googleResponse: any) => {
     alert("Failed to login, check logged error in browsers console");
-    console.log(googleResponse);
     routerLocationSetter("/");
   };
 

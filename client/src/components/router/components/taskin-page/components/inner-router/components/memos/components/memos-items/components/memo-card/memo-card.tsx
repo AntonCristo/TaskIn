@@ -1,4 +1,5 @@
 import { observer } from "mobx-react";
+import { routerLocationSetter } from "src/actions";
 import { Memo } from "src/client-types";
 import { memoStore } from "src/stores";
 import { textUtils } from "src/utils";
@@ -26,8 +27,13 @@ export const MemoCard = observer((props: MemoCardProps) => {
 
   const isCollapsed = uiStoreInstance.memosCollapseStateMap[memo.uuid];
 
+  const onMemoCardClickedToEditHandler = () => {
+    routerLocationSetter(`/taskin/memos/uuid=${memo.uuid}`);
+  };
+
   return (
     <div
+      onClick={onMemoCardClickedToEditHandler}
       className={[
         classes.memoCard,
         memo.isDone && classes.completedMemoBackground,
