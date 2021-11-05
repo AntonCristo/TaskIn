@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, MouseEvent } from "react";
 import dayjs from "dayjs";
 import { Memo } from "src/client-types";
 import rightArrowIcon from "src/assets/svg/east_24dp.svg";
@@ -42,6 +42,10 @@ export const ControlPanel = (props: ControlPanelProps) => {
     memoUIActions.toggleSingleMemoCollapseState(memo.uuid);
   };
 
+  const preventClickPropogation = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <div
       className={[
@@ -70,7 +74,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
           </span>
         </div>
       )}
-      <div className={classes.memoButtons}>
+      <div onClick={preventClickPropogation} className={classes.memoButtons}>
         <Button
           styleOverride={controlPanelButtonsStyleOverride}
           title=""
