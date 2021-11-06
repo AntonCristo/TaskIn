@@ -1,6 +1,7 @@
 import { action } from "mobx";
-import { Uuid } from "src/client-types";
+import { Uuid, ValueOf } from "src/client-types";
 import { memoStore, MemosCollapseStateMap } from "src/stores";
+import { EditMemoProfile } from "src/stores";
 
 export const onChangeMemoSearchText = action((memoSearchText: string) => {
   memoStore.uiStoreInstance.memoSearchText = memoSearchText;
@@ -51,4 +52,28 @@ export const shouldCollapseAllMemos = action((isCollapsed: boolean) => {
   );
 
   memoStore.uiStoreInstance.memosCollapseStateMap = copyOfCollapseStateMap;
+});
+
+export const editMemoProfile = action(
+  (key: keyof EditMemoProfile, value: ValueOf<EditMemoProfile>) => {
+    const copyOfEditMemoProfile: EditMemoProfile = JSON.parse(
+      JSON.stringify(memoStore.uiStoreInstance.editMemoProfile)
+    );
+
+    copyOfEditMemoProfile[key] = value;
+
+    memoStore.uiStoreInstance.editMemoProfile = copyOfEditMemoProfile;
+  }
+);
+
+export const resetEditMemoProfile = action(() => {
+  const copyOfEditMemoProfile: EditMemoProfile = JSON.parse(
+    JSON.stringify(memoStore.uiStoreInstance.editMemoProfile)
+  );
+
+  Object.keys(copyOfEditMemoProfile).forEach((key) => {
+    copyOfEditMemoProfile[key as keyof EditMemoProfile] = false;
+  });
+
+  memoStore.uiStoreInstance.editMemoProfile = copyOfEditMemoProfile;
 });
