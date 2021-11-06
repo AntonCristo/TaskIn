@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { routerLocationSetter } from "src/actions";
+import { routerLocationSetter, memoUIActions } from "src/actions";
 import { locationStore } from "src/stores";
 
 import { MemosHeader, MemosItems, EditMemo } from "./components";
@@ -10,6 +10,7 @@ export const Memos = observer(() => {
   const { reduceMemoUUIDFromUrl } = locationStore;
 
   const closeEditMemoDialog = () => {
+    memoUIActions.resetEditMemoProfile();
     routerLocationSetter("/taskin/memos");
   };
 

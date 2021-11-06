@@ -4,6 +4,13 @@ export type MemosCollapseStateMap = {
   [x: string]: boolean;
 };
 
+export type EditMemoProfile = {
+  title: boolean;
+  content: boolean;
+  creationDate: boolean;
+  dueDate: boolean;
+};
+
 export class MemosUIStore {
   constructor() {
     makeAutoObservable(this);
@@ -31,5 +38,18 @@ export class MemosUIStore {
   }
   set memoSearchText(textUpdate: string) {
     this._memoSearchText = textUpdate;
+  }
+
+  private _editMemoProfile: EditMemoProfile = {
+    content: false,
+    creationDate: false,
+    dueDate: false,
+    title: false,
+  };
+  get editMemoProfile() {
+    return this._editMemoProfile;
+  }
+  set editMemoProfile(editUpdate: EditMemoProfile) {
+    this._editMemoProfile = editUpdate;
   }
 }

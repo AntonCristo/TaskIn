@@ -1,0 +1,35 @@
+.editMemoWrapper {
+  display: flex;
+  align-items: center;
+}
+.editMemo {
+  width: 525px;
+  height: 36px;
+  font-size: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.lowUrgencyColor {
+  border-bottom: 1px solid #73bfa1;
+}
+.mediumUrgencyColor {
+  border-bottom: 1px solid #ff853b;
+}
+.highUrgencyColor {
+  border-bottom: 1px solid #ff4833;
+}
+.doneUrgencyColor {
+  border-color: 1px solid #c6c5c6;
+}
+.titleAsLabel {
+  max-width: 500px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 800px) {
+  .editMemo {
+    max-width: 300px;
+  }
+}

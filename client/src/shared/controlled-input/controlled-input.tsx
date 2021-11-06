@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import React, { ChangeEvent, FocusEvent } from "react";
 
 import classes from "./controlled-input.module.css";
 
@@ -7,6 +7,7 @@ type ControlledInputProps = {
   onChange: (value: string) => void;
   placeholder?: string;
   autoFocus?: boolean;
+  autoSelcet?: boolean;
 };
 
 export const ControlledInput = (props: ControlledInputProps) => {
@@ -15,6 +16,7 @@ export const ControlledInput = (props: ControlledInputProps) => {
     onChange,
     placeholder = "type here...",
     autoFocus = false,
+    autoSelcet = false,
   } = props;
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +25,14 @@ export const ControlledInput = (props: ControlledInputProps) => {
     onChange(afterChangeValue);
   };
 
+  const onFocusHandler = (event: FocusEvent<HTMLInputElement>) => {
+    autoSelcet && event.target.select();
+  };
+
   return (
     <input
       autoFocus={autoFocus}
+      onFocus={onFocusHandler}
       onChange={onChangeHandler}
       value={value}
       placeholder={placeholder}
