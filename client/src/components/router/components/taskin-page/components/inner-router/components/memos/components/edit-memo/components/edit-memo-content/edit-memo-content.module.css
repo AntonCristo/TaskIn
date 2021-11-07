@@ -12,6 +12,7 @@
   white-space: pre-wrap;
   border-radius: 6px;
   padding-left: 3px;
+  padding-right: 3px;
 }
 .contentAsLabel:hover {
   cursor: pointer;
@@ -20,12 +21,12 @@
 .editMemoContent > textarea {
   padding: 0;
   padding-left: 3px;
+  padding-right: 3px;
   width: 100%;
   resize: none;
   border: none;
   background-color: transparent;
-  /* border-left: 1px solid gray;
-  border-bottom: 1px solid gray; */
+  box-shadow: -1px 1px 2px rgb(161, 162, 163);
   border-radius: 6px;
   font-size: 16px;
   line-height: 20px;

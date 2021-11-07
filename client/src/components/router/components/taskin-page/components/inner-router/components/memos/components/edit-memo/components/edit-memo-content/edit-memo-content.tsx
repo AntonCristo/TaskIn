@@ -41,13 +41,11 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
     event: ChangeEvent<HTMLTextAreaElement>
   ) => {
     event.currentTarget.style.height = event.currentTarget.scrollHeight + "px";
-
     memosCrudActions.updateSingleMemo(memo.uuid, "content", event.target.value);
   };
 
   const onFocusHandler = (event: FocusEvent<HTMLTextAreaElement>) => {
     event.currentTarget.style.height = event.currentTarget.scrollHeight + "px";
-
     event.currentTarget.select();
   };
 
