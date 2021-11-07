@@ -78,29 +78,6 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
         title=""
         onClick={toggleContentToEditModeHandler}
       />
-      {/* <div className={classes.editMemo}>
-        {_isTitleInEditMode ? (
-          <ControlledInput
-            autoSelcet
-            autoFocus
-            onChange={onChangeMemoTitleHandler}
-            value={memo.title}
-          />
-        ) : (
-          <div
-            onClick={toggleTitleToEditModeHandler}
-            className={classes.titleAsLabel}
-          >
-            {memo.title}
-          </div>
-        )}
-      </div>
-      <Button
-        styleOverride={buttonStyleOverride}
-        icon={_isTitleInEditMode ? doneIcon : editIcon}
-        title=""
-        onClick={toggleTitleToEditModeHandler}
-      /> */}
     </div>
   );
 });
