@@ -23,6 +23,9 @@
 }
 
 @media screen and (max-width: 800px) {
+  .userInfo {
+    padding-right: 6px;
+  }
   .userFullName {
     display: none;
   }

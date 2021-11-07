@@ -1,0 +1,45 @@
+.editMemoContentWrapper {
+  position: relative;
+  width: 525px;
+  min-height: 200px;
+  margin-bottom: 20px;
+}
+.contentAsLabel {
+  font-size: 16px;
+  line-height: 20px;
+  min-height: 200px;
+  font-family: "Ubuntu-regular";
+  white-space: pre-wrap;
+  border-radius: 6px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.contentAsLabel:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.editMemoContent > textarea {
+  padding: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: 100%;
+  resize: none;
+  border: none;
+  background-color: transparent;
+  box-shadow: -1px 1px 2px rgb(161, 162, 163);
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: "Ubuntu-regular";
+  background-color: #fff;
+  overflow: hidden;
+}
+.editMemoContent > textarea:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 800px) {
+  .editMemoContentWrapper {
+    width: 300px;
+  }
+}
