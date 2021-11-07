@@ -14,10 +14,8 @@ type EditMemoProps = {
 };
 
 const buttonStyleOverride: CSSProperties = {
-  minWidth: "20px",
-  border: "none",
-  backgroundColor: "transparent",
-  marginLeft: "10px",
+  minWidth: "30px",
+  marginLeft: "auto",
 };
 
 export const EditMemoTitle = observer((props: EditMemoProps) => {
