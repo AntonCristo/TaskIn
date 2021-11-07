@@ -10,16 +10,16 @@
   margin-bottom: 10px;
 }
 .lowUrgencyColor {
-  border-bottom: 1px solid #73bfa1;
+  border-bottom: 2px solid #73bfa1;
 }
 .mediumUrgencyColor {
-  border-bottom: 1px solid #ff853b;
+  border-bottom: 2px solid #ff853b;
 }
 .highUrgencyColor {
-  border-bottom: 1px solid #ff4833;
+  border-bottom: 2px solid #ff4833;
 }
 .doneUrgencyColor {
-  border-color: 1px solid #c6c5c6;
+  border-color: 2px solid #c6c5c6;
 }
 .titleAsLabel {
   max-width: 500px;

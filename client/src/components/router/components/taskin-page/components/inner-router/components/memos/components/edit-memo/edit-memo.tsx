@@ -4,7 +4,7 @@ import { Uuid } from "src/client-types";
 import { Button } from "src/shared";
 import { memoStore } from "src/stores";
 
-import { EditMemoTitle } from "./components";
+import { EditMemoTitle, EditMemoContent } from "./components";
 
 import classes from "./edit-memo.module.css";
 
@@ -34,13 +34,13 @@ export const EditMemo = observer((props: EditMemoProps) => {
   return (
     <div className={classes.editMemo}>
       <EditMemoTitle memo={_memoFromMap} />
-      <div>Content: {_memoFromMap.content}</div>
+      <EditMemoContent memo={_memoFromMap} />
       <div>strat date: {_memoFromMap.creationDate}</div>
       <div>due date: {_memoFromMap.dueDate}</div>
       <div>done? {`${_memoFromMap.isDone}`}</div>
       <Button
         styleOverride={buttonStyleOverride}
-        title="Done"
+        title="Return"
         onClick={returnFromEditPage}
       />
     </div>
