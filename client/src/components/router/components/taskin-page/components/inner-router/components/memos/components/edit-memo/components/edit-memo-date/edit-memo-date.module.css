@@ -1,0 +1,21 @@
+.editMemoDate {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  height: 40px;
+  width: 560px;
+}
+.editMemoTitle {
+  font-size: 16px;
+  width: 200px;
+}
+.editMemoDateComponent {
+  width: 100%;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .editMemoDate {
+    width: 90vw;
+  }
+}

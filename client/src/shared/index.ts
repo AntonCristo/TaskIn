@@ -5,3 +5,4 @@ export * from "./dropdown-menu";
 export * from "./controlled-input";
 export * from "./spinner";
 export * from "./memo-color-map";
+export * from "./date";
