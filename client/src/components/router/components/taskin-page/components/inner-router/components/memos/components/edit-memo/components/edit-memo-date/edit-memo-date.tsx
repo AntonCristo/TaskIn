@@ -42,7 +42,7 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
       <div className={classes.editMemoDateComponent}>
         <Date
           color={dateTitle === "creationDate" ? "#fff" : UrgencyColor.Low}
-          fontSize={18}
+          fontSize={16}
           date={_eidtedMemoDate}
         />
       </div>
