@@ -30,7 +30,7 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
 
   const _isContentInEditMode = uiStoreInstance.editMemoProfile?.content;
 
-  const toggleContentToEditModeHandler = () => {
+  const toggleContentEditModeHandler = () => {
     memoUIActions.editMemoProfile(
       "content",
       !memoStore.uiStoreInstance.editMemoProfile.content
@@ -64,7 +64,7 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
         ) : (
           <div
             className={classes.contentAsLabel}
-            onClick={toggleContentToEditModeHandler}
+            onClick={toggleContentEditModeHandler}
           >
             {memo.content}
           </div>
@@ -74,7 +74,7 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
         styleOverride={buttonStyleOverride}
         icon={_isContentInEditMode ? doneIcon : editIcon}
         title=""
-        onClick={toggleContentToEditModeHandler}
+        onClick={toggleContentEditModeHandler}
       />
     </div>
   );

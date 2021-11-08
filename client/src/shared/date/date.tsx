@@ -28,7 +28,7 @@ export const Date = (props: DateProps) => {
       ? onChange
       : () => {
           throw Error(
-            "[Date]:: Date component not in edit mode or onChange handler was not provided"
+            "[Date]:: Date component is not in edit mode, or/and 'onChange' handler was not provided"
           );
         };
 

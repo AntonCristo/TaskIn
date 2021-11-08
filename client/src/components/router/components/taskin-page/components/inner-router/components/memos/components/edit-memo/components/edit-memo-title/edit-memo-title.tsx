@@ -30,7 +30,7 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
 
   const _isTitleInEditMode = uiStoreInstance.editMemoProfile?.title;
 
-  const toggleTitleToEditModeHandler = () => {
+  const toggleTitleEditModeHandler = () => {
     memoUIActions.editMemoProfile(
       "title",
       !memoStore.uiStoreInstance.editMemoProfile.title
@@ -66,7 +66,7 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
           />
         ) : (
           <div
-            onClick={toggleTitleToEditModeHandler}
+            onClick={toggleTitleEditModeHandler}
             className={classes.titleAsLabel}
           >
             {memo.title}
@@ -77,7 +77,7 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
         styleOverride={buttonStyleOverride}
         icon={_isTitleInEditMode ? doneIcon : editIcon}
         title=""
-        onClick={toggleTitleToEditModeHandler}
+        onClick={toggleTitleEditModeHandler}
       />
     </div>
   );
