@@ -61,7 +61,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
               memo.isDone && classes.finishedDate,
             ].join(" ")}
           >
-            {dayjs(memo.creationDate).format("DD.MM.YYYY")}{" "}
+            {dayjs(memo.creationDate).format("DD/MM/YYYY")}{" "}
           </span>
           <img src={rightArrowIcon} alt="direction" />
           <span
@@ -70,7 +70,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
               memo.isDone && classes.finishedDate,
             ].join(" ")}
           >
-            {dayjs(memo.dueDate).format("DD.MM.YYYY")}
+            {dayjs(memo.dueDate).format("DD/MM/YYYY")}
           </span>
         </div>
       )}

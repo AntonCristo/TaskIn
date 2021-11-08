@@ -29,6 +29,10 @@
 .defaultButtonStyle:hover {
   background-color: #f4f6f6;
 }
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
 
 @media screen and (max-width: 1600px) {
   .defaultButtonStyle {

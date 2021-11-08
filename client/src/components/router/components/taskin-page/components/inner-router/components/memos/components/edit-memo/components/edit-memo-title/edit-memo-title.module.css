@@ -5,8 +5,8 @@
   max-width: 565px;
 }
 .editMemo {
-  font-size: 20px;
-  width: 100%;
+  font-size: 24px;
+  width: 86%;
 }
 .lowUrgencyColor {
   border-bottom: 2px solid #73bfa1;
@@ -25,11 +25,19 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 32px;
 }
-
-@media screen and (max-width: 800px) {
-  .editMemo {
-    width: 260px;
-  }
+.titleAsInput {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: "Ubuntu-medium";
+  border: none;
+  background-color: transparent;
+}
+.titleAsInput:focus {
+  outline: none;
+}
+.editMemo {
+  margin-right: auto;
 }
