@@ -19,6 +19,8 @@ const buttonStyleOverride: CSSProperties = {
   position: "absolute",
   right: "-40px",
   top: "0px",
+  border: "none",
+  backgroundColor: "transparent",
 };
 
 export const EditMemoContent = observer((props: EditMemoContentProps) => {

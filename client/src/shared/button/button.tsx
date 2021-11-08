@@ -39,6 +39,8 @@ export const Button = (props: ButtonProps) => {
       className={[
         classes.defaultButtonStyle,
         isMouseDown && classes.clickedButtonAnimation,
+        //disabled class should stay last in the array
+        isDisabled && classes.disabled,
       ].join(" ")}
     >
       <div>{title}</div>

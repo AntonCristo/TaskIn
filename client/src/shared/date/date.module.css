@@ -1,4 +1,18 @@
 .date {
   width: min-content;
-  text-shadow: 1px 0px 1px gray;
+}
+.dateInput {
+  border: none;
+  font-family: "Ubuntu-regular";
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  opacity: 0.86;
+}
+.dateInput:focus {
+  outline: none;
+}
+.dateInput::-webkit-inner-spin-button,
+.dateInput::-webkit-calendar-picker-indicator {
+  margin-left: 0px;
 }

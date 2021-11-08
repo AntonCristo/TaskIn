@@ -1,8 +1,8 @@
-import { CSSProperties, useEffect } from "react";
+import { ChangeEvent, CSSProperties, useEffect } from "react";
 import { Memo } from "src/client-types";
 import editIcon from "src/assets/svg/edit_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
-import { Button, ControlledInput } from "src/shared";
+import { Button } from "src/shared";
 import { memoUIActions, memosCrudActions } from "src/actions";
 import { memoStore } from "src/stores";
 
@@ -15,7 +15,8 @@ type EditMemoProps = {
 
 const buttonStyleOverride: CSSProperties = {
   minWidth: "30px",
-  marginLeft: "auto",
+  border: "none",
+  backgroundColor: "transparent",
 };
 
 export const EditMemoTitle = observer((props: EditMemoProps) => {
@@ -36,8 +37,8 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
     );
   };
 
-  const onChangeMemoTitleHandler = (changeEventValue: string) => {
-    memosCrudActions.updateSingleMemo(memo.uuid, "title", changeEventValue);
+  const onChangeMemoTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    memosCrudActions.updateSingleMemo(memo.uuid, "title", event.target.value);
   };
 
   useEffect(() => {
@@ -56,11 +57,12 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
     <div className={classes.editMemoWrapper}>
       <div className={[classes.editMemo, classes.lowUrgencyColor].join(" ")}>
         {_isTitleInEditMode ? (
-          <ControlledInput
-            autoSelcet
+          <input
             autoFocus
+            className={classes.titleAsInput}
             onChange={onChangeMemoTitleHandler}
             value={memo.title}
+            type="text"
           />
         ) : (
           <div
