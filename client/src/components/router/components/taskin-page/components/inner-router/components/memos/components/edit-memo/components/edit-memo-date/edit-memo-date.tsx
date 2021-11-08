@@ -46,14 +46,14 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
 
   const _isDateInEditMode = uiStoreInstance.editMemoProfile[dateTitle];
 
-  const toggleDateToEditModeHandler = () => {
+  const toggleDateEditModeHandler = () => {
     memoUIActions.editMemoProfile(
       dateTitle,
       !memoStore.uiStoreInstance.editMemoProfile[dateTitle]
     );
   };
 
-  const onEditMemoChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const onMemoDateChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     dayjs(event.target.value).isValid() &&
       memosCrudActions.updateSingleMemo(
         memo.uuid,
@@ -67,7 +67,7 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
       <div className={classes.editMemoTitle}>{_editMemoDisplayTitle}</div>
       <div className={classes.editMemoDateComponent}>
         <Date
-          onChange={onEditMemoChangeHandler}
+          onChange={onMemoDateChangeHandler}
           editMode={_isDateInEditMode}
           color={dateTitle === "creationDate" ? "#fff" : UrgencyColor.Low}
           minDate={
@@ -82,7 +82,7 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
         styleOverride={buttonStyleOverride}
         title=""
         icon={_isDateInEditMode ? doneIcon : editIcon}
-        onClick={toggleDateToEditModeHandler}
+        onClick={toggleDateEditModeHandler}
       />
     </div>
   );
