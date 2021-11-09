@@ -21,5 +21,5 @@ export type Memo = {
   content: string;
   //TOTO:after urgency level map is finished, remove isDone attribute
   isDone: boolean;
-  label?: string;
+  isDeleted: boolean;
 };

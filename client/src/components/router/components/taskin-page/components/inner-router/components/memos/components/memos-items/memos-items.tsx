@@ -20,7 +20,12 @@ export const MemosItems = observer(() => {
   }
 
   const memosRenderPipeline = () => {
-    const titleSearchResults = memosFromDataStore.filter((memo) =>
+    //TODO: filter the deleted memos(this filter must happen on the server)
+    const filterDeletedMemos = memosFromDataStore.filter(
+      (memo) => !memo.isDeleted
+    );
+
+    const titleSearchResults = filterDeletedMemos.filter((memo) =>
       memo.title
         .toLowerCase()
         .includes(uiStoreInstance.memoSearchText.toLowerCase())

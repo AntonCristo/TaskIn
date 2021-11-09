@@ -24,7 +24,10 @@ class MemosService implements IMemoService {
     setTimeout(() => {
       memosRes = {};
       memoMocks.forEach((memo) => {
-        memosRes![memo.uuid] = memo;
+        if (!memo.isDeleted) {
+          //TODO: dleted memos should be filtered on the api side
+          memosRes![memo.uuid] = memo;
+        }
       });
       updateMemosDataMap(memosRes);
       return memosRes;
