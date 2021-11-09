@@ -22,9 +22,11 @@ export const TaskinPage = observer(() => {
   if (memoStore.dataStoreInstance.memosMap) {
     [...Object.keys(memoStore.dataStoreInstance.memosMap)].forEach(
       (memoUUID) => {
-        if (!memoStore.dataStoreInstance.memosMap[memoUUID]) {
-          memoUIActions.initSingleMemoCollapseState(memoUUID);
+        if (!memoStore.uiStoreInstance.memoUrgencyLevelMap[memoUUID]) {
           memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
+        }
+        if (!memoStore.uiStoreInstance.memosCollapseStateMap[memoUUID]) {
+          memoUIActions.initSingleMemoCollapseState(memoUUID);
         }
       }
     );

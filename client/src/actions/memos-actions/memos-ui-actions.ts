@@ -21,9 +21,11 @@ export const calculateSingleMemoUrgencyLevelState = action(
 
     //TODO: implement calculation of urgency level in uiStoreInstance to return
     //UrgencyColor by diff between dates of memo
-    copyOfUrgencyLevelMap[memoUUID as string] = userMarkedMemoAsDone
-      ? UrgencyColor.Done
-      : UrgencyColor.Medium; //instead of Medium => user the method to calculate
+    copyOfUrgencyLevelMap[memoUUID as string] =
+      userMarkedMemoAsDone ||
+      memoStore.dataStoreInstance.memosMap[memoUUID].isDone
+        ? UrgencyColor.Done
+        : UrgencyColor.Medium; //instead of Medium => user the method to calculate
 
     memoStore.uiStoreInstance.memoUrgencyLevelMap = copyOfUrgencyLevelMap;
   }
