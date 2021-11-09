@@ -8,8 +8,7 @@ import { v4 as uuid } from "uuid";
 export type MemosDataMap = { [x: string]: Memo };
 
 export const MEMO_TEMPLATE: Memo = {
-  content:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae consectetur enim. Vivamus malesuada fringilla eros, finibus semper lacus fermentum ut. Proin maximus, sapien sit amet lacinia tincidunt, ante neque dignissim sapien, a commodo felis massa et diam. Cras id felis commodo, lacinia metus sed, suscipit leo. Nam sagittis sapien vitae elit facilisis mattis. Fusce accumsan volutpat venenatis. Aliquam erat volutpat. Ut laoreet aliquam ex id malesuada. Donec venenatis lorem quis tortor faucibus aliquam. Duis viverra, urna non maximus venenatis, magna nulla tincidunt sapien, in porttitor mauris libero malesuada lorem. Ut id ligula sit amet nunc pretium commodo vitae sit amet massa. Suspendisse consectetur nibh vitae lorem vehicula ornare.",
+  content: "",
   createdBy: "",
   creationDate: dayjs().valueOf(),
   dueDate: dayjs().add(1, "days").valueOf(),
@@ -17,7 +16,7 @@ export const MEMO_TEMPLATE: Memo = {
   title: "New Memo",
   uuid: "",
   version: "0.1",
-  label: "",
+  isDeleted: false,
 };
 
 export class MemosDataStore {
