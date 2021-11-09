@@ -1,5 +1,6 @@
+import dayjs from "dayjs";
 import { makeAutoObservable } from "mobx";
-import { UrgencyColor } from "src/client-types";
+import { Memo, UrgencyColor } from "src/client-types";
 
 export type MemosUrgencyLevelMap = {
   [x: string]: UrgencyColor | undefined;
@@ -35,10 +36,6 @@ export class MemosUIStore {
   }
   set memoUrgencyLevelMap(updatedMap: MemosUrgencyLevelMap) {
     this._memoUrgencyLevelMap = updatedMap;
-    console.log(
-      "[urgency state map]::",
-      JSON.stringify(this._memoUrgencyLevelMap)
-    );
   }
 
   private _isSearchBoxVisible: boolean = false;
@@ -69,4 +66,27 @@ export class MemosUIStore {
   set editMemoProfile(editUpdate: EditMemoProfile) {
     this._editMemoProfile = editUpdate;
   }
+
+  public getMemoUrgencyLevel = (memo: Memo) => {
+    const timeDiff = memo.dueDate - memo.creationDate;
+    const deltaX = timeDiff / 3;
+
+    enum UrgencyRange {
+      low = memo.creationDate + deltaX,
+      medium = memo.creationDate + deltaX * 2,
+      high = memo.creationDate + deltaX * 3,
+    }
+
+    const now = dayjs().valueOf();
+
+    if (now <= UrgencyRange.low) {
+      return UrgencyColor.Low;
+    }
+    if (now > UrgencyRange.low && now <= UrgencyRange.medium) {
+      return UrgencyColor.Medium;
+    }
+    if (now > UrgencyRange.medium) {
+      return UrgencyColor.High;
+    }
+  };
 }

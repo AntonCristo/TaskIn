@@ -18,14 +18,9 @@ export const MemoCard = observer((props: MemoCardProps) => {
   const { memo } = props;
   const { uiStoreInstance } = memoStore;
 
-  //TODO: create style updates accordion to diff between creation date and due date for the dots and title
-  //like road light => green orange red
-  // Low = "#73bfa1",
-  // Medium = "#ff853b",
-  // High = "#ff4833",
-  // Done = "#c6c5c6",
-
   const isCollapsed = uiStoreInstance.memosCollapseStateMap[memo.uuid];
+  const backgroundColorByUrgencyLevel =
+    memoStore.uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
 
   const onMemoCardClickedToEditHandler = () => {
     routerLocationSetter(`/taskin/memos/uuid=${memo.uuid}`);
@@ -34,9 +29,10 @@ export const MemoCard = observer((props: MemoCardProps) => {
   return (
     <div
       onClick={onMemoCardClickedToEditHandler}
+      style={{ backgroundColor: backgroundColorByUrgencyLevel }}
       className={[
         classes.memoCard,
-        memo.isDone && classes.completedMemoBackground,
+        memo.isDone && classes.completedMemoOpacity,
       ].join(" ")}
     >
       <MemoDotPins />

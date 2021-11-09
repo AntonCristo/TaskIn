@@ -1,6 +1,6 @@
 import { ChangeEvent, CSSProperties } from "react";
 import { observer } from "mobx-react";
-import { Memo, UrgencyColor } from "src/client-types";
+import { Memo } from "src/client-types";
 import editIcon from "src/assets/svg/edit_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
 import { Button, Date } from "src/shared";
@@ -25,6 +25,9 @@ const buttonStyleOverride: CSSProperties = {
 export const EditMemoDate = observer((props: EditMemoDateProps) => {
   const { memo, dateTitle } = props;
   const { uiStoreInstance } = memoStore;
+  const _isDateInEditMode = uiStoreInstance.editMemoProfile[dateTitle];
+  const _dueDateUrgencyLevelColor =
+    uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
 
   let _eidtedMemoDate: number;
   let _editMemoDisplayTitle: string;
@@ -43,8 +46,6 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
         "[EditMemoDate]:: default case should never happen, check everything"
       );
   }
-
-  const _isDateInEditMode = uiStoreInstance.editMemoProfile[dateTitle];
 
   const toggleDateEditModeHandler = () => {
     memoUIActions.editMemoProfile(
@@ -69,7 +70,9 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
         <Date
           onChange={onMemoDateChangeHandler}
           editMode={_isDateInEditMode}
-          color={dateTitle === "creationDate" ? "#fff" : UrgencyColor.Low}
+          color={
+            dateTitle === "creationDate" ? "#fff" : _dueDateUrgencyLevelColor
+          }
           minDate={
             dateTitle === "dueDate" ? memo.creationDate + ONE_DAY_IN_MS : 0
           }

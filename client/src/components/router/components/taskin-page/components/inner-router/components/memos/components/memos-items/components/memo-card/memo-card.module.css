@@ -5,17 +5,12 @@
   height: fit-content;
   margin-right: 25px;
   margin-bottom: 25px;
-  background-color: #73bfa1;
   border-radius: 6px;
   box-shadow: 1px 1px 6px -1px #d2cbc9;
   padding: 12px;
   cursor: default;
 }
-.memoCard:not(.completedMemoBackground):hover {
-  opacity: 0.96;
-}
-.completedMemoBackground {
-  background-color: #c6c5c6;
+.completedMemoOpacity {
   opacity: 0.6;
 }
 .memoTitle {
