@@ -3,198 +3,15 @@ import { Memo } from "src/client-types";
 import { IMemoService } from "src/contracts";
 import { MemosDataMap } from "src/stores";
 
-const memoMocks: Memo[] = [
-  // {
-  //   content: "Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-1qwerq",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Mock Mock",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Urgent",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "My Memo 12",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "My Memo 25",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "My Memo",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Homework #2",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "A memo to remember a thing",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Add a spinner",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Eat three times a day",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-  // {
-  //   content: "Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asbn-qwe234-asdassd-1qwerq",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Mock Mock",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Urgent",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "My Memo 12",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "My Memo 25",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "My Memo",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Homework #2",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "A memo to remember a thing",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: false,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Add a spinner",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-  // {
-  //   content:
-  //     "Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card,Mock memo content, this text is a description of the memo card",
-  //   createdBy: "asd-qwe234-asdassd-jaskldj",
-  //   creationDate: dayjs().valueOf(),
-  //   dueDate: dayjs().add(4, "day").valueOf(),
-  //   title: "Eat three times a day",
-  //   uuid: uuid(),
-  //   version: "0.1",
-  //   label: "Ok",
-  //   isDone: true,
-  // },
-];
+const memosFromLocalStorage = localStorage.getItem("memos") || "{}";
+const parsedMemosFromStorage: { [x: string]: any } = JSON.parse(
+  memosFromLocalStorage
+);
+const memoMocks: Memo[] = [];
+
+Object.keys(parsedMemosFromStorage).forEach((key) => {
+  memoMocks.push(parsedMemosFromStorage[key]);
+});
 
 class MemosService implements IMemoService {
   public getMemosFromApiByInitiatorUUID = async () => {
@@ -204,7 +21,6 @@ class MemosService implements IMemoService {
     //on the catch return the memosRes as null
 
     //simulation of "then" case of returned promise:
-
     setTimeout(() => {
       memosRes = {};
       memoMocks.forEach((memo) => {

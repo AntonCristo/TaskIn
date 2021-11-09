@@ -53,6 +53,7 @@ export const updateSingleMemo = action(
     };
 
     updateMemosDataMap(res);
+    return res[memoUUID][key];
   }
 );
 
