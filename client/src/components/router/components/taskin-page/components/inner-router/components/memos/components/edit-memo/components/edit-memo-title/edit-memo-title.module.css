@@ -8,18 +8,6 @@
   font-size: 24px;
   width: 86%;
 }
-.lowUrgencyColor {
-  border-bottom: 2px solid #73bfa1;
-}
-.mediumUrgencyColor {
-  border-bottom: 2px solid #ff853b;
-}
-.highUrgencyColor {
-  border-bottom: 2px solid #ff4833;
-}
-.doneUrgencyColor {
-  border-color: 2px solid #c6c5c6;
-}
 .titleAsLabel {
   max-width: 500px;
   white-space: nowrap;

@@ -1,5 +1,4 @@
 .editMemo {
-  background-color: aliceblue;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -8,4 +7,16 @@
   background-color: #dcdcdc;
   padding: 20px;
   overflow-y: auto;
+}
+.editMemoLoading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #dcdcdc;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

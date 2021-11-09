@@ -1,12 +1,13 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Uuid } from "src/client-types";
-import { Button } from "src/shared";
+import { Button, Spinner } from "src/shared";
 import { memoStore } from "src/stores";
 
 import { EditMemoTitle, EditMemoContent, EditMemoDate } from "./components";
 
 import classes from "./edit-memo.module.css";
+import { memoUIActions } from "src/actions";
 
 type EditMemoProps = {
   memoUUID: Uuid;
@@ -26,10 +27,16 @@ export const EditMemo = observer((props: EditMemoProps) => {
 
   const _memoFromMap = dataStoreInstance.memosMap[memoUUID];
   if (!_memoFromMap) {
-    throw Error(
-      "[EditMemo]:: possible cause 1.refresh without api fetching(memos are not persisted yet)"
+    return (
+      <div className={classes.editMemoLoading}>
+        <Spinner />
+      </div>
     );
   }
+
+  useEffect(() => {
+    memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
+  });
 
   return (
     <div className={classes.editMemo}>

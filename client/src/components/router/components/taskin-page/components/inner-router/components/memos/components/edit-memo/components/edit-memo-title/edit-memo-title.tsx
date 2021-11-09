@@ -22,13 +22,8 @@ const buttonStyleOverride: CSSProperties = {
 export const EditMemoTitle = observer((props: EditMemoProps) => {
   const { memo } = props;
   const { uiStoreInstance } = memoStore;
-
-  //TODO: after urgency map store is done,
-  //add switch case for the border bottom
-  //according to memo urgency level
-  //css classes already exist in css file
-
   const _isTitleInEditMode = uiStoreInstance.editMemoProfile?.title;
+  const _memoUrgencyLevelColor = uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
 
   const toggleTitleEditModeHandler = () => {
     memoUIActions.editMemoProfile(
@@ -55,7 +50,10 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
 
   return (
     <div className={classes.editMemoWrapper}>
-      <div className={[classes.editMemo, classes.lowUrgencyColor].join(" ")}>
+      <div
+        style={{ borderBottom: `2px solid ${_memoUrgencyLevelColor}` }}
+        className={classes.editMemo}
+      >
         {_isTitleInEditMode ? (
           <input
             autoFocus
