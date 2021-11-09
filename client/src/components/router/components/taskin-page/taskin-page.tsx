@@ -4,8 +4,9 @@ import { routerLocationSetter, memoUIActions } from "src/actions";
 import { MainMenu, Header, InnerRouter } from "./components";
 
 import classes from "./taskin-page.module.css";
+import { observer } from "mobx-react";
 
-export const TaskinPage = () => {
+export const TaskinPage = observer(() => {
   const { getUserFromLocalStorage } = userStore;
 
   const _user = getUserFromLocalStorage();
@@ -16,11 +17,19 @@ export const TaskinPage = () => {
     return null;
   }
 
-  const fetchedMemos = memoStore.dataStoreInstance.initMemosDataStore();
-  if (fetchedMemos) {
-    [...Object.keys(fetchedMemos)].forEach((memoUUID) => {
-      memoUIActions.initSingleMemoCollapseState(memoUUID);
-    });
+  //TODO: Move to general initiation method/procedure
+  memoStore.dataStoreInstance.initMemosDataStore();
+  if (memoStore.dataStoreInstance.memosMap) {
+    [...Object.keys(memoStore.dataStoreInstance.memosMap)].forEach(
+      (memoUUID) => {
+        if (!memoStore.uiStoreInstance.memoUrgencyLevelMap[memoUUID]) {
+          memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
+        }
+        if (!memoStore.uiStoreInstance.memosCollapseStateMap[memoUUID]) {
+          memoUIActions.initSingleMemoCollapseState(memoUUID);
+        }
+      }
+    );
   }
 
   return (
@@ -32,4 +41,4 @@ export const TaskinPage = () => {
       </div>
     </div>
   );
-};
+});

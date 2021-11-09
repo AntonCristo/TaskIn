@@ -1,4 +1,9 @@
 import { makeAutoObservable } from "mobx";
+import { UrgencyColor } from "src/client-types";
+
+export type MemosUrgencyLevelMap = {
+  [x: string]: UrgencyColor | undefined;
+};
 
 export type MemosCollapseStateMap = {
   [x: string]: boolean;
@@ -22,6 +27,18 @@ export class MemosUIStore {
   }
   set memosCollapseStateMap(updatedMap: MemosCollapseStateMap) {
     this._memosCollapseStateMap = updatedMap;
+  }
+
+  private _memoUrgencyLevelMap: MemosUrgencyLevelMap = {};
+  get memoUrgencyLevelMap() {
+    return this._memoUrgencyLevelMap;
+  }
+  set memoUrgencyLevelMap(updatedMap: MemosUrgencyLevelMap) {
+    this._memoUrgencyLevelMap = updatedMap;
+    console.log(
+      "[urgency state map]::",
+      JSON.stringify(this._memoUrgencyLevelMap)
+    );
   }
 
   private _isSearchBoxVisible: boolean = false;

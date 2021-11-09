@@ -30,12 +30,26 @@ export const ControlPanel = (props: ControlPanelProps) => {
   const { memo, isCollapsed } = props;
 
   const isMemoDoneToggler = () => {
-    memosCrudActions.updateSingleMemo(memo.uuid, "isDone", !memo.isDone);
+    const isDoneUpdate = memosCrudActions.updateSingleMemo(
+      memo.uuid,
+      "isDone",
+      !memo.isDone
+    );
+
+    if (isDoneUpdate !== memo.isDone) {
+      memoUIActions.calculateSingleMemoUrgencyLevelState(
+        memo.uuid,
+        isDoneUpdate as boolean
+      );
+    } else {
+      throw Error("[isMemoDoneToggler]:: memo update failed");
+    }
   };
 
   const deleteMemoFromMapHandler = () => {
     memosCrudActions.deleteSingleMemoFromMap(memo.uuid);
     memoUIActions.deleteSingleMemoCollapseState(memo.uuid);
+    memoUIActions.deleteSingleMemoUrgencyLevelState(memo.uuid);
   };
 
   const toggleMemoCollapsedState = () => {

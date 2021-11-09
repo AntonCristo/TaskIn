@@ -43,14 +43,14 @@ export class MemosDataStore {
   }
   set memosMap(mapUpdate: MemosDataMap) {
     this._memosMap = mapUpdate;
-    //TODO: add upsert method to api
+    localStorage.setItem("memos", JSON.stringify(this._memosMap));
+    //TODO: add upsert method to api instead of local storage
   }
 
   public initMemosDataStore = () => {
     try {
       !this._memosMap && console.log("[initMemosDataStore]:: start");
       !this._memosMap && memosService.getMemosFromApiByInitiatorUUID();
-      return this._memosMap;
     } catch (error) {
       !this._memosMap && console.log("[initMemosDataStore]:: Error");
     }
