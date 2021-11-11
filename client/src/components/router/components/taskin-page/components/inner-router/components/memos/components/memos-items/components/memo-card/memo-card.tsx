@@ -1,14 +1,13 @@
 import { observer } from "mobx-react";
 import { routerLocationSetter } from "src/actions";
 import { Memo } from "src/client-types";
+import { MAX_CONTENT_LENGTH } from "src/constants";
 import { memoStore } from "src/stores";
 import { textUtils } from "src/utils";
 
 import { MemoDotPins, ControlPanel } from "./components";
 
 import classes from "./memo-card.module.css";
-
-const MAX_CONTENT_LENGTH = window.innerWidth <= 800 ? 260 : 142;
 
 type MemoCardProps = {
   memo: Memo;
