@@ -87,7 +87,6 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
         <Date
           onChange={onMemoDateChangeHandler}
           editMode={_isDateInEditMode}
-          color="#807f80"
           minDate={calculateMinDate()}
           fontSize={16}
           date={_eidtedMemoDate}

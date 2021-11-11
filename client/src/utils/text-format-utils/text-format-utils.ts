@@ -3,8 +3,8 @@ export const sliceTextAndAddEllipsis = (
   maxCharsAllowed: number
 ) => {
   if (text.length > maxCharsAllowed) {
-    return `${text.slice(0, maxCharsAllowed)}...`;
+    return [true, `${text.slice(0, maxCharsAllowed)}...`];
   }
 
-  return text;
+  return [false, text];
 };

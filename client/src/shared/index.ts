@@ -6,3 +6,4 @@ export * from "./controlled-input";
 export * from "./spinner";
 export * from "./memo-color-map";
 export * from "./date";
+export * from "./tootltip";

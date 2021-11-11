@@ -1,1 +1,1 @@
-export const MAX_CONTENT_LENGTH = window.innerWidth <= 800 ? 200 : 140;
+export const MAX_MEMO_CONTENT_LENGTH = window.innerWidth <= 800 ? 200 : 140;

@@ -1,7 +1,7 @@
 .memoCard {
   position: relative;
   width: 225px;
-  max-height: 250px;
+  height: 250px;
   height: fit-content;
   margin-right: 25px;
   margin-bottom: 25px;
@@ -28,10 +28,14 @@
   font-size: 14px;
   line-height: 18px;
   height: 115px;
-  padding-top: 10px;
+  padding-top: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
   margin-top: 6px;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
+  white-space: pre-wrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 800px) {
