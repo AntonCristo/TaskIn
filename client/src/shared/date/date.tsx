@@ -42,7 +42,7 @@ export const Date = (props: DateProps) => {
           min={dayjs(minDate).format("YYYY-MM-DD")}
           max={dayjs(minDate + TEN_YEARS_IN_MS).format("YYYY-MM-DD")}
           autoFocus
-          style={{ fontSize: `${fontSize}px` }}
+          style={{ fontSize: `${fontSize}px`, color: color }}
           className={classes.dateInput}
           type="date"
           value={dayjs(date).format("YYYY-MM-DD")}

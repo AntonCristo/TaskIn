@@ -6,8 +6,8 @@ import doneIcon from "src/assets/svg/done_24dp.svg";
 import { Button, Date } from "src/shared";
 import { memosCrudActions, memoUIActions } from "src/actions";
 import { memoStore } from "src/stores";
-import { ONE_DAY_IN_MS } from "src/constants";
 import dayjs from "dayjs";
+import { ONE_DAY_IN_MS } from "src/constants";
 
 import classes from "./edit-memo-date.module.css";
 
@@ -55,7 +55,8 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
   };
 
   const onMemoDateChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    dayjs(event.target.value).isValid() &&
+    event.target.value >= dayjs(calculateMinDate()).format("YYYY-MM-DD") &&
+      dayjs(event.target.value).isValid() &&
       memosCrudActions.updateSingleMemo(
         memo.uuid,
         dateTitle,
@@ -63,19 +64,31 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
       );
   };
 
+  const calculateMinDate = () => {
+    const now = dayjs().valueOf();
+    if (memo.creationDate < dayjs(now).valueOf() - ONE_DAY_IN_MS) {
+      return now;
+    } else {
+      return dayjs(memo.creationDate).valueOf() + ONE_DAY_IN_MS;
+    }
+  };
+
   return (
     <div className={classes.editMemoDate}>
-      <div className={classes.editMemoTitle}>{_editMemoDisplayTitle}</div>
+      <div
+        style={
+          dateTitle === "dueDate" ? { color: _dueDateUrgencyLevelColor } : {}
+        }
+        className={classes.editMemoTitle}
+      >
+        {_editMemoDisplayTitle}
+      </div>
       <div className={classes.editMemoDateComponent}>
         <Date
           onChange={onMemoDateChangeHandler}
           editMode={_isDateInEditMode}
-          color={
-            dateTitle === "creationDate" ? "#fff" : _dueDateUrgencyLevelColor
-          }
-          minDate={
-            dateTitle === "dueDate" ? memo.creationDate + ONE_DAY_IN_MS : 0
-          }
+          color="#807f80"
+          minDate={calculateMinDate()}
           fontSize={16}
           date={_eidtedMemoDate}
         />

@@ -23,7 +23,6 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
   const { memo } = props;
   const { uiStoreInstance } = memoStore;
   const _isTitleInEditMode = uiStoreInstance.editMemoProfile?.title;
-  const _memoUrgencyLevelColor = uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
 
   const toggleTitleEditModeHandler = () => {
     memoUIActions.editMemoProfile(
@@ -50,10 +49,7 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
 
   return (
     <div className={classes.editMemoWrapper}>
-      <div
-        style={{ borderBottom: `2px solid ${_memoUrgencyLevelColor}` }}
-        className={classes.editMemo}
-      >
+      <div className={classes.editMemo}>
         {_isTitleInEditMode ? (
           <input
             autoFocus

@@ -26,6 +26,7 @@ const buttonStyleOverride: CSSProperties = {
 export const EditMemoContent = observer((props: EditMemoContentProps) => {
   const { memo } = props;
   const { uiStoreInstance } = memoStore;
+  const _memoUrgencyLevelColor = uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
   const textareaRef: Ref<HTMLTextAreaElement> = React.createRef();
 
   const _isContentInEditMode = uiStoreInstance.editMemoProfile?.content;
@@ -50,7 +51,13 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
   };
 
   return (
-    <div className={classes.editMemoContentWrapper}>
+    <div
+      style={{
+        borderBottom: `2px solid ${_memoUrgencyLevelColor}`,
+        borderTop: `2px solid ${_memoUrgencyLevelColor}`,
+      }}
+      className={classes.editMemoContentWrapper}
+    >
       <div className={classes.editMemoContent}>
         {_isContentInEditMode ? (
           <textarea
