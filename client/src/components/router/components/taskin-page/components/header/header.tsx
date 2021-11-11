@@ -10,6 +10,7 @@ export const Header = observer(() => {
     <div className={classes.header}>
       <UserInfo />
       <div className={classes.memoColorsMapWrapper}>
+        {/* //TODO: add switch to render header by url, and show quick filter only on dashboard */}
         <MemoColorMap />
       </div>
     </div>

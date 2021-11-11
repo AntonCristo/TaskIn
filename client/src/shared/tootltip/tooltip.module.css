@@ -1,0 +1,14 @@
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  background-color: black;
+  color: #fff;
+  max-width: 300px;
+  box-shadow: 1px 1px 6px #fff;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  font-family: "Ubuntu-light";
+  white-space: pre-wrap;
+}

@@ -1,6 +1,6 @@
 export enum UrgencyColor {
   Low = "#73bfa1",
-  Medium = "#ff853b",
+  Medium = "#ffc900",
   High = "#ff4833",
   Done = "#c6c5c6",
 }

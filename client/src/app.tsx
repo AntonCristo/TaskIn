@@ -1,5 +1,5 @@
 import React from "react";
-import { DropdownMenu } from "./shared";
+import { DropdownMenu, Tootltip } from "./shared";
 import { browserHistoryUtils } from "./utils";
 
 import { Router } from "./components/router";
@@ -13,6 +13,7 @@ const App: React.FC = () => {
     <div className={classes.app}>
       <Router />
       <DropdownMenu />
+      <Tootltip />
     </div>
   );
 };
