@@ -26,12 +26,10 @@
   resize: none;
   border: none;
   background-color: transparent;
-  box-shadow: -1px 1px 2px rgb(161, 162, 163);
   border-radius: 6px;
   font-size: 16px;
   line-height: 20px;
   font-family: "Ubuntu-regular";
-  background-color: #fff;
   overflow: hidden;
 }
 .editMemoContent > textarea:focus {

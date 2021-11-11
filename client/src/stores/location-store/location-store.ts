@@ -12,6 +12,7 @@ class LocationStore {
   }
   set router_view(routeUpdate: string) {
     this._router_view = routeUpdate;
+    window.history.pushState(null, null || "", this._router_view);
   }
 
   public translateTaskinSystemRoutesToUserDisplay = (
