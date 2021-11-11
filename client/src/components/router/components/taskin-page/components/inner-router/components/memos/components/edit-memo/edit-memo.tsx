@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect } from "react";
+import { CSSProperties } from "react";
 import { observer } from "mobx-react";
 import { Uuid } from "src/client-types";
 import { Button, Spinner } from "src/shared";
@@ -32,11 +32,11 @@ export const EditMemo = observer((props: EditMemoProps) => {
         <Spinner />
       </div>
     );
+  } else {
+    setTimeout(() => {
+      memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
+    }, 0);
   }
-
-  useEffect(() => {
-    memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
-  });
 
   return (
     <div className={classes.editMemo}>

@@ -1,12 +1,11 @@
-import { observer } from "mobx-react";
-import { routerLocationSetter, memoUIActions } from "src/actions";
 import { locationStore } from "src/stores";
+import { routerLocationSetter, memoUIActions } from "src/actions";
 
 import { MemosHeader, MemosItems, EditMemo } from "./components";
 
 import classes from "./memos.module.css";
 
-export const Memos = observer(() => {
+export const Memos = () => {
   const { reduceMemoUUIDFromUrl } = locationStore;
 
   const closeEditMemoDialog = () => {
@@ -28,4 +27,4 @@ export const Memos = observer(() => {
       ) : null}
     </div>
   );
-});
+};
