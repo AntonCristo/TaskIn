@@ -27,12 +27,12 @@ export const MemoCard = observer((props: MemoCardProps) => {
     routerLocationSetter(`/taskin/memos/uuid=${memo.uuid}`);
   };
 
-  const onMouseOverHandler = (event: MouseEvent<HTMLDivElement>) => {
+  const onMouseEnterHandler = (event: MouseEvent<HTMLDivElement>) => {
     !title &&
       tooltipActions.showTooltip(memo.title, event.clientY, event.clientX);
   };
 
-  const onMouseOutHandler = () => {
+  const onMouseLeaveHandler = () => {
     tooltipActions.resetTooltip();
   };
 
@@ -47,8 +47,8 @@ export const MemoCard = observer((props: MemoCardProps) => {
     >
       <MemoDotPins />
       <div
-        onMouseEnter={onMouseOverHandler}
-        onMouseLeave={onMouseOutHandler}
+        onMouseEnter={onMouseEnterHandler}
+        onMouseLeave={onMouseLeaveHandler}
         className={classes.memoTitle}
       >
         {memo.title}
