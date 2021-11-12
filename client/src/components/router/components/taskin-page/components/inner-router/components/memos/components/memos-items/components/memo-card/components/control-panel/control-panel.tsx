@@ -8,7 +8,11 @@ import deleteIcon from "src/assets/svg/delete_24dp.svg";
 import expandLessIcon from "src/assets/svg/expand_less_24dp.svg";
 import expandMoreIcon from "src/assets/svg/expand_more_24dp.svg";
 import { Button } from "src/shared";
-import { memosCrudActions, memoUIActions } from "src/actions";
+import {
+  memosCrudActions,
+  memoUIActions,
+  notificationActions,
+} from "src/actions";
 
 import classes from "./control-panel.module.css";
 
@@ -44,6 +48,14 @@ export const ControlPanel = (props: ControlPanelProps) => {
     } else {
       throw Error("[isMemoDoneToggler]:: memo update failed");
     }
+  };
+
+  const popDeleteConfirmation = () => {
+    notificationActions.popNotificationForUser(
+      "Delete?",
+      `Are you sure you want to delete this memo? (${memo.title})`,
+      deleteMemoFromMapHandler
+    );
   };
 
   const deleteMemoFromMapHandler = () => {
@@ -105,7 +117,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
           styleOverride={controlPanelButtonsStyleOverride}
           title=""
           icon={deleteIcon}
-          onClick={deleteMemoFromMapHandler}
+          onClick={popDeleteConfirmation}
         />
       </div>
     </div>

@@ -2,16 +2,21 @@ import { MouseEvent } from "react";
 import { Button } from "src/shared";
 import { tooltipActions } from "src/actions";
 import { tooltipStore } from "src/stores";
-import { observer } from "mobx-react";
+import { notificationActions } from "src/actions";
 
 import classes from "./notification-box.module.css";
 
-export const NotificationBox = observer(() => {
+type NotificationBoxProps = {
+  confirmationCallback?: Function | null;
+  header: string;
+  content: string;
+};
+
+export const NotificationBox = (props: NotificationBoxProps) => {
+  const { content, header, confirmationCallback } = props;
   const { title } = tooltipStore;
 
-  const _notificationHeader = "Notification" || "Notification";
-  const _notificationText =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt commodo magna sed iaculis. Donec sagittis dolor at enim ultricies, nec ultrices magna auctor. Cras aliquet, ligula ut commodo maximus, lorem ipsum bibendum magna, et lobortis purus lacus id ex. Nulla convallis eget risus sit amet elementum. ";
+  const _notificationHeader = header || "Notification";
 
   const onMouseEnterHandler = (event: MouseEvent<HTMLDivElement>) => {
     !title &&
@@ -26,6 +31,15 @@ export const NotificationBox = observer(() => {
     tooltipActions.resetTooltip();
   };
 
+  const onNotificationApprovedHandler = () => {
+    confirmationCallback && confirmationCallback();
+    notificationActions.closeNotificationPopper();
+  };
+
+  const onNotificationCanceledHandler = () => {
+    notificationActions.closeNotificationPopper();
+  };
+
   return (
     <div className={classes.notificationBox}>
       <div
@@ -35,11 +49,13 @@ export const NotificationBox = observer(() => {
       >
         {_notificationHeader}
       </div>
-      <div className={classes.body}>{_notificationText}</div>
+      <div className={classes.body}>{content}</div>
       <div className={classes.footer}>
-        <Button title="Cancel" onClick={() => {}} />
-        <Button title="OK" onClick={() => {}} />
+        {confirmationCallback ? (
+          <Button title="Cancel" onClick={onNotificationCanceledHandler} />
+        ) : null}
+        <Button title="OK" onClick={onNotificationApprovedHandler} />
       </div>
     </div>
   );
-});
+};
