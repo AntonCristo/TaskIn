@@ -17,6 +17,13 @@ export type EditMemoProfile = {
   dueDate: boolean;
 };
 
+export type SortingOption = "TITLE" | "CREATION_DATE" | "DUE_DATE" | null;
+
+export type MemosSortingProfile = {
+  sort: SortingOption;
+  sortDirection: "UP" | "DOWN";
+};
+
 export class MemosUIStore {
   constructor() {
     makeAutoObservable(this);
@@ -66,6 +73,89 @@ export class MemosUIStore {
   set editMemoProfile(editUpdate: EditMemoProfile) {
     this._editMemoProfile = editUpdate;
   }
+
+  private _sortingProfile: MemosSortingProfile = {
+    sort: null,
+    sortDirection: "DOWN",
+  };
+  get sortingProfile() {
+    return this._sortingProfile;
+  }
+  set sortingProfile(sortUpdate: MemosSortingProfile) {
+    this._sortingProfile = sortUpdate;
+  }
+
+  private _sortMemosByTitle = (memos: Memo[]) => {
+    switch (this._sortingProfile.sortDirection) {
+      case "DOWN":
+        return memos.sort((memo1, memo2) =>
+          memo1.title > memo2.title ? 1 : -1
+        );
+      case "UP":
+        return memos.sort((memo1, memo2) =>
+          memo1.title > memo2.title ? -1 : 1
+        );
+      default:
+        throw Error(
+          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        );
+    }
+  };
+
+  private _sortMemosByCreationDate = (memos: Memo[]) => {
+    switch (this._sortingProfile.sortDirection) {
+      case "DOWN":
+        return memos.sort((memo1, memo2) =>
+          memo1.creationDate > memo2.creationDate ? 1 : -1
+        );
+      case "UP":
+        return memos.sort((memo1, memo2) =>
+          memo1.creationDate > memo2.creationDate ? -1 : 1
+        );
+      default:
+        throw Error(
+          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        );
+    }
+  };
+
+  private _sortMemosByDueDate = (memos: Memo[]) => {
+    switch (this._sortingProfile.sortDirection) {
+      case "DOWN":
+        return memos.sort((memo1, memo2) =>
+          memo1.dueDate > memo2.dueDate ? 1 : -1
+        );
+      case "UP":
+        return memos.sort((memo1, memo2) =>
+          memo1.dueDate > memo2.dueDate ? -1 : 1
+        );
+      default:
+        throw Error(
+          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        );
+    }
+  };
+
+  public getSortedMemos = (memos: Memo[]) => {
+    if (!this._sortingProfile.sort) {
+      return memos;
+    }
+
+    const copyOfMemos: Memo[] = [...memos];
+
+    switch (this._sortingProfile.sort) {
+      case "TITLE":
+        return this._sortMemosByTitle(copyOfMemos);
+      case "DUE_DATE":
+        return this._sortMemosByDueDate(copyOfMemos);
+      case "CREATION_DATE":
+        return this._sortMemosByCreationDate(copyOfMemos);
+      default:
+        throw Error(
+          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        );
+    }
+  };
 
   public getMemoUrgencyLevel = (memo: Memo) => {
     const timeDiff = memo.dueDate - memo.creationDate;
