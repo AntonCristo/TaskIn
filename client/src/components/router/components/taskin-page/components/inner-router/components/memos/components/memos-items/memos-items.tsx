@@ -21,17 +21,18 @@ export const MemosItems = observer(() => {
 
   const memosRenderPipeline = () => {
     //TODO: filter the deleted memos(this filter must happen on the server)
-    const filterDeletedMemos = memosFromDataStore.filter(
+    const nonDeletedMemos = memosFromDataStore.filter(
       (memo) => !memo.isDeleted
     );
 
-    const titleSearchResults = filterDeletedMemos.filter((memo) =>
+    const sortedMemos =
+      memoStore.uiStoreInstance.getSortedMemos(nonDeletedMemos);
+
+    const titleSearchResults = sortedMemos.filter((memo) =>
       memo.title
         .toLowerCase()
         .includes(uiStoreInstance.memoSearchText.toLowerCase())
     );
-    //TODO: after filtering and sorting is implemented
-    //continue the pipeline
 
     return Array.from(new Set<Memo>([...titleSearchResults]));
   };

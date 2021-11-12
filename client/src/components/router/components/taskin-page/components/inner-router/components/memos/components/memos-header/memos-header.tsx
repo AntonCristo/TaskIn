@@ -4,6 +4,7 @@ import {
   memoUIActions,
   memosCrudActions,
   setDropdownMenuByNameOrNull,
+  routerLocationSetter,
 } from "src/actions";
 import { Button, ControlledInput } from "src/shared";
 import { memoStore } from "src/stores";
@@ -51,6 +52,10 @@ export const MemosHeader = observer(() => {
     setDropdownMenuByNameOrNull("/taskin/memos-memosMenu");
   };
 
+  const onSortButtonClickedHandler = () => {
+    routerLocationSetter("/taskin/memos/sort");
+  };
+
   return (
     <div className={classes.memosHeader}>
       <div className={classes.headerButtons}>
@@ -71,7 +76,7 @@ export const MemosHeader = observer(() => {
           styleOverride={buttonStylesOverride.headerButton}
           title="Sort"
           icon={sortIcon}
-          onClick={() => {}}
+          onClick={onSortButtonClickedHandler}
         />
       </div>
       <div className={classes.searchInputWrapper}>

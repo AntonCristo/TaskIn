@@ -1,19 +1,20 @@
 import { locationStore } from "src/stores";
 import { routerLocationSetter, memoUIActions } from "src/actions";
+import { observer } from "mobx-react";
 
-import { MemosHeader, MemosItems, EditMemo } from "./components";
+import { MemosHeader, MemosItems, EditMemo, SortMemos } from "./components";
 
 import classes from "./memos.module.css";
 
-export const Memos = () => {
-  const { reduceMemoUUIDFromUrl } = locationStore;
+export const Memos = observer(() => {
+  const { reduceMemoUUIDFromUrl, router_view } = locationStore;
+  const _memoUUIDFromUrl = reduceMemoUUIDFromUrl();
+  const _isSortDialogOpen = router_view === "/taskin/memos/sort";
 
   const closeEditMemoDialog = () => {
     memoUIActions.resetEditMemoProfile();
     routerLocationSetter("/taskin/memos");
   };
-
-  const _memoUUIDFromUrl = reduceMemoUUIDFromUrl();
 
   return (
     <div className={classes.memos}>
@@ -25,6 +26,7 @@ export const Memos = () => {
           memoUUID={_memoUUIDFromUrl}
         />
       ) : null}
+      {_isSortDialogOpen ? <SortMemos /> : null}
     </div>
   );
-};
+});
