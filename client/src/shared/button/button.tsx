@@ -32,6 +32,7 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <div
+      tabIndex={0}
       onMouseDown={mouseIsDownHandler}
       onMouseUp={mouseIsNOTDownHandler}
       style={styleOverride}

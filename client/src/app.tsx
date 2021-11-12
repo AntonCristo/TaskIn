@@ -2,7 +2,7 @@ import React from "react";
 import { DropdownMenu, Tootltip } from "./shared";
 import { browserHistoryUtils } from "./utils";
 
-import { Router } from "./components/router";
+import { Router, Notification } from "./components";
 
 import classes from "./app.module.css";
 
@@ -14,6 +14,7 @@ const App: React.FC = () => {
       <Router />
       <DropdownMenu />
       <Tootltip />
+      {/* <Notification /> */}
     </div>
   );
 };
