@@ -20,7 +20,7 @@ class LocationStore {
   ) => {
     switch (taskinSystemRoute) {
       case "MEMOS":
-        return "Memos";
+        return "Scheduled Memos";
       case "TEAM_NOTES":
         return "Team Notes";
       default:
