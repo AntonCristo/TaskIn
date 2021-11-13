@@ -72,6 +72,7 @@ export const MemosHeader = observer(() => {
           icon={filterIcon}
           onClick={() => {}}
         />
+
         <Button
           styleOverride={buttonStylesOverride.headerButton}
           title="Sort"

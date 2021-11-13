@@ -89,11 +89,11 @@ export class MemosUIStore {
     switch (this._sortingProfile.sortDirection) {
       case "DOWN":
         return memos.sort((memo1, memo2) =>
-          memo1.title > memo2.title ? 1 : -1
+          memo1.title > memo2.title ? -1 : 1
         );
       case "UP":
         return memos.sort((memo1, memo2) =>
-          memo1.title > memo2.title ? -1 : 1
+          memo1.title > memo2.title ? 1 : -1
         );
       default:
         throw Error(
@@ -106,11 +106,11 @@ export class MemosUIStore {
     switch (this._sortingProfile.sortDirection) {
       case "DOWN":
         return memos.sort((memo1, memo2) =>
-          memo1.creationDate > memo2.creationDate ? 1 : -1
+          memo1.creationDate > memo2.creationDate ? -1 : 1
         );
       case "UP":
         return memos.sort((memo1, memo2) =>
-          memo1.creationDate > memo2.creationDate ? -1 : 1
+          memo1.creationDate > memo2.creationDate ? 1 : -1
         );
       default:
         throw Error(
@@ -123,11 +123,11 @@ export class MemosUIStore {
     switch (this._sortingProfile.sortDirection) {
       case "DOWN":
         return memos.sort((memo1, memo2) =>
-          memo1.dueDate > memo2.dueDate ? 1 : -1
+          memo1.dueDate > memo2.dueDate ? -1 : 1
         );
       case "UP":
         return memos.sort((memo1, memo2) =>
-          memo1.dueDate > memo2.dueDate ? -1 : 1
+          memo1.dueDate > memo2.dueDate ? 1 : -1
         );
       default:
         throw Error(

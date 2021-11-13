@@ -2,7 +2,11 @@ import { action } from "mobx";
 import { UrgencyColor, Uuid, ValueOf } from "src/client-types";
 import { memoStore, MemosCollapseStateMap } from "src/stores";
 import { EditMemoProfile } from "src/stores";
-import { MemosUrgencyLevelMap } from "src/stores/memos-store/memos-ui-store";
+import {
+  MemosSortingProfile,
+  MemosUrgencyLevelMap,
+  SortingOption,
+} from "src/stores/memos-store/memos-ui-store";
 
 export const onChangeMemoSearchText = action((memoSearchText: string) => {
   memoStore.uiStoreInstance.memoSearchText = memoSearchText;
@@ -105,3 +109,16 @@ export const resetEditMemoProfile = action(() => {
 
   memoStore.uiStoreInstance.editMemoProfile = copyOfEditMemoProfile;
 });
+
+export const setMemosSortingProfile = action(
+  (sortBy: SortingOption, sortDirection: "UP" | "DOWN") => {
+    const copyOfSortingProfile: MemosSortingProfile = JSON.parse(
+      JSON.stringify(memoStore.uiStoreInstance.sortingProfile)
+    );
+
+    copyOfSortingProfile.sort = sortBy;
+    copyOfSortingProfile.sortDirection = sortDirection;
+
+    memoStore.uiStoreInstance.sortingProfile = copyOfSortingProfile;
+  }
+);
