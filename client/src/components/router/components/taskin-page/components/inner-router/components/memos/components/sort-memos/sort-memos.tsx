@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import { observer } from "mobx-react";
-import { memoStore } from "src/stores";
-import { routerLocationSetter } from "src/actions";
+import { memoStore, SortingOption } from "src/stores";
+import {
+  memoUIActions,
+  notificationActions,
+  routerLocationSetter,
+} from "src/actions";
 import { Button, Switch } from "src/shared";
 import refreshIcon from "src/assets/svg/refresh_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
@@ -10,23 +14,41 @@ import returnIcon from "src/assets/svg/return_24dp.svg";
 import { SortingOptionItem } from "./components";
 
 import classes from "./sort-memos.module.css";
-import { SortingOption } from "src/stores/memos-store/memos-ui-store";
 
 export const SortMemos = observer(() => {
   const { uiStoreInstance } = memoStore;
-  const _sortingDirection = uiStoreInstance.sortingProfile.sortDirection;
-  const _sortingDirectionOptions: ("UP" | "DONW")[] = ["DONW", "UP"];
+  const _sortingDirectionOptions: [string, string] = ["DOWN", "UP"];
   const _sortingRules: SortingOption[] = ["CREATION_DATE", "DUE_DATE", "TITLE"];
-  const [sortDirectionLocal, setSortDirectionLocal] =
-    useState(_sortingDirection);
+  const [sortDirectionLocal, setSortDirectionLocal] = useState(
+    uiStoreInstance.sortingProfile.sortDirection
+  );
+  const [sortingRuleLocal, setSortingRuleLocal] = useState(
+    uiStoreInstance.sortingProfile.sort
+  );
+
+  const popResetSortConfirmation = () => {
+    notificationActions.popNotificationForUser(
+      "Reset sort?",
+      `Are you sure you want to reset this sort?`,
+      resetSortHandler
+    );
+  };
 
   const resetSortHandler = () => {
-    alert("clear sorting profile");
+    memoUIActions.setMemosSortingProfile(null, "DOWN");
     routerLocationSetter("/taskin/memos");
   };
 
+  const popApplySortConfirmation = () => {
+    notificationActions.popNotificationForUser(
+      "Apply sort?",
+      `Are you sure you want to apply this sort?`,
+      applySortHandler
+    );
+  };
+
   const applySortHandler = () => {
-    alert("apply local state to sorting profile");
+    memoUIActions.setMemosSortingProfile(sortingRuleLocal, sortDirectionLocal);
     routerLocationSetter("/taskin/memos");
   };
 
@@ -42,6 +64,18 @@ export const SortMemos = observer(() => {
     }
   };
 
+  const onSortingOptionClickedLocalHandler = (
+    event: MouseEvent<HTMLDivElement>
+  ) => {
+    const clickedRule = event.currentTarget.getAttribute(
+      "data-rule"
+    ) as SortingOption;
+
+    sortingRuleLocal === clickedRule
+      ? setSortingRuleLocal(null)
+      : setSortingRuleLocal(clickedRule);
+  };
+
   return (
     <div className={classes.sortMemosWrapper}>
       <div className={classes.header}>
@@ -50,8 +84,16 @@ export const SortMemos = observer(() => {
           title="Return"
           onClick={returnToMemosPageHandler}
         />
-        <Button icon={refreshIcon} title="Reset" onClick={resetSortHandler} />
-        <Button icon={doneIcon} title="Apply" onClick={applySortHandler} />
+        <Button
+          icon={refreshIcon}
+          title="Reset"
+          onClick={popResetSortConfirmation}
+        />
+        <Button
+          icon={doneIcon}
+          title="Apply"
+          onClick={popApplySortConfirmation}
+        />
       </div>
       <div className={classes.sortDirectionPicker}>
         <div>Choose ascending/descending:</div>
@@ -69,7 +111,12 @@ export const SortMemos = observer(() => {
       <div className={classes.sortingOptionItemsList}>
         <div>Choose sorting method:</div>
         {_sortingRules.map((sortingRule, index) => (
-          <SortingOptionItem key={sortingRule! + index} />
+          <SortingOptionItem
+            onClick={onSortingOptionClickedLocalHandler}
+            isSelcted={sortingRuleLocal === sortingRule}
+            rule={sortingRule}
+            key={sortingRule! + index}
+          />
         ))}
       </div>
     </div>

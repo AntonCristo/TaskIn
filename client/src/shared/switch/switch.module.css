@@ -1,21 +1,28 @@
 .swtich {
-  border: 1px solid #8f708f;
+  position: relative;
+  border: 2px solid #000;
   width: 40px;
   height: 20px;
-  position: relative;
   border-radius: 8px;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .switchButton {
   position: absolute;
-  top: -3px;
+  top: -4px;
   width: 24px;
   height: 24px;
   background-color: #ff853b;
   border-radius: 50%;
-  border: 1px solid #8f708f;
+  border: 1px solid #000;
   transition: left 1s ease-in;
 }
 .swtich:hover .switchButton {
   box-shadow: 1px 1px 6px rgb(161, 162, 163);
+}
+.leftPosition {
+  left: -3px;
+}
+.righPosition {
+  right: -3px;
 }

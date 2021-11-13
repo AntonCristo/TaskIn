@@ -1,4 +1,17 @@
 .sortingOptionItem {
-  border: 1px solid red;
+  width: 260px;
   margin-bottom: 10px;
+  font-size: 16px;
+  font-family: "Ubuntu-regular";
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.sortingOptionItem > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sortingOptionItem > div:nth-child(1) > img {
+  margin-right: 10px;
 }

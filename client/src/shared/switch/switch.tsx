@@ -1,7 +1,7 @@
 import classes from "./switch.module.css";
 
 export type SwtichProps = {
-  switchValues: string[];
+  switchValues: [string, string];
   value: string;
   onChange: () => void;
 };
@@ -9,13 +9,27 @@ export type SwtichProps = {
 export const Switch = (props: SwtichProps) => {
   const { switchValues, value, onChange } = props;
 
-  let buttonPositionByValue = {};
-  if (value === switchValues[0]) buttonPositionByValue = { left: "-1px" };
-  if (value === switchValues[1]) buttonPositionByValue = { right: "-1px" };
+  if (!switchValues.includes(value)) {
+    throw Error(
+      "[Switch]:: Please make sure that the 'value' prop is included in 'switchValues' array"
+    );
+  }
+
+  const switchButtonPositin = () => {
+    if (value === switchValues[0]) {
+      return classes.leftPosition;
+    }
+
+    if (value === switchValues[1]) {
+      return classes.righPosition;
+    }
+  };
 
   return (
     <div onClick={onChange} className={classes.swtich}>
-      <div style={buttonPositionByValue} className={classes.switchButton}></div>
+      <div
+        className={[classes.switchButton, switchButtonPositin()].join(" ")}
+      ></div>
     </div>
   );
 };
