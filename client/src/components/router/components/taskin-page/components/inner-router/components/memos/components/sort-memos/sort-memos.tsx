@@ -18,7 +18,12 @@ import classes from "./sort-memos.module.css";
 export const SortMemos = observer(() => {
   const { uiStoreInstance } = memoStore;
   const _sortingDirectionOptions: [string, string] = ["DOWN", "UP"];
-  const _sortingRules: SortingOption[] = ["CREATION_DATE", "DUE_DATE", "TITLE"];
+  const _sortingRules: SortingOption[] = [
+    "CREATION_DATE",
+    "DUE_DATE",
+    "TITLE",
+    "URGENCY_LEVEL",
+  ];
   const [sortDirectionLocal, setSortDirectionLocal] = useState(
     uiStoreInstance.sortingProfile.sortDirection
   );

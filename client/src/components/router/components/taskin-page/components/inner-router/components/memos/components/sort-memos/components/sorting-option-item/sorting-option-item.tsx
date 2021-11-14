@@ -22,6 +22,8 @@ export const SortingOptionItem = (props: SortingOptionItemProps) => {
         return "By due date";
       case "TITLE":
         return "By title";
+      case "URGENCY_LEVEL":
+        return "By urgency level";
       default:
         throw Error("[SortingOptionItem]:: default case should never happen");
     }

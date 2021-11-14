@@ -17,7 +17,12 @@ export type EditMemoProfile = {
   dueDate: boolean;
 };
 
-export type SortingOption = "TITLE" | "CREATION_DATE" | "DUE_DATE" | null;
+export type SortingOption =
+  | "TITLE"
+  | "CREATION_DATE"
+  | "DUE_DATE"
+  | "URGENCY_LEVEL"
+  | null;
 
 export type MemosSortingProfile = {
   sort: SortingOption;
@@ -136,6 +141,29 @@ export class MemosUIStore {
     }
   };
 
+  private _sortMemosByUrgencyLevel = (memos: Memo[]) => {
+    switch (this._sortingProfile.sortDirection) {
+      case "DOWN":
+        return memos.sort((memo1, memo2) =>
+          this._memoUrgencyLevelMap[memo1.uuid]! >
+          this._memoUrgencyLevelMap[memo2.uuid]!
+            ? -1
+            : 1
+        );
+      case "UP":
+        return memos.sort((memo1, memo2) =>
+          this._memoUrgencyLevelMap[memo1.uuid]! >
+          this._memoUrgencyLevelMap[memo2.uuid]!
+            ? 1
+            : -1
+        );
+      default:
+        throw Error(
+          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        );
+    }
+  };
+
   public getSortedMemos = (memos: Memo[]) => {
     if (!this._sortingProfile.sort) {
       return memos;
@@ -150,6 +178,8 @@ export class MemosUIStore {
         return this._sortMemosByDueDate(copyOfMemos);
       case "CREATION_DATE":
         return this._sortMemosByCreationDate(copyOfMemos);
+      case "URGENCY_LEVEL":
+        return this._sortMemosByUrgencyLevel(copyOfMemos);
       default:
         throw Error(
           "[getSortedMemos]:: default case should never happen, check everything!!!"
