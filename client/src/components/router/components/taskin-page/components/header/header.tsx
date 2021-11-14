@@ -1,7 +1,6 @@
 import { observer } from "mobx-react";
-import { MemoColorMap } from "src/shared";
 
-import { UserInfo } from "./components";
+import { UserInfo, MemoColorMap } from "./components";
 
 import classes from "./header.module.css";
 

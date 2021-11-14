@@ -1,8 +1,8 @@
 .editMemoDate {
   display: flex;
   align-items: center;
-  margin: 10px 0;
-  height: 40px;
+  margin-bottom: 3px;
+  height: 30px;
   width: 560px;
 }
 .editMemoTitle {
