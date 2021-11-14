@@ -10,6 +10,12 @@
   align-items: center;
   flex-wrap: wrap;
 }
+.hashtagsSelect {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .hashtagMark {
   width: 25px;
   height: 25px;
