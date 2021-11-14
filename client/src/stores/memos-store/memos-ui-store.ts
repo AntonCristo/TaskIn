@@ -179,4 +179,13 @@ export class MemosUIStore {
       return UrgencyColor.High;
     }
   };
+
+  public getUrgencyLevelCounter = (urgencyLevel: UrgencyColor) => {
+    let count = 0;
+    Object.keys(this._memoUrgencyLevelMap).forEach((memoUUID) => {
+      if (this._memoUrgencyLevelMap[memoUUID] === urgencyLevel) count++;
+    });
+
+    return count;
+  };
 }

@@ -1,0 +1,18 @@
+.menuButton {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .menuButton {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 12px;
+    margin-right: 15px;
+  }
+  .menuButton > div {
+    width: 20px;
+    height: 2px;
+    background-color: #000;
+  }
+}
