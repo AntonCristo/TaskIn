@@ -43,6 +43,7 @@ export class MemosDataStore {
   }
   set memosMap(mapUpdate: MemosDataMap) {
     this._memosMap = mapUpdate;
+
     localStorage.setItem("memos", JSON.stringify(this._memosMap));
     //TODO: add upsert method to api instead of local storage
   }
