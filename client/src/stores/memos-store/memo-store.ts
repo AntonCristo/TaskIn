@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx";
-import { UrgencyColor } from "src/client-types";
 import { MemosDataStore } from "./memo-data-store";
 import { MemosUIStore } from "./memos-ui-store";
 
@@ -22,21 +21,6 @@ class MemoStore {
   get dataStoreInstance() {
     return this._dataStoreInstance;
   }
-
-  public getUrgencyLevelCounter = (urgencyLevel: UrgencyColor) => {
-    let count = 0;
-    Object.keys(this.uiStoreInstance.memoUrgencyLevelMap).forEach(
-      (memoUUID) => {
-        if (
-          this.uiStoreInstance.memoUrgencyLevelMap[memoUUID] === urgencyLevel &&
-          !this.dataStoreInstance.memosMap[memoUUID].isDeleted
-        )
-          count++;
-      }
-    );
-
-    return count;
-  };
 }
 
 export const memoStore = new MemoStore(
