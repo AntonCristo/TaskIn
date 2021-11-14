@@ -63,6 +63,8 @@ export const deleteSingleMemoFromMap = action((memoUUID: string) => {
   );
 
   copyOfMemosDataMap[memoUUID].isDeleted = true;
+  //TODO: add a DELETE from store, the upsert of the map should update
+  //the deleted memo in the database, next fetch it will be filtered
 
   updateMemosDataMap(copyOfMemosDataMap);
 });

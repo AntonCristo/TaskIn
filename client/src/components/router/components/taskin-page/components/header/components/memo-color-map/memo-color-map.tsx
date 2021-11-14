@@ -3,7 +3,7 @@ import { UrgencyColor } from "src/client-types";
 import refreshIcon from "src/assets/svg/refresh_24dp.svg";
 import { tooltipConstants } from "src/constants";
 import { tooltipActions } from "src/actions";
-import { locationStore, tooltipStore } from "src/stores";
+import { tooltipStore } from "src/stores";
 import { observer } from "mobx-react";
 
 import { MapItem } from "./components";
@@ -13,7 +13,6 @@ import classes from "./memo-color-map.module.css";
 export const MemoColorMap = observer(() => {
   const [rotateRefreshIcon, setRotateRefreshICon] = useState(false);
   const { title } = tooltipStore;
-  const { router_view } = locationStore;
   //TODO: click on a map sets a filter by clicked urgency color
   // active filter clas should be applied
   // refresh button clears filter
@@ -39,7 +38,7 @@ export const MemoColorMap = observer(() => {
     tooltipActions.resetTooltip();
   };
 
-  return router_view === "/taskin/memos" ? (
+  return (
     <div className={classes.memosColorMap}>
       <div onMouseEnter={onMouseOverHandler} onMouseLeave={onMouseOutHandler}>
         <MapItem urgencyColor={UrgencyColor.Low} />
@@ -54,5 +53,5 @@ export const MemoColorMap = observer(() => {
         alt="refresh"
       />
     </div>
-  ) : null;
+  );
 });
