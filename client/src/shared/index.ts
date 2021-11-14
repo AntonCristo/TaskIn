@@ -7,3 +7,4 @@ export * from "./spinner";
 export * from "./date";
 export * from "./tootltip";
 export * from "./switch";
+export * from "./label-box";

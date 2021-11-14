@@ -4,7 +4,12 @@ import { Uuid } from "src/client-types";
 import { Button, Spinner } from "src/shared";
 import { memoStore } from "src/stores";
 
-import { EditMemoTitle, EditMemoContent, EditMemoDate } from "./components";
+import {
+  EditMemoTitle,
+  EditMemoContent,
+  EditMemoDate,
+  EditMemoHashtags,
+} from "./components";
 
 import classes from "./edit-memo.module.css";
 import { memoUIActions } from "src/actions";
@@ -41,6 +46,7 @@ export const EditMemo = observer((props: EditMemoProps) => {
   return (
     <div className={classes.editMemo}>
       <EditMemoTitle memo={_memoFromMap} />
+      <EditMemoHashtags memo={_memoFromMap} />
       <EditMemoContent memo={_memoFromMap} />
       <EditMemoDate dateTitle="creationDate" memo={_memoFromMap} />
       <EditMemoDate dateTitle="dueDate" memo={_memoFromMap} />

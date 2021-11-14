@@ -20,7 +20,6 @@ const buttonStyleOverride: CSSProperties = {
   right: "-40px",
   top: "0px",
   border: "none",
-  backgroundColor: "transparent",
 };
 
 export const EditMemoContent = observer((props: EditMemoContentProps) => {
@@ -66,7 +65,7 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
             onChange={onChangeMemoTitleHandler}
             ref={textareaRef}
             value={memo.content}
-            placeholder="Write your memo here..."
+            placeholder="Type your memo..."
           />
         ) : (
           <div

@@ -15,6 +15,7 @@ export type EditMemoProfile = {
   content: boolean;
   creationDate: boolean;
   dueDate: boolean;
+  hashtag: boolean;
 };
 
 export type SortingOption =
@@ -71,6 +72,7 @@ export class MemosUIStore {
     creationDate: false,
     dueDate: false,
     title: false,
+    hashtag: false,
   };
   get editMemoProfile() {
     return this._editMemoProfile;

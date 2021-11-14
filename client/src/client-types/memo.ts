@@ -19,7 +19,7 @@ export type Memo = {
   creationDate: number;
   dueDate: number;
   content: string;
-  //TOTO:after urgency level map is finished, remove isDone attribute
   isDone: boolean;
   isDeleted: boolean;
+  hashtag: string[];
 };

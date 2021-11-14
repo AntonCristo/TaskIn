@@ -7,15 +7,20 @@
 }
 .editMemoTitle {
   font-size: 16px;
-  width: 200px;
+  width: 250px;
 }
 .editMemoDateComponent {
-  width: 100%;
-  margin-right: 10px;
+  width: 250px;
 }
 
 @media screen and (max-width: 800px) {
   .editMemoDate {
-    width: 90vw;
+    width: 100%;
+  }
+  .editMemoTitle {
+    width: 160px;
+  }
+  .editMemoDateComponent {
+    width: 100px;
   }
 }
