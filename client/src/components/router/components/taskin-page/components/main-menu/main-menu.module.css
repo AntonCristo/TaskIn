@@ -9,3 +9,24 @@
   padding-left: 8px;
   padding-right: 8px;
 }
+
+@media screen and (max-width: 800px) {
+  .mainMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: slide-in 1s ease-in-out;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-225px);
+  }
+  80% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

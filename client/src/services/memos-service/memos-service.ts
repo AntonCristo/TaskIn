@@ -4,13 +4,14 @@ import { IMemoService } from "src/contracts";
 import { MemosDataMap } from "src/stores";
 
 const memosFromLocalStorage = localStorage.getItem("memos") || "{}";
-const parsedMemosFromStorage: { [x: string]: any } = JSON.parse(
+const parsedMemosFromStorage: { [x: string]: Memo } = JSON.parse(
   memosFromLocalStorage
 );
 const memoMocks: Memo[] = [];
 
 Object.keys(parsedMemosFromStorage).forEach((key) => {
-  memoMocks.push(parsedMemosFromStorage[key]);
+  !parsedMemosFromStorage[key].isDeleted &&
+    memoMocks.push(parsedMemosFromStorage[key]);
 });
 
 class MemosService implements IMemoService {

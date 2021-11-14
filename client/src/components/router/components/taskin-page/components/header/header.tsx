@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import { locationStore } from "src/stores";
 
-import { UserInfo, MemoColorMap } from "./components";
+import { UserInfo, MemoColorMap, MobileMenuButton } from "./components";
 
 import classes from "./header.module.css";
 
@@ -24,6 +24,7 @@ export const Header = observer(() => {
     <div className={classes.header}>
       <UserInfo />
       {renderByLocation()}
+      <MobileMenuButton />
     </div>
   );
 });

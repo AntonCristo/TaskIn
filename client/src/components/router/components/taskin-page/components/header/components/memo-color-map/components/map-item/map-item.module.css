@@ -1,18 +1,43 @@
 .mapItem {
-  height: 20px;
-  width: 20px;
+  position: relative;
+  height: 22px;
+  width: 26px;
   margin-right: 4px;
   border-radius: 2px;
   padding-top: 2px;
   padding-left: 2px;
   padding-right: 2px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   cursor: pointer;
 }
-.mapItem > div {
+.mapItem .pins {
+  display: flex;
+  justify-content: space-between;
+}
+.mapItem .pins > div {
   width: 2px;
   height: 2px;
   border-radius: 50%;
   background-color: #000;
+}
+.mapItem .percent {
+  margin-top: 3px;
+  font-size: 10px;
+  font-family: "Ubuntu-bold";
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mapItem .counter {
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  font-size: 10px;
+  width: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Ubuntu-light";
 }
