@@ -53,7 +53,7 @@ export const MemoCard = observer((props: MemoCardProps) => {
       >
         {memo.title}
       </div>
-      {isCollapsed ? null : (
+      {isCollapsed || !memo.content ? null : (
         <div className={classes.memoContent}>
           {textUtils.sliceTextAndAddEllipsis(
             memo.content,
