@@ -19,7 +19,7 @@ type EditMemoDateProps = {
 const buttonStyleOverride: CSSProperties = {
   minWidth: "32px",
   border: "none",
-  backgroundColor: "transparent",
+  marginLeft: "auto",
 };
 
 export const EditMemoDate = observer((props: EditMemoDateProps) => {
@@ -92,13 +92,14 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
           date={_eidtedMemoDate}
         />
       </div>
-      <Button
-        isDisabled={dateTitle === "creationDate" ? true : false}
-        styleOverride={buttonStyleOverride}
-        title=""
-        icon={_isDateInEditMode ? doneIcon : editIcon}
-        onClick={toggleDateEditModeHandler}
-      />
+      {dateTitle === "creationDate" ? null : (
+        <Button
+          styleOverride={buttonStyleOverride}
+          title=""
+          icon={_isDateInEditMode ? doneIcon : editIcon}
+          onClick={toggleDateEditModeHandler}
+        />
+      )}
     </div>
   );
 });

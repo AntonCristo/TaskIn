@@ -1,6 +1,6 @@
 .editMemoContentWrapper {
   position: relative;
-  width: 525px;
+  width: 520px;
   min-height: 200px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -41,6 +41,6 @@
 
 @media screen and (max-width: 800px) {
   .editMemoContentWrapper {
-    width: 300px;
+    width: 295px;
   }
 }

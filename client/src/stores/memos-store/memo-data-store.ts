@@ -17,6 +17,7 @@ export const MEMO_TEMPLATE: Memo = {
   uuid: "",
   version: "0.1",
   isDeleted: false,
+  hashtag: [],
 };
 
 export class MemosDataStore {
