@@ -1,8 +1,5 @@
-import { ChangeEvent, CSSProperties, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { Memo } from "src/client-types";
-import editIcon from "src/assets/svg/edit_24dp.svg";
-import doneIcon from "src/assets/svg/done_24dp.svg";
-import { Button } from "src/shared";
 import { memoUIActions, memosCrudActions } from "src/actions";
 import { memoStore } from "src/stores";
 
@@ -11,11 +8,6 @@ import { observer } from "mobx-react";
 
 type EditMemoProps = {
   memo: Memo;
-};
-
-const buttonStyleOverride: CSSProperties = {
-  minWidth: "30px",
-  border: "none",
 };
 
 export const EditMemoTitle = observer((props: EditMemoProps) => {
@@ -52,6 +44,7 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
         {_isTitleInEditMode ? (
           <input
             autoFocus
+            onBlur={toggleTitleEditModeHandler}
             className={classes.titleAsInput}
             onChange={onChangeMemoTitleHandler}
             value={memo.title}
@@ -66,12 +59,6 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
           </div>
         )}
       </div>
-      <Button
-        styleOverride={buttonStyleOverride}
-        icon={_isTitleInEditMode ? doneIcon : editIcon}
-        title=""
-        onClick={toggleTitleEditModeHandler}
-      />
     </div>
   );
 });

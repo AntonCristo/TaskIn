@@ -1,11 +1,10 @@
 .datesDiffMessage {
-  border: 1px solid red;
-  width: 560px;
-  margin-top: 20px;
+  width: 190px;
   padding: 6px 10px;
   font-family: "Ubuntu-regular";
-  font-size: 18px;
+  font-size: 14px;
   display: flex;
+  align-items: flex-start;
   border-radius: 6px;
   border: 1px solid #dcdcdc;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);

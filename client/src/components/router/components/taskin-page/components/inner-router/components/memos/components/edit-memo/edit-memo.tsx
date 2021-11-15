@@ -21,9 +21,9 @@ type EditMemoProps = {
 };
 
 const buttonStyleOverride: CSSProperties = {
-  height: "35px",
+  minHeight: "35px",
   width: "100px",
-  marginTop: "40px",
+  marginTop: "30px",
   fontWeight: 600,
 };
 
@@ -45,18 +45,22 @@ export const EditMemo = observer((props: EditMemoProps) => {
   }
 
   return (
-    <div className={classes.editMemo}>
-      <EditMemoTitle memo={_memoFromMap} />
-      <EditMemoHashtags memo={_memoFromMap} />
-      <EditMemoContent memo={_memoFromMap} />
-      <EditMemoDate dateTitle="creationDate" memo={_memoFromMap} />
-      <EditMemoDate dateTitle="dueDate" memo={_memoFromMap} />
-      <DatesDiffMessage memo={_memoFromMap} />
-      <Button
-        styleOverride={buttonStyleOverride}
-        title="Return"
-        onClick={returnFromEditPage}
-      />
+    <div className={classes.editMemoAbsolute}>
+      <div className={classes.editMemo}>
+        <EditMemoTitle memo={_memoFromMap} />
+        <EditMemoHashtags memo={_memoFromMap} />
+        <EditMemoContent memo={_memoFromMap} />
+        <EditMemoDate dateTitle="creationDate" memo={_memoFromMap} />
+        <EditMemoDate dateTitle="dueDate" memo={_memoFromMap} />
+        <Button
+          styleOverride={buttonStyleOverride}
+          title="Return"
+          onClick={returnFromEditPage}
+        />
+      </div>
+      <div className={classes.desktopSchduleStateAnnouncement}>
+        <DatesDiffMessage memo={_memoFromMap} />
+      </div>
     </div>
   );
 });

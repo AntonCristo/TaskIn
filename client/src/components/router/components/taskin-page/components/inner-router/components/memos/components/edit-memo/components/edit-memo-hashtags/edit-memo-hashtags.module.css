@@ -1,6 +1,6 @@
 .editMemoHashtags {
   position: relative;
-  width: 560px;
+  width: 60%;
   margin-bottom: 20px;
   display: flex;
 }
@@ -19,6 +19,7 @@
 .hashtagMark {
   width: 25px;
   height: 25px;
+  margin: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
