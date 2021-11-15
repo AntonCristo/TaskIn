@@ -1,39 +1,36 @@
 .editMemoContentWrapper {
   position: relative;
-  width: 520px;
-  min-height: 200px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  width: 60%;
   background-color: #fff;
   border-radius: 6px;
   margin-bottom: 20px;
+  height: fit-content;
 }
 .contentAsLabel {
   font-size: 16px;
   line-height: 20px;
-  min-height: 155px;
+  height: 240px;
   font-family: "Ubuntu-regular";
   white-space: pre-wrap;
   border-radius: 6px;
-  padding-left: 3px;
-  padding-right: 3px;
+  padding: 6px;
+  overflow-y: scroll;
 }
 .contentAsLabel:hover {
   cursor: pointer;
   opacity: 0.8;
 }
 .editMemoContent > textarea {
-  padding: 0;
-  padding-left: 3px;
-  padding-right: 3px;
+  margin-bottom: 0;
   width: 100%;
+  height: 240px;
   resize: none;
   border: none;
   background-color: transparent;
   font-size: 16px;
   line-height: 20px;
   font-family: "Ubuntu-regular";
-  overflow: hidden;
+  padding: 6px;
 }
 .editMemoContent > textarea:focus {
   outline: none;
@@ -41,6 +38,6 @@
 
 @media screen and (max-width: 800px) {
   .editMemoContentWrapper {
-    width: 295px;
+    width: 100%;
   }
 }
