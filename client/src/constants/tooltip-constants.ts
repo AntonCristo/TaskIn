@@ -1,4 +1,7 @@
 export const tooltipConstants = {
-  quickHeaderFilter:
-    "Quick filter - click on the color of memos you would like to inspect.\n\nTo reset, click the refresh icon.",
+  quickHeaderFilter: `Like a traffic light, this map will keep you on track.\n 
+Red - Aprroaching due date/overdue\n
+Yellow - You probably should take a look\n 
+Green - Fresh memo
+  `,
 };

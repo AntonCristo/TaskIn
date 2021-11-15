@@ -10,6 +10,14 @@
 }
 .memoColorsMapWrapper {
   margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+.memoColorsMapWrapper .infoIConDiv {
+  margin-left: 10px;
+}
+.memoColorsMapWrapper .infoIConDiv > img {
+  width: 20px;
 }
 
 @media screen and (max-width: 800px) {
