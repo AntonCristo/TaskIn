@@ -3,16 +3,17 @@ import { observer } from "mobx-react";
 import { Uuid } from "src/client-types";
 import { Button, Spinner } from "src/shared";
 import { memoStore } from "src/stores";
+import { memoUIActions } from "src/actions";
 
 import {
   EditMemoTitle,
   EditMemoContent,
   EditMemoDate,
   EditMemoHashtags,
+  DatesDiffMessage,
 } from "./components";
 
 import classes from "./edit-memo.module.css";
-import { memoUIActions } from "src/actions";
 
 type EditMemoProps = {
   memoUUID: Uuid;
@@ -50,6 +51,7 @@ export const EditMemo = observer((props: EditMemoProps) => {
       <EditMemoContent memo={_memoFromMap} />
       <EditMemoDate dateTitle="creationDate" memo={_memoFromMap} />
       <EditMemoDate dateTitle="dueDate" memo={_memoFromMap} />
+      <DatesDiffMessage memo={_memoFromMap} />
       <Button
         styleOverride={buttonStyleOverride}
         title="Return"
