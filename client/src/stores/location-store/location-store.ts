@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-export type TaskinRoutes = "MEMOS" | "TEAM_NOTES";
+export type TaskinRoutes = "MEMOS" | "NOTES";
 class LocationStore {
   constructor() {
     makeAutoObservable(this);
@@ -20,9 +20,9 @@ class LocationStore {
   ) => {
     switch (taskinSystemRoute) {
       case "MEMOS":
-        return "Scheduled Memos";
-      case "TEAM_NOTES":
-        return "Team Notes";
+        return "Scheduled Tasks";
+      case "NOTES":
+        return "Simple Notes";
       default:
         throw Error(
           "[NavigationMenu]:: default case should never happen, check !!!"
@@ -36,8 +36,8 @@ class LocationStore {
     switch (taskinSystemRoute) {
       case "MEMOS":
         return "memos";
-      case "TEAM_NOTES":
-        return "team-notes";
+      case "NOTES":
+        return "notes";
       default:
         throw Error(
           "[NavigationMenu]:: default case should never happen, check !!!"
@@ -54,8 +54,8 @@ class LocationStore {
     switch (activeRouteValue) {
       case "memos":
         return "MEMOS";
-      case "team-notes":
-        return "TEAM_NOTES";
+      case "notes":
+        return "NOTES";
       default:
         throw Error(
           "[reduceActiveRouteFromUrl]:: default case should never happen, check everything!!!"
