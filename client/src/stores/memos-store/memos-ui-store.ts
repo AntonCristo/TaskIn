@@ -48,6 +48,7 @@ export class MemosUIStore {
     return this._memoUrgencyLevelMap;
   }
   set memoUrgencyLevelMap(updatedMap: MemosUrgencyLevelMap) {
+    console.log(updatedMap);
     this._memoUrgencyLevelMap = updatedMap;
   }
 

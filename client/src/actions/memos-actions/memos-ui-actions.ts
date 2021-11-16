@@ -21,22 +21,19 @@ export const toggleSearchBoxVisibility = action(() => {
     !memoStore.uiStoreInstance.isSearchBoxVisible;
 });
 
-export const calculateSingleMemoUrgencyLevelState = action(
-  (memoUUID: Uuid, userMarkedMemoAsDone?: boolean) => {
-    const copyOfUrgencyLevelMap: MemosUrgencyLevelMap = JSON.parse(
-      JSON.stringify(memoStore.uiStoreInstance.memoUrgencyLevelMap)
-    );
+export const calculateSingleMemoUrgencyLevelState = action((memoUUID: Uuid) => {
+  const copyOfUrgencyLevelMap: MemosUrgencyLevelMap = JSON.parse(
+    JSON.stringify(memoStore.uiStoreInstance.memoUrgencyLevelMap)
+  );
 
-    const memoRef = memoStore.dataStoreInstance.memosMap[memoUUID];
+  const memoRef = memoStore.dataStoreInstance.memosMap[memoUUID];
 
-    copyOfUrgencyLevelMap[memoUUID as string] =
-      userMarkedMemoAsDone || memoRef.isDone
-        ? UrgencyColor.Done
-        : memoStore.uiStoreInstance.getMemoUrgencyLevel(memoRef);
+  copyOfUrgencyLevelMap[memoUUID as string] = memoRef.isDone
+    ? UrgencyColor.Done
+    : memoStore.uiStoreInstance.getMemoUrgencyLevel(memoRef);
 
-    memoStore.uiStoreInstance.memoUrgencyLevelMap = copyOfUrgencyLevelMap;
-  }
-);
+  memoStore.uiStoreInstance.memoUrgencyLevelMap = copyOfUrgencyLevelMap;
+});
 
 export const deleteSingleMemoUrgencyLevelState = action((memoUUID: Uuid) => {
   const copyOfUrgencyLevelMap: MemosUrgencyLevelMap = JSON.parse(
@@ -65,6 +62,7 @@ export const deleteSingleMemoCollapseState = action((memoUUID: Uuid) => {
 
   delete copyOfCollapseStateMap[memoUUID];
 
+  console.log("deleted");
   memoStore.uiStoreInstance.memosCollapseStateMap = copyOfCollapseStateMap;
 });
 

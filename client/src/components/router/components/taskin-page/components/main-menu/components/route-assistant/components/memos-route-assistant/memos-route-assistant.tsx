@@ -28,7 +28,14 @@ export const MemosRouteAssistant = observer(() => {
               memosRouteAssistant[assistanceButtonName].memoDisplayClass
             }
           >
-            {assistanceButtonName}
+            <div className={classes.buttonName}>{assistanceButtonName}</div>
+            <div className={classes.displayClassCounter}>
+              {
+                memoStore.dataStoreInstance.getMemosMapAsArrayByDisplayClass(
+                  memosRouteAssistant[assistanceButtonName].memoDisplayClass
+                )?.length
+              }
+            </div>
             {memosRouteAssistant[assistanceButtonName].icon ? (
               <img
                 src={memosRouteAssistant[assistanceButtonName].icon}
