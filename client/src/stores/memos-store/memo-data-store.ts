@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { makeAutoObservable } from "mobx";
-import { Memo } from "src/client-types";
+import { Memo, Uuid } from "src/client-types";
 import { memosService } from "src/services";
 import { userStore } from "src/stores";
 import { v4 as uuid } from "uuid";
@@ -63,10 +63,11 @@ export class MemosDataStore {
     this._memosMap = mapUpdate;
 
     localStorage.setItem("memos", JSON.stringify(this._memosMap));
+    localStorage.setItem("backup_memos", JSON.stringify(this._memosMap));
     //TODO: add upsert method to api instead of local storage
   }
 
-  private _memosDisplayClass: MemosDisplayClass = "ALL";
+  private _memosDisplayClass: MemosDisplayClass = "IN_PROGRESS";
   get memosDisplayClass() {
     return this._memosDisplayClass;
   }
@@ -74,10 +75,10 @@ export class MemosDataStore {
     this._memosDisplayClass = displayClass;
   }
 
-  public initMemosDataStore = () => {
+  public initMemosDataStore = (userUUID: Uuid) => {
     try {
       !this._memosMap && console.log("[initMemosDataStore]:: start");
-      !this._memosMap && memosService.getMemosFromApiByInitiatorUUID();
+      !this._memosMap && memosService.getMemosFromApiByInitiatorUUID(userUUID);
     } catch (error) {
       !this._memosMap && console.log("[initMemosDataStore]:: Error");
     }

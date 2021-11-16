@@ -26,14 +26,14 @@ export const memosRouteAssistant: {
     icon?: string;
   };
 } = {
-  All: {
-    memoDisplayClass: "ALL",
-    icon: myMemosIcon,
-    onClick: onClickHandler,
-  },
   "In progress": {
     memoDisplayClass: "IN_PROGRESS",
     icon: progressIcon,
+    onClick: onClickHandler,
+  },
+  All: {
+    memoDisplayClass: "ALL",
+    icon: myMemosIcon,
     onClick: onClickHandler,
   },
   Completed: {

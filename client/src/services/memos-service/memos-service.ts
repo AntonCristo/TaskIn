@@ -1,5 +1,5 @@
 import { updateMemosDataMap } from "src/actions/memos-actions/memo-crud";
-import { Memo } from "src/client-types";
+import { Memo, Uuid } from "src/client-types";
 import { IMemoService } from "src/contracts";
 import { MemosDataMap } from "src/stores";
 
@@ -9,17 +9,16 @@ const parsedMemosFromStorage: { [x: string]: Memo } = JSON.parse(
 );
 const memoMocks: Memo[] = [];
 
-Object.keys(parsedMemosFromStorage).forEach((key) => {
-  memoMocks.push(parsedMemosFromStorage[key]);
-});
-
 class MemosService implements IMemoService {
-  public getMemosFromApiByInitiatorUUID = async () => {
+  public getMemosFromApiByInitiatorUUID = async (userUUID: Uuid) => {
     let memosRes: MemosDataMap | null = null;
     //here should be the api GET call
     //on the then case of the promise => memosRes = {}
     //on the catch return the memosRes as null
-
+    Object.keys(parsedMemosFromStorage).forEach((key) => {
+      parsedMemosFromStorage[key].createdBy === userUUID &&
+        memoMocks.push(parsedMemosFromStorage[key]);
+    });
     //simulation of "then" case of returned promise:
     setTimeout(() => {
       memosRes = {};

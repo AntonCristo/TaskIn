@@ -1,5 +1,6 @@
+import { Uuid } from "src/client-types";
 import { MemosDataMap } from "src/stores";
 
 export interface IMemoService {
-  getMemosFromApiByInitiatorUUID(): Promise<MemosDataMap | null>;
+  getMemosFromApiByInitiatorUUID(userUUID: Uuid): Promise<MemosDataMap | null>;
 }

@@ -18,7 +18,7 @@ export const TaskinPage = observer(() => {
   }
 
   //TODO: Move to general initiation method/procedure
-  memoStore.dataStoreInstance.initMemosDataStore();
+  memoStore.dataStoreInstance.initMemosDataStore(_user.uuid);
   //TODO: check logic, this renders the whole tree on every change in any memo
   if (memoStore.dataStoreInstance.memosMap) {
     console.log("[TaskinPage]: render");
