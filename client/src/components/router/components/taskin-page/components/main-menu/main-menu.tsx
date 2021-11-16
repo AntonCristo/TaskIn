@@ -3,7 +3,7 @@ import { TaskinTitle } from "src/shared";
 import { mobileToggleMainMenuVisibility } from "src/actions";
 import { mainMenuStore } from "src/stores";
 
-import { MobileBackdrop, NavigationMenu } from "./components";
+import { MobileBackdrop, NavigationMenu, RouteAssistant } from "./components";
 
 import classes from "./main-menu.module.css";
 
@@ -15,6 +15,7 @@ export const MainMenu = observer(() => {
       <div className={classes.mainMenu}>
         <TaskinTitle />
         <NavigationMenu />
+        <RouteAssistant />
       </div>
     </>
   ) : null;

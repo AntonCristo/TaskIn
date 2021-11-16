@@ -1,0 +1,30 @@
+.memosRouteAssistant {
+  width: 100%;
+  margin-top: 20px;
+  font-family: "Ubuntu-regular";
+  color: #fff;
+  font-size: 14px;
+}
+.assistButton {
+  padding: 0 9px;
+  height: 26px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 4px;
+}
+.assistButton:hover {
+  background-color: #dcdcdc;
+  cursor: pointer;
+  color: #000;
+}
+.assistButton > img {
+  margin-left: auto;
+  height: 20px;
+}
+.activeAssistButton {
+  background-color: #dcdcdc;
+
+  color: #000;
+}
