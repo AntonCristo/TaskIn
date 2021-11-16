@@ -24,7 +24,10 @@ export const TaskinPage = observer(() => {
     console.log("[TaskinPage]: render");
     [...Object.keys(memoStore.dataStoreInstance.memosMap)].forEach(
       (memoUUID) => {
-        if (!memoStore.uiStoreInstance.memoUrgencyLevelMap[memoUUID]) {
+        if (
+          !memoStore.uiStoreInstance.memoUrgencyLevelMap[memoUUID] &&
+          !memoStore.dataStoreInstance.memosMap[memoUUID].isDeleted
+        ) {
           memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
         }
         if (!memoStore.uiStoreInstance.memosCollapseStateMap[memoUUID]) {

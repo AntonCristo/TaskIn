@@ -10,7 +10,8 @@ import classes from "./memos-items.module.css";
 export const MemosItems = observer(() => {
   const { uiStoreInstance, dataStoreInstance } = memoStore;
 
-  const memosFromDataStore = dataStoreInstance.getMemosAsArray();
+  const memosFromDataStore =
+    dataStoreInstance.getMemosMapAsArrayByDisplayClass();
   if (!memosFromDataStore) {
     return (
       <div className={classes.spinnerWrapper}>

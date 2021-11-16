@@ -36,20 +36,8 @@ export const ControlPanel = (props: ControlPanelProps) => {
   const { memo, isCollapsed } = props;
 
   const isMemoDoneToggler = () => {
-    const isDoneUpdate = memosCrudActions.updateSingleMemo(
-      memo.uuid,
-      "isDone",
-      !memo.isDone
-    );
-
-    if (isDoneUpdate !== memo.isDone) {
-      memoUIActions.calculateSingleMemoUrgencyLevelState(
-        memo.uuid,
-        isDoneUpdate as boolean
-      );
-    } else {
-      throw Error("[isMemoDoneToggler]:: memo update failed");
-    }
+    memosCrudActions.updateSingleMemo(memo.uuid, "isDone", !memo.isDone);
+    memoUIActions.calculateSingleMemoUrgencyLevelState(memo.uuid);
   };
 
   const popDeleteConfirmation = () => {

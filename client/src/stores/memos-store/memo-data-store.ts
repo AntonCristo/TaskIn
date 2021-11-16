@@ -35,25 +35,10 @@ export class MemosDataStore {
 
     const memosMapAsArray: Memo[] = [];
     for (let uuid in this._memosMap) {
-      memosMapAsArray.push(this._memosMap[uuid]);
+      memosMapAsArray.push(Object.assign({}, this._memosMap[uuid]));
     }
 
-    switch (this._memosDisplayClass) {
-      case "ALL":
-        return memosMapAsArray.filter((memo) => !memo.isDeleted);
-      case "COMPLETED":
-        return memosMapAsArray.filter((memo) => memo.isDone);
-      case "IN_PROGRESS":
-        return memosMapAsArray.filter(
-          (memo) => !memo.isDone && !memo.isDeleted
-        );
-      case "TRASH":
-        return memosMapAsArray.filter((memo) => memo.isDeleted);
-      default:
-        throw Error(
-          "[getMemosAsArray]:: default case should never happen, check everything!!!"
-        );
-    }
+    return memosMapAsArray;
   };
   get memosMap() {
     if (!this._memosMap) return {};
@@ -98,5 +83,34 @@ export class MemosDataStore {
     memoTemplate.createdBy = _user.uuid;
 
     return memoTemplate;
+  };
+
+  public getMemosMapAsArrayByDisplayClass = (
+    customPreference?: MemosDisplayClass
+  ) => {
+    if (!this.getMemosAsArray()) {
+      return null;
+    }
+
+    const _innerDisplayClass = customPreference || this._memosDisplayClass;
+
+    const memosMapAsArray: Memo[] = this.getMemosAsArray() || [];
+
+    switch (_innerDisplayClass) {
+      case "ALL":
+        return memosMapAsArray.filter((memo) => !memo.isDeleted);
+      case "COMPLETED":
+        return memosMapAsArray.filter((memo) => memo.isDone);
+      case "IN_PROGRESS":
+        return memosMapAsArray.filter(
+          (memo) => !memo.isDone && !memo.isDeleted
+        );
+      case "TRASH":
+        return memosMapAsArray.filter((memo) => memo.isDeleted);
+      default:
+        throw Error(
+          "[getMemosAsArray]:: default case should never happen, check everything!!!"
+        );
+    }
   };
 }
