@@ -20,13 +20,8 @@ export const MemosItems = observer(() => {
   }
 
   const memosRenderPipeline = () => {
-    //TODO: filter the deleted memos(this filter must happen on the server)
-    const nonDeletedMemos = memosFromDataStore.filter(
-      (memo) => !memo.isDeleted
-    );
-
     const sortedMemos =
-      memoStore.uiStoreInstance.getSortedMemos(nonDeletedMemos);
+      memoStore.uiStoreInstance.getSortedMemos(memosFromDataStore);
 
     const titleSearchResults = sortedMemos.filter((memo) =>
       memo.title
@@ -41,7 +36,6 @@ export const MemosItems = observer(() => {
 
   return (
     <div className={classes.memosItems}>
-      {/* //TODO: add mobile memo card design */}
       {renderPipelineResults.length ? (
         renderPipelineResults.map((memo, index) => (
           <MemoCard key={memo.uuid} memo={memo} />
