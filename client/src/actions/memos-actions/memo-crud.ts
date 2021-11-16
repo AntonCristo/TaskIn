@@ -62,7 +62,11 @@ export const deleteSingleMemoFromMap = action((memoUUID: string) => {
     JSON.stringify(memoStore.dataStoreInstance.memosMap)
   );
 
-  copyOfMemosDataMap[memoUUID].isDeleted = true;
+  if (copyOfMemosDataMap[memoUUID].isDeleted) {
+    delete copyOfMemosDataMap[memoUUID];
+  } else {
+    copyOfMemosDataMap[memoUUID].isDeleted = true;
+  }
 
   updateMemosDataMap(copyOfMemosDataMap);
 });

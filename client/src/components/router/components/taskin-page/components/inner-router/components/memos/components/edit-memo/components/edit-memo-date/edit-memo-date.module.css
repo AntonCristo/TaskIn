@@ -1,7 +1,7 @@
 .editMemoDate {
   display: flex;
   align-items: center;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
   height: 30px;
   width: 60%;
 }

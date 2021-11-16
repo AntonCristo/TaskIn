@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import { observer } from "mobx-react";
 import { Uuid } from "src/client-types";
 import { Button, Spinner } from "src/shared";
@@ -20,13 +19,6 @@ type EditMemoProps = {
   returnFromEditPage: () => void;
 };
 
-const buttonStyleOverride: CSSProperties = {
-  minHeight: "35px",
-  width: "100px",
-  marginTop: "30px",
-  fontWeight: 600,
-};
-
 export const EditMemo = observer((props: EditMemoProps) => {
   const { memoUUID, returnFromEditPage } = props;
   const { dataStoreInstance } = memoStore;
@@ -46,20 +38,39 @@ export const EditMemo = observer((props: EditMemoProps) => {
 
   return (
     <div className={classes.editMemoAbsolute}>
-      <div className={classes.editMemo}>
+      <div
+        className={[
+          classes.editMemo,
+          _memoFromMap.isDeleted && classes.editBlocked,
+        ].join(" ")}
+      >
         <EditMemoTitle memo={_memoFromMap} />
         <EditMemoHashtags memo={_memoFromMap} />
         <EditMemoContent memo={_memoFromMap} />
         <EditMemoDate dateTitle="creationDate" memo={_memoFromMap} />
         <EditMemoDate dateTitle="dueDate" memo={_memoFromMap} />
-        <Button
-          styleOverride={buttonStyleOverride}
-          title="Return"
-          onClick={returnFromEditPage}
-        />
+        {_memoFromMap.isDeleted ? null : (
+          <Button
+            styleOverride={{ marginTop: "20px" }}
+            title="Return"
+            onClick={returnFromEditPage}
+          />
+        )}
       </div>
       <div className={classes.desktopSchduleStateAnnouncement}>
-        <DatesDiffMessage memo={_memoFromMap} />
+        {_memoFromMap.isDeleted ? (
+          <Button
+            styleOverride={{
+              position: "absolute",
+              bottom: "20px",
+              left: "20px",
+            }}
+            title="Return"
+            onClick={returnFromEditPage}
+          />
+        ) : (
+          <DatesDiffMessage memo={_memoFromMap} />
+        )}
       </div>
     </div>
   );

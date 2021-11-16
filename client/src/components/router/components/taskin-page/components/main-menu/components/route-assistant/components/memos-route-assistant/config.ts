@@ -1,4 +1,5 @@
 import { MouseEvent } from "react";
+import { memoUIActions, mobileToggleMainMenuVisibility } from "src/actions";
 import { MemosDisplayClass } from "src/stores/memos-store/memo-data-store";
 import myMemosIcon from "src/assets/svg/memo_24dp.svg";
 import progressIcon from "src/assets/svg/hourglass_24dp.svg";
@@ -12,7 +13,10 @@ const onClickHandler = (event: MouseEvent<HTMLDivElement>) => {
     throw Error("[onClickHandler]:: somthing unexpected happen, debug!");
   }
 
-  //TODO: add action setter for memosDisplayClass in memosStore
+  mobileToggleMainMenuVisibility();
+  memoUIActions.setMemosDisplayClass(
+    clickedAssistanceButton as MemosDisplayClass
+  );
 };
 
 export const memosRouteAssistant: {

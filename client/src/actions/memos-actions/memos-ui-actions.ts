@@ -1,6 +1,10 @@
 import { action } from "mobx";
 import { UrgencyColor, Uuid, ValueOf } from "src/client-types";
-import { memoStore, MemosCollapseStateMap } from "src/stores";
+import {
+  memoStore,
+  MemosCollapseStateMap,
+  MemosDisplayClass,
+} from "src/stores";
 import { EditMemoProfile } from "src/stores";
 import {
   MemosSortingProfile,
@@ -120,5 +124,11 @@ export const setMemosSortingProfile = action(
     copyOfSortingProfile.sortDirection = sortDirection;
 
     memoStore.uiStoreInstance.sortingProfile = copyOfSortingProfile;
+  }
+);
+
+export const setMemosDisplayClass = action(
+  (displayClassUpdate: MemosDisplayClass) => {
+    memoStore.dataStoreInstance.memosDisplayClass = displayClassUpdate;
   }
 );

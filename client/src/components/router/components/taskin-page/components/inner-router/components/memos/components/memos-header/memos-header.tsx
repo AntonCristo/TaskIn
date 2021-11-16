@@ -18,7 +18,8 @@ import moreIcon from "src/assets/svg/more_vert_24dp.svg";
 import classes from "./memos-header.module.css";
 
 export const MemosHeader = observer(() => {
-  const { uiStoreInstance } = memoStore;
+  const { uiStoreInstance, dataStoreInstance } = memoStore;
+  const _memosDisplayClass = dataStoreInstance.memosDisplayClass;
 
   const buttonStylesOverride: { [x: string]: CSSProperties } = {
     headerButton: {
@@ -60,6 +61,9 @@ export const MemosHeader = observer(() => {
     <div className={classes.memosHeader}>
       <div className={classes.headerButtons}>
         <Button
+          isDisabled={
+            _memosDisplayClass === "TRASH" || _memosDisplayClass === "COMPLETED"
+          }
           styleOverride={buttonStylesOverride.headerButton}
           title="Memo"
           icon={newMemoIcon}

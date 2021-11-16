@@ -12,6 +12,10 @@ type NotificationBoxProps = {
   content: string;
 };
 
+const buttonStyleOVerride = {
+  border: "none",
+};
+
 export const NotificationBox = (props: NotificationBoxProps) => {
   const { content, header, confirmationCallback } = props;
   const { title } = tooltipStore;
@@ -52,9 +56,17 @@ export const NotificationBox = (props: NotificationBoxProps) => {
       <div className={classes.body}>{content}</div>
       <div className={classes.footer}>
         {confirmationCallback ? (
-          <Button title="Cancel" onClick={onNotificationCanceledHandler} />
+          <Button
+            styleOverride={buttonStyleOVerride}
+            title="Cancel"
+            onClick={onNotificationCanceledHandler}
+          />
         ) : null}
-        <Button title="OK" onClick={onNotificationApprovedHandler} />
+        <Button
+          styleOverride={buttonStyleOVerride}
+          title="OK"
+          onClick={onNotificationApprovedHandler}
+        />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { locationStore, TaskinRoutes } from "src/stores";
 import { routerLocationSetter } from "src/actions";
 import notesIcon from "src/assets/svg/note_24dp.svg";
 import myMemosIcon from "src/assets/svg/memo_24dp.svg";
+import { mobileToggleMainMenuVisibility } from "src/actions";
 
 import classes from "./navigation-menu.module.css";
 
@@ -35,6 +36,7 @@ export const NavigationMenu = observer(() => {
       clickedRouteSystemValue
     );
 
+    mobileToggleMainMenuVisibility();
     routerLocationSetter(`/taskin/${urlFormatOfClickedSystemValue}`);
   };
 

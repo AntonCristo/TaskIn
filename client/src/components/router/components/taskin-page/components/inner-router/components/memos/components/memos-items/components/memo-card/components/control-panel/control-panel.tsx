@@ -54,8 +54,10 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const popDeleteConfirmation = () => {
     notificationActions.popNotificationForUser(
-      "Delete?",
-      `Are you sure you want to delete this memo? (${memo.title})`,
+      memo.isDeleted ? "Delete permanently ?" : "Delete ?",
+      memo.isDeleted
+        ? `${memo.title} will be permanently removed, are you sure ?`
+        : `Are you sure you want to delete this memo? (${memo.title})`,
       deleteMemoFromMapHandler
     );
   };
@@ -104,6 +106,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
       )}
       <div onClick={preventClickPropogation} className={classes.memoButtons}>
         <Button
+          isDisabled={memo.isDeleted}
           styleOverride={controlPanelButtonsStyleOverride}
           title=""
           icon={memo.isDone ? removeDoneIcon : doneIcon}
