@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 import { Memo } from "src/client-types";
 import { memoUIActions, memosCrudActions } from "src/actions";
 import { memoStore } from "src/stores";
@@ -26,18 +26,6 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
     memosCrudActions.updateSingleMemo(memo.uuid, "title", event.target.value);
   };
 
-  useEffect(() => {
-    return () => {
-      if (!memo.title) {
-        memosCrudActions.updateSingleMemo(
-          memo.uuid,
-          "title",
-          `Memo ${Date.now().toString().slice(6, -1)}`
-        );
-      }
-    };
-  }, [memo.title, memo.uuid]);
-
   return (
     <div className={classes.editMemoWrapper}>
       <div className={classes.editMemo}>
@@ -49,13 +37,14 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
             onChange={onChangeMemoTitleHandler}
             value={memo.title}
             type="text"
+            placeholder="Empty title..."
           />
         ) : (
           <div
             onClick={toggleTitleEditModeHandler}
             className={classes.titleAsLabel}
           >
-            {memo.title}
+            {memo.title || "Empty title..."}
           </div>
         )}
       </div>
