@@ -1,10 +1,10 @@
 .memosHeader {
   height: 62px;
-  margin-bottom: 5px;
   display: flex;
   align-items: center;
   font-size: 16px;
   padding-left: 20px;
+  border-bottom: 0.5px solid #dcdcdc;
 }
 .headerButtons {
   display: flex;

@@ -8,10 +8,10 @@ import classes from "./memo-color-map.module.css";
 
 export const MemoColorMap = observer(() => {
   const { uiStoreInstance } = memoStore;
+  let totalCount: number = 0;
 
   const getUrgencyLevelCounterAndPercent = () => {
     const res: { [x: string]: { count: number; percent: number } } = {};
-    let totalCount: number = 0;
     const urgencyColors = [
       UrgencyColor.Low,
       UrgencyColor.High,
@@ -38,35 +38,36 @@ export const MemoColorMap = observer(() => {
 
   return (
     <div className={classes.memosColorMap}>
-      <div>
-        <MapItem
-          counterOfThisUrgency={
-            urgencyColorCountAndPercent[UrgencyColor.Low].count
-          }
-          percentOfThisUrgencyFromTotal={
-            urgencyColorCountAndPercent[UrgencyColor.Low].percent
-          }
-          urgencyColor={UrgencyColor.Low}
-        />
-        <MapItem
-          counterOfThisUrgency={
-            urgencyColorCountAndPercent[UrgencyColor.Medium].count
-          }
-          percentOfThisUrgencyFromTotal={
-            urgencyColorCountAndPercent[UrgencyColor.Medium].percent
-          }
-          urgencyColor={UrgencyColor.Medium}
-        />
-        <MapItem
-          counterOfThisUrgency={
-            urgencyColorCountAndPercent[UrgencyColor.High].count
-          }
-          percentOfThisUrgencyFromTotal={
-            urgencyColorCountAndPercent[UrgencyColor.High].percent
-          }
-          urgencyColor={UrgencyColor.High}
-        />
-      </div>
+      <MapItem
+        total={totalCount}
+        counterOfThisUrgency={
+          urgencyColorCountAndPercent[UrgencyColor.Low].count
+        }
+        percentOfThisUrgencyFromTotal={
+          urgencyColorCountAndPercent[UrgencyColor.Low].percent
+        }
+        urgencyColor={UrgencyColor.Low}
+      />
+      <MapItem
+        total={totalCount}
+        counterOfThisUrgency={
+          urgencyColorCountAndPercent[UrgencyColor.Medium].count
+        }
+        percentOfThisUrgencyFromTotal={
+          urgencyColorCountAndPercent[UrgencyColor.Medium].percent
+        }
+        urgencyColor={UrgencyColor.Medium}
+      />
+      <MapItem
+        total={totalCount}
+        counterOfThisUrgency={
+          urgencyColorCountAndPercent[UrgencyColor.High].count
+        }
+        percentOfThisUrgencyFromTotal={
+          urgencyColorCountAndPercent[UrgencyColor.High].percent
+        }
+        urgencyColor={UrgencyColor.High}
+      />
     </div>
   );
 });
