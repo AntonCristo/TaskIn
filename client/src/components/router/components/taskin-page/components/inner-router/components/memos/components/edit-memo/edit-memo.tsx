@@ -37,13 +37,12 @@ export const EditMemo = observer((props: EditMemoProps) => {
   }
 
   const ensureTitleIsNotEmptyBeforeReturning = () => {
-    setTimeout(() => {
+    !_memoFromMap.title &&
       memosCrudActions.updateSingleMemo(
         memoUUID,
         "title",
         `Memo ${Date.now().toString().slice(6)}`
       );
-    }, 0);
 
     returnFromEditPage();
   };
