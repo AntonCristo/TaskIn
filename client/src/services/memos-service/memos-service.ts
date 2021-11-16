@@ -10,8 +10,7 @@ const parsedMemosFromStorage: { [x: string]: Memo } = JSON.parse(
 const memoMocks: Memo[] = [];
 
 Object.keys(parsedMemosFromStorage).forEach((key) => {
-  !parsedMemosFromStorage[key].isDeleted &&
-    memoMocks.push(parsedMemosFromStorage[key]);
+  memoMocks.push(parsedMemosFromStorage[key]);
 });
 
 class MemosService implements IMemoService {

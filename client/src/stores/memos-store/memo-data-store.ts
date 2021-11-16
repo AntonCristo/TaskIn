@@ -7,6 +7,8 @@ import { v4 as uuid } from "uuid";
 
 export type MemosDataMap = { [x: string]: Memo };
 
+export type MemosDisplayClass = "ALL" | "IN_PROGRESS" | "COMPLETED" | "TRASH";
+
 export const MEMO_TEMPLATE: Memo = {
   content: "",
   createdBy: "",
@@ -35,7 +37,23 @@ export class MemosDataStore {
     for (let uuid in this._memosMap) {
       memosMapAsArray.push(this._memosMap[uuid]);
     }
-    return memosMapAsArray;
+
+    switch (this._memosDisplayClass) {
+      case "ALL":
+        return memosMapAsArray.filter((memo) => !memo.isDeleted);
+      case "COMPLETED":
+        return memosMapAsArray.filter((memo) => memo.isDone);
+      case "IN_PROGRESS":
+        return memosMapAsArray.filter(
+          (memo) => !memo.isDone && !memo.isDeleted
+        );
+      case "TRASH":
+        return memosMapAsArray.filter((memo) => memo.isDeleted);
+      default:
+        throw Error(
+          "[getMemosAsArray]:: default case should never happen, check everything!!!"
+        );
+    }
   };
   get memosMap() {
     if (!this._memosMap) return {};
@@ -46,6 +64,14 @@ export class MemosDataStore {
 
     localStorage.setItem("memos", JSON.stringify(this._memosMap));
     //TODO: add upsert method to api instead of local storage
+  }
+
+  private _memosDisplayClass: MemosDisplayClass = "ALL";
+  get memosDisplayClass() {
+    return this._memosDisplayClass;
+  }
+  set memosDisplayClass(displayClass: MemosDisplayClass) {
+    this._memosDisplayClass = displayClass;
   }
 
   public initMemosDataStore = () => {
