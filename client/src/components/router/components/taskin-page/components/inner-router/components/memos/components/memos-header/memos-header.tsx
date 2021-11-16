@@ -27,10 +27,10 @@ export const MemosHeader = observer(() => {
       width: "96px",
     },
     headerMenuButton: {
-      borderColor: "#3d3d39",
-      minWidth: "20px",
+      border: "none",
+      minWidth: "30px",
       marginLeft: "auto",
-      marginRight: "12px",
+      marginRight: "16px",
     },
   };
 

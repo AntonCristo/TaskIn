@@ -1,12 +1,6 @@
 .memosColorMap {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-}
-.memosColorMap > div {
-  display: flex;
-}
-.memosColorMap > img {
-  opacity: 0.6;
-  margin-left: 6px;
-  cursor: pointer;
+  margin-top: -10px;
 }
