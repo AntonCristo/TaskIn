@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import { Uuid } from "src/client-types";
 import { Button, Spinner } from "src/shared";
 import { memoStore } from "src/stores";
-import { memoUIActions } from "src/actions";
+import { memosCrudActions, memoUIActions } from "src/actions";
 
 import {
   EditMemoTitle,
@@ -36,6 +36,18 @@ export const EditMemo = observer((props: EditMemoProps) => {
     }, 0);
   }
 
+  const ensureTitleIsNotEmptyBeforeReturning = () => {
+    setTimeout(() => {
+      memosCrudActions.updateSingleMemo(
+        memoUUID,
+        "title",
+        `Memo ${Date.now().toString().slice(6)}`
+      );
+    }, 0);
+
+    returnFromEditPage();
+  };
+
   return (
     <div className={classes.editMemoAbsolute}>
       <div
@@ -53,7 +65,7 @@ export const EditMemo = observer((props: EditMemoProps) => {
           <Button
             styleOverride={{ marginTop: "20px" }}
             title="Return"
-            onClick={returnFromEditPage}
+            onClick={ensureTitleIsNotEmptyBeforeReturning}
           />
         )}
       </div>
@@ -66,7 +78,7 @@ export const EditMemo = observer((props: EditMemoProps) => {
               left: "20px",
             }}
             title="Return"
-            onClick={returnFromEditPage}
+            onClick={ensureTitleIsNotEmptyBeforeReturning}
           />
         ) : (
           <DatesDiffMessage memo={_memoFromMap} />
