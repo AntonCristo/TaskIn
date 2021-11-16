@@ -9,7 +9,7 @@ import classes from "./memo-color-map.module.css";
 export const MemoColorMap = observer(() => {
   const { uiStoreInstance } = memoStore;
   let totalCount: number = 0;
-  console.log("should rerender");
+
   const getUrgencyLevelCounterAndPercent = () => {
     const res: { [x: string]: { count: number; percent: number } } = {};
     const urgencyColors = [

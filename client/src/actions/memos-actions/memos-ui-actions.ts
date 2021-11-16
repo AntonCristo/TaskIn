@@ -62,7 +62,6 @@ export const deleteSingleMemoCollapseState = action((memoUUID: Uuid) => {
 
   delete copyOfCollapseStateMap[memoUUID];
 
-  console.log("deleted");
   memoStore.uiStoreInstance.memosCollapseStateMap = copyOfCollapseStateMap;
 });
 
