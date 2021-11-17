@@ -17,18 +17,15 @@ export const TaskinPage = observer(() => {
     return null;
   }
 
-  //TODO: Move to general initiation method/procedure
   memoStore.dataStoreInstance.initMemosDataStore(_user.uuid);
-  //TODO: check logic, this renders the whole tree on every change in any memo
   if (memoStore.dataStoreInstance.memosMap) {
-    console.log("[TaskinPage]: render");
     [...Object.keys(memoStore.dataStoreInstance.memosMap)].forEach(
       (memoUUID) => {
         if (
           !memoStore.uiStoreInstance.memoUrgencyLevelMap[memoUUID] &&
           !memoStore.dataStoreInstance.memosMap[memoUUID].isDeleted
         ) {
-          memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
+          memoUIActions.calculateSingleMemoUrgencyLevelColor(memoUUID);
         }
         if (!memoStore.uiStoreInstance.memosCollapseStateMap[memoUUID]) {
           memoUIActions.initSingleMemoCollapseState(memoUUID);

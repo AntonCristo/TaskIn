@@ -1,7 +1,7 @@
 .navigationMenu {
   width: 100%;
   margin-top: 10px;
-  color: #f6f6f7;
+  color: #fff;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -20,16 +20,19 @@
   padding: 0 9px;
 }
 .navigationMenu .listItem:hover {
-  font-weight: 600;
+  font-family: "Ubuntu-regular";
   border-radius: 4px;
+  color: #000;
+  background-color: #fff;
   cursor: pointer;
 }
 .listItem > img {
   margin-left: auto;
+  height: 20px;
 }
 .activeListItem {
   font-family: "Ubuntu-regular";
-  font-weight: 600;
   border-radius: 4px;
-  color: #ff853b;
+  color: #000;
+  background-color: #fff;
 }

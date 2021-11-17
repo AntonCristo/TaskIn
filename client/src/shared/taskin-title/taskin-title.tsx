@@ -1,5 +1,3 @@
-import { SmallTriangle } from "src/shared";
-
 import classes from "./taskin-title.module.css";
 
 type TaskinTitleProps = {
@@ -14,7 +12,7 @@ export const TaskinTitle = (props: TaskinTitleProps) => {
       style={fontSize ? { fontSize: `${fontSize}px` } : {}}
       className={classes.taskinTitle}
     >
-      T-Ask-In <SmallTriangle />
+      T-Ask-In
     </div>
   );
 };

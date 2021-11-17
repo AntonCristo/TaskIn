@@ -7,6 +7,7 @@ import removeDoneIcon from "src/assets/svg/remove_done_24dp.svg";
 import deleteIcon from "src/assets/svg/delete_24dp.svg";
 import expandLessIcon from "src/assets/svg/expand_less_24dp.svg";
 import expandMoreIcon from "src/assets/svg/expand_more_24dp.svg";
+import restoreFromTrashIcon from "src/assets/svg/restore_from_trash_24dp.svg";
 import { Button } from "src/shared";
 import {
   memosCrudActions,
@@ -37,16 +38,15 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const isMemoDoneToggler = () => {
     memosCrudActions.updateSingleMemo(memo.uuid, "isDone", !memo.isDone);
-    memoUIActions.calculateSingleMemoUrgencyLevelState(memo.uuid);
   };
 
-  const popDeleteConfirmation = () => {
+  const popIsMemoDoneConfirmation = () => {
     notificationActions.popNotificationForUser(
-      memo.isDeleted ? "Delete permanently ?" : "Delete ?",
-      memo.isDeleted
-        ? `${memo.title} will be permanently removed, are you sure ?`
-        : `Are you sure you want to delete this memo? (${memo.title})`,
-      deleteMemoFromMapHandler
+      memo.isDone ? "Mark as not done ?" : "Mark as done ?",
+      memo.isDone
+        ? `"${memo.title.toUpperCase()}" wil be marked as NOT DONE,\nare you sure ?`
+        : `Mark "${memo.title}" as DONE ?`,
+      isMemoDoneToggler
     );
   };
 
@@ -54,6 +54,30 @@ export const ControlPanel = (props: ControlPanelProps) => {
     memosCrudActions.deleteSingleMemoFromMap(memo.uuid);
     memoUIActions.deleteSingleMemoCollapseState(memo.uuid);
     memoUIActions.deleteSingleMemoUrgencyLevelState(memo.uuid);
+  };
+
+  const popDeleteConfirmation = () => {
+    notificationActions.popNotificationForUser(
+      memo.isDeleted ? "Delete permanently ?" : "Delete ?",
+      memo.isDeleted
+        ? `"${memo.title}" will be permanently removed,\nare you sure?`
+        : `Are you sure you want to delete this memo? "${memo.title})"`,
+      deleteMemoFromMapHandler
+    );
+  };
+
+  const restoreDeletedMemo = () => {
+    memosCrudActions.updateSingleMemo(memo.uuid, "isDeleted", false);
+  };
+
+  const popRestoreDeletedConfirmation = () => {
+    notificationActions.popNotificationForUser(
+      "Restore deleted ?",
+      `"${memo.title.toUpperCase()}" wil be restored to ${
+        memo.isDone ? `"Completed"` : `"In progress"`
+      } section,\nare you sure ?`,
+      restoreDeletedMemo
+    );
   };
 
   const toggleMemoCollapsedState = () => {
@@ -93,22 +117,33 @@ export const ControlPanel = (props: ControlPanelProps) => {
         </div>
       )}
       <div onClick={preventClickPropogation} className={classes.memoButtons}>
+        {memo.isDeleted ? (
+          <Button
+            styleOverride={controlPanelButtonsStyleOverride}
+            title="Restore"
+            icon={restoreFromTrashIcon}
+            onClick={popRestoreDeletedConfirmation}
+          />
+        ) : (
+          <>
+            <Button
+              isDisabled={memo.isDeleted}
+              styleOverride={controlPanelButtonsStyleOverride}
+              title=""
+              icon={memo.isDone ? removeDoneIcon : doneIcon}
+              onClick={popIsMemoDoneConfirmation}
+            />
+            <Button
+              styleOverride={controlPanelToggleCollapseButtonStyleOverride}
+              title=""
+              icon={isCollapsed ? expandMoreIcon : expandLessIcon}
+              onClick={toggleMemoCollapsedState}
+            />
+          </>
+        )}
         <Button
-          isDisabled={memo.isDeleted}
           styleOverride={controlPanelButtonsStyleOverride}
-          title=""
-          icon={memo.isDone ? removeDoneIcon : doneIcon}
-          onClick={isMemoDoneToggler}
-        />
-        <Button
-          styleOverride={controlPanelToggleCollapseButtonStyleOverride}
-          title=""
-          icon={isCollapsed ? expandMoreIcon : expandLessIcon}
-          onClick={toggleMemoCollapsedState}
-        />
-        <Button
-          styleOverride={controlPanelButtonsStyleOverride}
-          title=""
+          title={memo.isDeleted ? "Delete" : ""}
           icon={deleteIcon}
           onClick={popDeleteConfirmation}
         />

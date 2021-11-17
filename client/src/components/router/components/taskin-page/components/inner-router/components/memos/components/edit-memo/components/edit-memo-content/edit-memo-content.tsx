@@ -13,7 +13,7 @@ type EditMemoContentProps = {
 export const EditMemoContent = observer((props: EditMemoContentProps) => {
   const { memo } = props;
   const { uiStoreInstance } = memoStore;
-  const _memoUrgencyLevelColor = uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
+  const _memoUrgencyLevelColor = uiStoreInstance.getMemoUrgencyLevel(memo);
 
   const _isContentInEditMode = uiStoreInstance.editMemoProfile?.content;
 

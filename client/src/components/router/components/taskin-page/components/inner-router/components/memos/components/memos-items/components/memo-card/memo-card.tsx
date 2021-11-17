@@ -6,7 +6,7 @@ import { MAX_MEMO_CONTENT_LENGTH } from "src/constants";
 import { memoStore, tooltipStore } from "src/stores";
 import { textUtils } from "src/utils";
 
-import { MemoDotPins, ControlPanel } from "./components";
+import { MemoDotPins, ControlPanel, CompletedMark } from "./components";
 
 import classes from "./memo-card.module.css";
 
@@ -21,7 +21,7 @@ export const MemoCard = observer((props: MemoCardProps) => {
 
   const isCollapsed = uiStoreInstance.memosCollapseStateMap[memo.uuid];
   const backgroundColorByUrgencyLevel =
-    memoStore.uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
+    memoStore.uiStoreInstance.getMemoUrgencyLevel(memo);
 
   const onMemoCardClickedToEditHandler = () => {
     routerLocationSetter(`/taskin/memos/uuid=${memo.uuid}`);
@@ -37,32 +37,34 @@ export const MemoCard = observer((props: MemoCardProps) => {
   };
 
   return (
-    <div
-      onClick={onMemoCardClickedToEditHandler}
-      style={{ backgroundColor: backgroundColorByUrgencyLevel }}
-      className={[
-        classes.memoCard,
-        memo.isDone && classes.completedMemoOpacity,
-      ].join(" ")}
-    >
-      <MemoDotPins />
+    <div className={classes.relativeWrapper}>
       <div
-        onMouseEnter={onMouseEnterHandler}
-        onMouseLeave={onMouseLeaveHandler}
-        className={classes.memoTitle}
+        onClick={memo.isDeleted ? () => {} : onMemoCardClickedToEditHandler}
+        style={{ backgroundColor: backgroundColorByUrgencyLevel }}
+        className={[
+          classes.memoCard,
+          memo.isDone && classes.completedMemoOpacity,
+        ].join(" ")}
       >
-        {memo.title}
-      </div>
-      {isCollapsed || !memo.content ? null : (
-        <div className={classes.memoContent}>
-          {textUtils.sliceTextAndAddEllipsis(
-            memo.content,
-            MAX_MEMO_CONTENT_LENGTH
-          )}
+        <MemoDotPins />
+        <div
+          onMouseEnter={onMouseEnterHandler}
+          onMouseLeave={onMouseLeaveHandler}
+          className={classes.memoTitle}
+        >
+          {memo.title}
         </div>
-      )}
-
-      <ControlPanel isCollapsed={isCollapsed} memo={memo} />
+        {isCollapsed || !memo.content ? null : (
+          <div className={classes.memoContent}>
+            {textUtils.sliceTextAndAddEllipsis(
+              memo.content,
+              MAX_MEMO_CONTENT_LENGTH
+            )}
+          </div>
+        )}
+        <ControlPanel isCollapsed={isCollapsed} memo={memo} />
+      </div>
+      <CompletedMark memo={memo} />
     </div>
   );
 });
