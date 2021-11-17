@@ -11,9 +11,13 @@ import refreshIcon from "src/assets/svg/refresh_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
 import returnIcon from "src/assets/svg/return_24dp.svg";
 
-import { SortingOptionItem } from "./components";
+import { SortingOptionItem, SortDescription } from "./components";
 
 import classes from "./sort-memos.module.css";
+
+const buttonStyleOVerride = {
+  border: "none",
+};
 
 export const SortMemos = observer(() => {
   const { uiStoreInstance } = memoStore;
@@ -83,47 +87,53 @@ export const SortMemos = observer(() => {
 
   return (
     <div className={classes.sortMemosWrapper}>
-      <div className={classes.header}>
-        <Button
-          icon={returnIcon}
-          title="Return"
-          onClick={returnToMemosPageHandler}
-        />
-        <Button
-          icon={refreshIcon}
-          title="Reset"
-          onClick={popResetSortConfirmation}
-        />
-        <Button
-          icon={doneIcon}
-          title="Apply"
-          onClick={popApplySortConfirmation}
-        />
-      </div>
-      <div className={classes.sortDirectionPicker}>
-        <div>Choose ascending/descending:</div>
-        <div>
-          <Switch
-            onChange={toggleSortingDirection}
-            switchValues={_sortingDirectionOptions}
-            value={sortDirectionLocal}
+      <div>
+        <div className={classes.header}>
+          <Button
+            styleOverride={buttonStyleOVerride}
+            icon={returnIcon}
+            title="Return"
+            onClick={returnToMemosPageHandler}
           />
+          <Button
+            styleOverride={buttonStyleOVerride}
+            icon={refreshIcon}
+            title="Reset"
+            onClick={popResetSortConfirmation}
+          />
+          <Button
+            styleOverride={buttonStyleOVerride}
+            icon={doneIcon}
+            title="Apply"
+            onClick={popApplySortConfirmation}
+          />
+        </div>
+        <div className={classes.sortingOptionItemsList}>
+          <div>Choose sorting method:</div>
+          {_sortingRules.map((sortingRule, index) => (
+            <SortingOptionItem
+              onClick={onSortingOptionClickedLocalHandler}
+              isSelcted={sortingRuleLocal === sortingRule}
+              rule={sortingRule}
+              key={sortingRule! + index}
+            />
+          ))}
+        </div>
+        <div className={classes.sortDirectionPicker}>
+          <div>Choose ascending/descending:</div>
           <div>
-            {sortDirectionLocal === "DOWN" ? "Descending" : "Ascending"}
+            <Switch
+              onChange={toggleSortingDirection}
+              switchValues={_sortingDirectionOptions}
+              value={sortDirectionLocal}
+            />
+            <div>
+              {sortDirectionLocal === "DOWN" ? "Descending" : "Ascending"}
+            </div>
           </div>
         </div>
       </div>
-      <div className={classes.sortingOptionItemsList}>
-        <div>Choose sorting method:</div>
-        {_sortingRules.map((sortingRule, index) => (
-          <SortingOptionItem
-            onClick={onSortingOptionClickedLocalHandler}
-            isSelcted={sortingRuleLocal === sortingRule}
-            rule={sortingRule}
-            key={sortingRule! + index}
-          />
-        ))}
-      </div>
+      <SortDescription />
     </div>
   );
 });
