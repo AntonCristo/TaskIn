@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
+  background-color: #dcdcdc;
 }
 .memoColorsMapWrapper {
   margin-right: auto;

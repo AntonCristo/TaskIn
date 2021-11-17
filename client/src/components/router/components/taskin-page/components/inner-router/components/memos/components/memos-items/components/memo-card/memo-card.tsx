@@ -21,7 +21,7 @@ export const MemoCard = observer((props: MemoCardProps) => {
 
   const isCollapsed = uiStoreInstance.memosCollapseStateMap[memo.uuid];
   const backgroundColorByUrgencyLevel =
-    memoStore.uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
+    memoStore.uiStoreInstance.getMemoUrgencyLevel(memo);
 
   const onMemoCardClickedToEditHandler = () => {
     routerLocationSetter(`/taskin/memos/uuid=${memo.uuid}`);
@@ -38,7 +38,7 @@ export const MemoCard = observer((props: MemoCardProps) => {
 
   return (
     <div
-      onClick={onMemoCardClickedToEditHandler}
+      onClick={memo.isDeleted ? () => {} : onMemoCardClickedToEditHandler}
       style={{ backgroundColor: backgroundColorByUrgencyLevel }}
       className={[
         classes.memoCard,
@@ -61,7 +61,6 @@ export const MemoCard = observer((props: MemoCardProps) => {
           )}
         </div>
       )}
-
       <ControlPanel isCollapsed={isCollapsed} memo={memo} />
     </div>
   );

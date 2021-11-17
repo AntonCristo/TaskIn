@@ -31,9 +31,11 @@ export const EditMemo = observer((props: EditMemoProps) => {
       </div>
     );
   } else {
-    setTimeout(() => {
-      memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
-    }, 0);
+    if (!_memoFromMap.isDeleted) {
+      setTimeout(() => {
+        memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
+      }, 0);
+    }
   }
 
   const ensureTitleIsNotEmptyBeforeReturning = () => {

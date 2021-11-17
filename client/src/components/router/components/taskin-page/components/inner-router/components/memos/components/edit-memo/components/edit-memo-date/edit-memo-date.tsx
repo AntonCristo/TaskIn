@@ -26,8 +26,7 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
   const { memo, dateTitle } = props;
   const { uiStoreInstance } = memoStore;
   const _isDateInEditMode = uiStoreInstance.editMemoProfile[dateTitle];
-  const _dueDateUrgencyLevelColor =
-    uiStoreInstance.memoUrgencyLevelMap[memo.uuid];
+  const _dueDateUrgencyLevelColor = uiStoreInstance.getMemoUrgencyLevel(memo);
 
   let _eidtedMemoDate: number;
   let _editMemoDisplayTitle: string;

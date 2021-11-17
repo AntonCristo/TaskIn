@@ -100,7 +100,7 @@ export class MemosDataStore {
       case "ALL":
         return memosMapAsArray.filter((memo) => !memo.isDeleted);
       case "COMPLETED":
-        return memosMapAsArray.filter((memo) => memo.isDone);
+        return memosMapAsArray.filter((memo) => !memo.isDeleted && memo.isDone);
       case "IN_PROGRESS":
         return memosMapAsArray.filter(
           (memo) => !memo.isDone && !memo.isDeleted

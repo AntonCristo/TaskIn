@@ -1,5 +1,5 @@
 import { action } from "mobx";
-import { UrgencyColor, Uuid, ValueOf } from "src/client-types";
+import { Uuid, ValueOf } from "src/client-types";
 import {
   memoStore,
   MemosCollapseStateMap,
@@ -28,9 +28,8 @@ export const calculateSingleMemoUrgencyLevelState = action((memoUUID: Uuid) => {
 
   const memoRef = memoStore.dataStoreInstance.memosMap[memoUUID];
 
-  copyOfUrgencyLevelMap[memoUUID as string] = memoRef.isDone
-    ? UrgencyColor.Done
-    : memoStore.uiStoreInstance.getMemoUrgencyLevel(memoRef);
+  copyOfUrgencyLevelMap[memoUUID as string] =
+    memoStore.uiStoreInstance.getMemoUrgencyLevel(memoRef);
 
   memoStore.uiStoreInstance.memoUrgencyLevelMap = copyOfUrgencyLevelMap;
 });
