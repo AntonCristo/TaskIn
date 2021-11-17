@@ -25,7 +25,9 @@ export const MapItem = (props: MapItemProps) => {
       <div className={classes.percent}>
         {isNaN(percentOfThisUrgencyFromTotal)
           ? null
-          : `${Math.round(percentOfThisUrgencyFromTotal * 100).toFixed(0)}%`}
+          : percentOfThisUrgencyFromTotal * 100 === 100
+          ? "100%"
+          : `${(percentOfThisUrgencyFromTotal * 100).toFixed(1)}%`}
       </div>
       <div className={classes.counter}>
         {counterOfThisUrgency}/{total}
