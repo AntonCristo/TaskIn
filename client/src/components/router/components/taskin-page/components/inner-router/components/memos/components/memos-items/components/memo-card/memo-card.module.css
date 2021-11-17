@@ -1,3 +1,6 @@
+.relativeWrapper {
+  position: relative;
+}
 .memoCard {
   position: relative;
   width: 225px;

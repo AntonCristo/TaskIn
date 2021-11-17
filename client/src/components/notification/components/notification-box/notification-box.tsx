@@ -14,7 +14,7 @@ type NotificationBoxProps = {
 
 const buttonStyleOVerride = {
   border: "none",
-  color: "#ff853b",
+  color: "#807f80",
   textShadow: "0px 0px 2px rgba(0,0,0,0.3)",
 };
 
