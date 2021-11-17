@@ -23,7 +23,8 @@ export const TaskinPage = observer(() => {
       (memoUUID) => {
         if (
           !memoStore.uiStoreInstance.memoUrgencyLevelMap[memoUUID] &&
-          !memoStore.dataStoreInstance.memosMap[memoUUID].isDeleted
+          !memoStore.dataStoreInstance.memosMap[memoUUID].isDeleted &&
+          !memoStore.dataStoreInstance.memosMap[memoUUID].isDone
         ) {
           memoUIActions.calculateSingleMemoUrgencyLevelColor(memoUUID);
         }

@@ -7,11 +7,12 @@ import { MapItem } from "./components";
 import classes from "./memo-color-map.module.css";
 
 export const MemoColorMap = observer(() => {
-  const { uiStoreInstance } = memoStore;
+  const { uiStoreInstance, dataStoreInstance } = memoStore;
   let totalCount: number = 0;
 
   const getUrgencyLevelCounterAndPercent = () => {
     const res: { [x: string]: { count: number; percent: number } } = {};
+
     const urgencyColors = [
       UrgencyColor.Low,
       UrgencyColor.High,
@@ -22,9 +23,17 @@ export const MemoColorMap = observer(() => {
       res[uc] = { count: 0, percent: 0 };
     });
 
+    const memosInProgress =
+      dataStoreInstance.getMemosMapAsArrayByDisplayClass("IN_PROGRESS") || [];
+
     urgencyColors.forEach((uc) => {
-      res[uc].count = uiStoreInstance.getUrgencyLevelCounter(uc);
-      totalCount += res[uc].count;
+      memosInProgress.forEach((memo) => {
+        const memoUC = uiStoreInstance.getMemoUrgencyLevel(memo);
+        if (memoUC === uc) {
+          res[uc].count++;
+          totalCount++;
+        }
+      });
     });
 
     urgencyColors.forEach((uc) => {

@@ -144,18 +144,24 @@ export class MemosUIStore {
   };
 
   private _sortMemosByUrgencyLevel = (memos: Memo[]) => {
+    const urgencyColorWithWeight = {
+      [UrgencyColor.Low]: 0,
+      [UrgencyColor.Medium]: 1,
+      [UrgencyColor.High]: 2,
+    };
+
     switch (this._sortingProfile.sortDirection) {
       case "DOWN":
         return memos.sort((memo1, memo2) =>
-          this._memoUrgencyLevelMap[memo1.uuid]! >
-          this._memoUrgencyLevelMap[memo2.uuid]!
+          urgencyColorWithWeight[this.getMemoUrgencyLevel(memo1)!] >
+          urgencyColorWithWeight[this.getMemoUrgencyLevel(memo2)!]
             ? -1
             : 1
         );
       case "UP":
         return memos.sort((memo1, memo2) =>
-          this._memoUrgencyLevelMap[memo1.uuid]! >
-          this._memoUrgencyLevelMap[memo2.uuid]!
+          urgencyColorWithWeight[this.getMemoUrgencyLevel(memo1)!] >
+          urgencyColorWithWeight[this.getMemoUrgencyLevel(memo2)!]
             ? 1
             : -1
         );
@@ -210,14 +216,5 @@ export class MemosUIStore {
     if (now > UrgencyRange.medium) {
       return UrgencyColor.High;
     }
-  };
-
-  public getUrgencyLevelCounter = (urgencyLevel: UrgencyColor) => {
-    let count = 0;
-    Object.keys(this._memoUrgencyLevelMap).forEach((memoUUID) => {
-      if (this._memoUrgencyLevelMap[memoUUID] === urgencyLevel) count++;
-    });
-
-    return count;
   };
 }
