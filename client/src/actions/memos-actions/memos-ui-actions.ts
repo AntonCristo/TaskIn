@@ -21,7 +21,7 @@ export const toggleSearchBoxVisibility = action(() => {
     !memoStore.uiStoreInstance.isSearchBoxVisible;
 });
 
-export const calculateSingleMemoUrgencyLevelState = action((memoUUID: Uuid) => {
+export const calculateSingleMemoUrgencyLevelColor = action((memoUUID: Uuid) => {
   const copyOfUrgencyLevelMap: MemosUrgencyLevelMap = JSON.parse(
     JSON.stringify(memoStore.uiStoreInstance.memoUrgencyLevelMap)
   );

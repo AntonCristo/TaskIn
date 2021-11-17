@@ -31,11 +31,9 @@ export const EditMemo = observer((props: EditMemoProps) => {
       </div>
     );
   } else {
-    if (!_memoFromMap.isDeleted) {
-      setTimeout(() => {
-        memoUIActions.calculateSingleMemoUrgencyLevelState(memoUUID);
-      }, 0);
-    }
+    setTimeout(() => {
+      memoUIActions.calculateSingleMemoUrgencyLevelColor(memoUUID);
+    }, 0);
   }
 
   const ensureTitleIsNotEmptyBeforeReturning = () => {
@@ -51,39 +49,20 @@ export const EditMemo = observer((props: EditMemoProps) => {
 
   return (
     <div className={classes.editMemoAbsolute}>
-      <div
-        className={[
-          classes.editMemo,
-          _memoFromMap.isDeleted && classes.editBlocked,
-        ].join(" ")}
-      >
+      <div className={classes.editMemo}>
         <EditMemoTitle memo={_memoFromMap} />
         <EditMemoHashtags memo={_memoFromMap} />
         <EditMemoContent memo={_memoFromMap} />
         <EditMemoDate dateTitle="creationDate" memo={_memoFromMap} />
         <EditMemoDate dateTitle="dueDate" memo={_memoFromMap} />
-        {_memoFromMap.isDeleted ? null : (
-          <Button
-            styleOverride={{ marginTop: "20px" }}
-            title="Return"
-            onClick={ensureTitleIsNotEmptyBeforeReturning}
-          />
-        )}
+        <Button
+          styleOverride={{ marginTop: "20px" }}
+          title="Return"
+          onClick={ensureTitleIsNotEmptyBeforeReturning}
+        />
       </div>
       <div className={classes.desktopSchduleStateAnnouncement}>
-        {_memoFromMap.isDeleted ? (
-          <Button
-            styleOverride={{
-              position: "absolute",
-              bottom: "20px",
-              left: "20px",
-            }}
-            title="Return"
-            onClick={ensureTitleIsNotEmptyBeforeReturning}
-          />
-        ) : (
-          <DatesDiffMessage memo={_memoFromMap} />
-        )}
+        <DatesDiffMessage memo={_memoFromMap} />
       </div>
     </div>
   );

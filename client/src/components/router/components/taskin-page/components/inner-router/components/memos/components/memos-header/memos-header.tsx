@@ -46,7 +46,7 @@ export const MemosHeader = observer(() => {
     //TODO:this method should open a wizard dialog with validation inside
     const newMemoUUID = memosCrudActions.addNewValidatedMemoToMap();
     memoUIActions.initSingleMemoCollapseState(newMemoUUID);
-    memoUIActions.calculateSingleMemoUrgencyLevelState(newMemoUUID);
+    memoUIActions.calculateSingleMemoUrgencyLevelColor(newMemoUUID);
   };
 
   const onMoreActionsMenuClicked = () => {
