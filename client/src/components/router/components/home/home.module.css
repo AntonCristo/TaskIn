@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 64px;
   cursor: default;
+  background-color: #dcdcdc;
 }
 .homeCenterItems {
   margin-top: 128px;
@@ -16,7 +16,6 @@
 .elementsWrapper {
   margin-top: 40px;
   width: 100%;
-  margin-left: 2px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 37px;
