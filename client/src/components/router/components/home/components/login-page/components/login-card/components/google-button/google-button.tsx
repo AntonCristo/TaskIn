@@ -5,7 +5,7 @@ import { userStore } from "src/stores";
 import classes from "./google-button.module.css";
 
 const GOOGLE_CLIENT_ID =
-  "7392791014-jeh8om3gkge6e7eme8jts9j7gtcm6vsj.apps.googleusercontent.com";
+  "344075084830-c3j08bmg8fa0p7acbs8d9i1rnfht40r5.apps.googleusercontent.com";
 
 export const GoogleButton = () => {
   const { saveGoogleUserData } = userStore;
