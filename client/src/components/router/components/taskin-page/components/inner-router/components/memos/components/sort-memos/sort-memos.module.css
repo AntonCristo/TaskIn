@@ -34,6 +34,7 @@
   width: 160px;
   justify-content: space-between;
   font-family: "Ubuntu-regular";
+  cursor: pointer;
 }
 
 .sortingOptionItemsList {
@@ -53,5 +54,7 @@
     width: 100vw;
     flex-direction: column;
     align-items: center;
+    top: 5px;
+    height: calc(100% - 5px);
   }
 }

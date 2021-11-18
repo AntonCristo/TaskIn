@@ -121,9 +121,9 @@ export const SortMemos = observer(() => {
         </div>
         <div className={classes.sortDirectionPicker}>
           <div>Choose ascending/descending:</div>
-          <div>
+          <div onClick={toggleSortingDirection}>
             <Switch
-              onChange={toggleSortingDirection}
+              onChange={() => {}}
               switchValues={_sortingDirectionOptions}
               value={sortDirectionLocal}
             />
