@@ -4,3 +4,9 @@
   align-items: center;
   margin-top: -10px;
 }
+.memosColorMap > div:nth-child(1) {
+  margin-right: 0;
+}
+.memosColorMap > div:nth-child(3) {
+  margin-left: 0;
+}
