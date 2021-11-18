@@ -70,3 +70,12 @@ export const deleteSingleMemoFromMap = action((memoUUID: string) => {
 
   updateMemosDataMap(copyOfMemosDataMap);
 });
+
+export const deleteMemosLocatedInTrash = action(() => {
+  const memosInTheTrash =
+    memoStore.dataStoreInstance.getMemosMapAsArrayByDisplayClass("TRASH");
+
+  memosInTheTrash?.forEach((memoInTrash) => {
+    deleteSingleMemoFromMap(memoInTrash.uuid);
+  });
+});
