@@ -1,5 +1,9 @@
 import { MouseEvent } from "react";
-import { memoUIActions, mobileToggleMainMenuVisibility } from "src/actions";
+import {
+  memoUIActions,
+  mobileToggleMainMenuVisibility,
+  routerLocationSetter,
+} from "src/actions";
 import { MemosDisplayClass } from "src/stores/memos-store/memo-data-store";
 import myMemosIcon from "src/assets/svg/memo_24dp.svg";
 import progressIcon from "src/assets/svg/hourglass_24dp.svg";
@@ -12,6 +16,7 @@ const onClickHandler = (event: MouseEvent<HTMLDivElement>) => {
   if (!clickedAssistanceButton) {
     throw Error("[onClickHandler]:: somthing unexpected happen, debug!");
   }
+  routerLocationSetter("/taskin/memos");
 
   mobileToggleMainMenuVisibility();
   memoUIActions.setMemosDisplayClass(
