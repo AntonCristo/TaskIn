@@ -6,10 +6,7 @@ import { MemosRouteAssistant } from "./components";
 export const RouteAssistant = observer(() => {
   const { router_view } = locationStore;
 
-  switch (router_view) {
-    case "/taskin/memos":
-      return <MemosRouteAssistant />;
-    default:
-      return null;
-  }
+  if (router_view.startsWith("/taskin/memos")) return <MemosRouteAssistant />;
+
+  return null;
 });
