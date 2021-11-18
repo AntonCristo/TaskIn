@@ -46,7 +46,6 @@
 @media screen and (max-width: 800px) {
   .memoCard {
     align-self: center;
-    width: 95%;
-    margin-right: 0;
+    width: 100%;
   }
 }

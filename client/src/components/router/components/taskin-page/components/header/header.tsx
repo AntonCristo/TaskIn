@@ -9,7 +9,7 @@ export const Header = () => {
       <MobileMenuButton />
       <div className={classes.memoColorsMapWrapper}>
         <MemoColorMap />
-      </div>{" "}
+      </div>
     </div>
   );
 };
