@@ -47,7 +47,11 @@ export const NavigationMenu = observer(() => {
         return (
           <li
             key={index}
-            onClick={onNavigationItemClickHandler}
+            onClick={
+              index === 1
+                ? () => alert("This route is not active yet")
+                : onNavigationItemClickHandler
+            }
             data-route={navigationItem.route}
             className={[
               classes.listItem,

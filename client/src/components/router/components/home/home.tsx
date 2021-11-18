@@ -2,17 +2,9 @@ import { observer } from "mobx-react";
 import { Button } from "src/shared";
 import { locationStore, userStore } from "src/stores";
 import { routerLocationSetter } from "src/actions";
+import { UrgencyColor } from "src/client-types";
 
-import {
-  Title,
-  TitleUnderline,
-  ElementsBox,
-  TriangleElement,
-  CircleElement,
-  SqaureElement,
-  FooterParagraph,
-} from "./components/";
-import { LoginPage } from "../login-page";
+import { Title, FooterParagraph, CardLogo, LoginPage } from "./components/";
 
 import classes from "./home.module.css";
 
@@ -39,22 +31,11 @@ export const Home = observer((props: HomeProps) => {
       {router_view.startsWith("/login") ? <LoginPage /> : null}
       <div className={classes.homeCenterItems}>
         <Title />
-        <TitleUnderline />
         <div className={classes.elementsWrapper}>
-          <ElementsBox>
-            <TriangleElement />
-            <div>Define</div>
-          </ElementsBox>
-          <ElementsBox>
-            <CircleElement />
-            <div>Create</div>
-          </ElementsBox>
-          <ElementsBox>
-            <SqaureElement />
-            <div>Implement</div>
-          </ElementsBox>
+          <CardLogo logoText="Plan" color={UrgencyColor.Low} />
+          <CardLogo logoText="Schedule" color={UrgencyColor.Medium} />
+          <CardLogo logoText="Implement" color={UrgencyColor.High} />
         </div>
-        <TitleUnderline />
       </div>
       <FooterParagraph />
     </div>
