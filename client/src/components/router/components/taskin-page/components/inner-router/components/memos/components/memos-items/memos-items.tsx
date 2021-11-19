@@ -1,9 +1,9 @@
 import { observer } from "mobx-react";
 import { Memo } from "src/client-types";
-import { Spinner, TaskinTitle } from "src/shared";
+import { Spinner } from "src/shared";
 import { memoStore } from "src/stores";
 
-import { MemoCard } from "./components";
+import { MemoCard, AddMemoCard } from "./components";
 
 import classes from "./memos-items.module.css";
 
@@ -37,15 +37,12 @@ export const MemosItems = observer(() => {
 
   return (
     <div className={classes.memosItems}>
-      {renderPipelineResults.length ? (
-        renderPipelineResults.map((memo, index) => (
-          <MemoCard key={memo.uuid} memo={memo} />
-        ))
-      ) : (
-        <div className={classes.emptyMapPlacholder}>
-          <TaskinTitle />
-        </div>
-      )}
+      <AddMemoCard />
+      {renderPipelineResults.length
+        ? renderPipelineResults.map((memo, index) => (
+            <MemoCard key={memo.uuid} memo={memo} />
+          ))
+        : null}
     </div>
   );
 });
