@@ -61,7 +61,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
       memo.isDeleted ? "Delete permanently ?" : "Delete ?",
       memo.isDeleted
         ? `"${memo.title}" will be permanently removed,\nare you sure?`
-        : `Are you sure you want to delete this memo? "${memo.title})"`,
+        : `Are you sure you want to delete this memo? "${memo.title}"`,
       deleteMemoFromMapHandler
     );
   };

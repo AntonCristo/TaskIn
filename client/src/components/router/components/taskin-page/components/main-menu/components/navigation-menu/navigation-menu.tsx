@@ -2,7 +2,7 @@ import { MouseEvent } from "react";
 import { observer } from "mobx-react";
 import { locationStore, TaskinRoutes } from "src/stores";
 import { routerLocationSetter } from "src/actions";
-import notesIcon from "src/assets/svg/note_24dp.svg";
+import foldersIcon from "src/assets/svg/folder_24dp.svg";
 import myMemosIcon from "src/assets/svg/memo_24dp.svg";
 import { mobileToggleMainMenuVisibility } from "src/actions";
 
@@ -22,7 +22,7 @@ export const NavigationMenu = observer(() => {
 
   const navigationItems: NavigationItem[] = [
     { route: "MEMOS", icon: myMemosIcon },
-    { route: "NOTES", icon: notesIcon },
+    { route: "FOLDERS", icon: foldersIcon },
   ];
 
   const activeMenuItem = reduceActiveRouteFromUrl();

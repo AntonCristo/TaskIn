@@ -9,11 +9,9 @@ export const InnerRouter = observer(() => {
   switch (reduceActiveRouteFromUrl()) {
     case "MEMOS":
       return <Memos />;
-    case "NOTES":
-      return <div>simple notes[not implemented]</div>;
+    case "FOLDERS":
+      return <div>folders[not implemented]</div>;
     default:
-      throw Error(
-        "[InnerRouter]:: default case should never happen, check everything!!!"
-      );
+      return <div>404 not found</div>;
   }
 });
