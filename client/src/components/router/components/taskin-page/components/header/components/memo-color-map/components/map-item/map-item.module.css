@@ -30,3 +30,7 @@
   justify-content: center;
   font-family: "Ubuntu-regular";
 }
+
+.mapItem:hover {
+  transform: scale(1.1, 1.1);
+}
