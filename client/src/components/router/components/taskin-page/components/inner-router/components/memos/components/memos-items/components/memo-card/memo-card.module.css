@@ -11,6 +11,7 @@
   box-shadow: inset 1px 1px 6px -1px rgba(0, 0, 0, 0.6);
   padding: 16px 12px;
   cursor: default;
+  animation: appear 0.3s linear;
 }
 .completedMemoOpacity {
   opacity: 0.6;
@@ -46,5 +47,14 @@
   .memoCard {
     align-self: center;
     width: 100%;
+  }
+}
+
+@keyframes appear {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
   }
 }

@@ -37,7 +37,7 @@ export const MemoCard = observer((props: MemoCardProps) => {
   };
 
   return (
-    <div className={classes.relativeWrapper}>
+    <div data-memo={memo.uuid} className={classes.relativeWrapper}>
       <div
         onClick={memo.isDeleted ? () => {} : onMemoCardClickedToEditHandler}
         style={{ backgroundColor: backgroundColorByUrgencyLevel }}

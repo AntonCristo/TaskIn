@@ -38,4 +38,8 @@
     width: 300px;
     margin-bottom: 0;
   }
+  .addMemoCard:hover {
+    box-shadow: inset 1px 1px 6px -1px #73bfa1;
+    opacity: 1;
+  }
 }

@@ -51,14 +51,6 @@ export class MemosUIStore {
     this._memoUrgencyLevelMap = updatedMap;
   }
 
-  private _isSearchBoxVisible: boolean = false;
-  get isSearchBoxVisible() {
-    return this._isSearchBoxVisible;
-  }
-  set isSearchBoxVisible(isVisible: boolean) {
-    this._isSearchBoxVisible = isVisible;
-  }
-
   private _memoSearchText: string = "";
   get memoSearchText() {
     return this._memoSearchText;

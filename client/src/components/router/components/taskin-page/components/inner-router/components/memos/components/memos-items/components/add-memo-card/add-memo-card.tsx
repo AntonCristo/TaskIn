@@ -15,6 +15,10 @@ export const AddMemoCard = observer(() => {
     const newMemoUUID = memosCrudActions.addNewValidatedMemoToMap();
     memoUIActions.initSingleMemoCollapseState(newMemoUUID);
     memoUIActions.calculateSingleMemoUrgencyLevelColor(newMemoUUID);
+
+    setTimeout(() => {
+      memoUIActions.scrollToViewNewAddedMemo(newMemoUUID);
+    }, 0);
   };
 
   return _showAddMemoCard ? (

@@ -20,7 +20,7 @@ export const DatesDiffMessage = (props: DatesDiffMessageProps) => {
     <div className={classes.datesDiffMessage}>
       <img src={announceIcon} alt="announce-icon" />
       {memo.isDone ? (
-        "This memo is marked as DONE!"
+        <strong>This memo is marked as DONE!</strong>
       ) : (
         <div>
           {"This memo is"}

@@ -45,20 +45,13 @@ export const MemosHeader = observer(() => {
           styleOverride={buttonStylesOverride.headerButton}
           title=""
           icon={uiStoreInstance.memoSearchText ? clearTextIcon : searchIcon}
-          onClick={
-            uiStoreInstance.memoSearchText
-              ? clearMemoTextSearchHandler
-              : memoUIActions.toggleSearchBoxVisibility
-          }
+          onClick={clearMemoTextSearchHandler}
         />
-        {uiStoreInstance.isSearchBoxVisible ? (
-          <ControlledInput
-            autoFocus={uiStoreInstance.isSearchBoxVisible}
-            placeholder="memos title..."
-            value={uiStoreInstance.memoSearchText}
-            onChange={searchMemoTextChangeHandler}
-          />
-        ) : null}
+        <ControlledInput
+          placeholder="find memo..."
+          value={uiStoreInstance.memoSearchText}
+          onChange={searchMemoTextChangeHandler}
+        />
         <Button
           styleOverride={buttonStylesOverride.headerMenuButton}
           icon={moreIcon}
