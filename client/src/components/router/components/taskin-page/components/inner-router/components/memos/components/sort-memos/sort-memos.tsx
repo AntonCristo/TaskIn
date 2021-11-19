@@ -101,12 +101,6 @@ export const SortMemos = observer(() => {
             title="Reset"
             onClick={popResetSortConfirmation}
           />
-          <Button
-            styleOverride={buttonStyleOVerride}
-            icon={doneIcon}
-            title="Apply"
-            onClick={popApplySortConfirmation}
-          />
         </div>
         <div className={classes.sortingOptionItemsList}>
           <div>Choose sorting method:</div>
@@ -120,7 +114,7 @@ export const SortMemos = observer(() => {
           ))}
         </div>
         <div className={classes.sortDirectionPicker}>
-          <div>Choose ascending/descending:</div>
+          <div>Choose sorting order:</div>
           <div onClick={toggleSortingDirection}>
             <Switch
               onChange={() => {}}
@@ -132,6 +126,12 @@ export const SortMemos = observer(() => {
             </div>
           </div>
         </div>
+        <Button
+          styleOverride={buttonStyleOVerride}
+          icon={doneIcon}
+          title="Apply Sort"
+          onClick={popApplySortConfirmation}
+        />
       </div>
       <SortDescription />
     </div>

@@ -16,11 +16,6 @@ export const onChangeMemoSearchText = action((memoSearchText: string) => {
   memoStore.uiStoreInstance.memoSearchText = memoSearchText;
 });
 
-export const toggleSearchBoxVisibility = action(() => {
-  memoStore.uiStoreInstance.isSearchBoxVisible =
-    !memoStore.uiStoreInstance.isSearchBoxVisible;
-});
-
 export const calculateSingleMemoUrgencyLevelColor = action((memoUUID: Uuid) => {
   const copyOfUrgencyLevelMap: MemosUrgencyLevelMap = JSON.parse(
     JSON.stringify(memoStore.uiStoreInstance.memoUrgencyLevelMap)
@@ -128,3 +123,13 @@ export const setMemosDisplayClass = action(
     memoStore.dataStoreInstance.memosDisplayClass = displayClassUpdate;
   }
 );
+
+export const scrollToViewNewAddedMemo = action((newMemo: Uuid) => {
+  const _newMemoCard = document.querySelector(`div[data-memo="${newMemo}"]`);
+
+  _newMemoCard?.scrollIntoView({
+    behavior: "smooth",
+    block: "end",
+    inline: "center",
+  });
+});
