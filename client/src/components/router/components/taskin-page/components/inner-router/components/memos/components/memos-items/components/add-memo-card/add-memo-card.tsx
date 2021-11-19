@@ -7,7 +7,7 @@ import classes from "./add-memo-card.module.css";
 
 export const AddMemoCard = observer(() => {
   const { dataStoreInstance } = memoStore;
-  const showAddMemoCard =
+  const _showAddMemoCard =
     dataStoreInstance.memosDisplayClass !== "TRASH" &&
     dataStoreInstance.memosDisplayClass !== "COMPLETED";
 
@@ -17,7 +17,7 @@ export const AddMemoCard = observer(() => {
     memoUIActions.calculateSingleMemoUrgencyLevelColor(newMemoUUID);
   };
 
-  return showAddMemoCard ? (
+  return _showAddMemoCard ? (
     <div
       onClick={addNewMemoToMapWithoutValidation}
       className={classes.addMemoCard}
