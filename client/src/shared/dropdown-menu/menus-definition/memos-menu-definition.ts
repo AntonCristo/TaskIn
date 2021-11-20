@@ -33,7 +33,6 @@ export const popClearTrashConfirmation = () => {
 export const addNewMemoToMapWithoutValidation = () => {
   const newMemoUUID = memosCrudActions.addNewValidatedMemoToMap();
   memoUIActions.initSingleMemoCollapseState(newMemoUUID);
-  memoUIActions.calculateSingleMemoUrgencyLevelColor(newMemoUUID);
 };
 
 export const memosMenuListItems: MenuListItem[] = [

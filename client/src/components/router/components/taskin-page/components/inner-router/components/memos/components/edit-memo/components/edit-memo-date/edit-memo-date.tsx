@@ -93,6 +93,7 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
       </div>
       {dateTitle === "creationDate" ? null : (
         <Button
+          isDisabled={memo.isDone}
           styleOverride={buttonStyleOverride}
           title=""
           icon={_isDateInEditMode ? doneIcon : editIcon}

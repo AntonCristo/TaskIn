@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
-import { makeAutoObservable } from "mobx";
+import { action, makeAutoObservable } from "mobx";
 import { Memo, Uuid } from "src/client-types";
 import { memosService } from "src/services";
 import { userStore } from "src/stores";
+import { memosCrudActions } from "src/actions";
 import { v4 as uuid } from "uuid";
+import { userUtils } from "src/utils";
 
 export type MemosDataMap = { [x: string]: Memo };
 
@@ -47,9 +49,14 @@ export class MemosDataStore {
   set memosMap(mapUpdate: MemosDataMap) {
     this._memosMap = mapUpdate;
 
-    localStorage.setItem("memos", JSON.stringify(this._memosMap));
-    localStorage.setItem("backup_memos", JSON.stringify(this._memosMap));
-    //TODO: add upsert method to api instead of local storage
+    localStorage.setItem(
+      `${userUtils.getUserFromLocalStorage()?.uuid}_memos`,
+      JSON.stringify(this._memosMap)
+    );
+    localStorage.setItem(
+      `${userUtils.getUserFromLocalStorage()?.uuid}_backup_memos`,
+      JSON.stringify(this._memosMap)
+    );
   }
 
   private _memosDisplayClass: MemosDisplayClass = "IN_PROGRESS";
@@ -61,12 +68,23 @@ export class MemosDataStore {
   }
 
   public initMemosDataStore = (userUUID: Uuid) => {
-    try {
-      !this._memosMap && console.log("[initMemosDataStore]:: start");
-      !this._memosMap && memosService.getMemosFromApiByInitiatorUUID(userUUID);
-    } catch (error) {
-      !this._memosMap && console.log("[initMemosDataStore]:: Error");
-    }
+    !this._memosMap && console.log("[initMemosDataStore]:: start");
+    !this._memosMap &&
+      memosService
+        .getMemosFromApiByInitiatorUUID(userUUID)
+        .then((memosDataMapOrNull) => {
+          if (!memosDataMapOrNull) {
+            memosCrudActions.updateMemosDataMap({});
+            return;
+          }
+
+          memosCrudActions.updateMemosDataMap(memosDataMapOrNull);
+          return;
+        })
+        .catch((err) => {
+          console.log(err);
+          throw Error("[initMemosDataStore]:: somthing went wrong,check log");
+        });
   };
 
   public getMemoTemplate = () => {
@@ -113,4 +131,8 @@ export class MemosDataStore {
         );
     }
   };
+
+  public nullifyMemosMapOnLogout = action(() => {
+    this._memosMap = null;
+  });
 }
