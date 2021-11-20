@@ -43,14 +43,6 @@ export class MemosUIStore {
     this._memosCollapseStateMap = updatedMap;
   }
 
-  private _memoUrgencyLevelMap: MemosUrgencyLevelMap = {};
-  get memoUrgencyLevelMap() {
-    return this._memoUrgencyLevelMap;
-  }
-  set memoUrgencyLevelMap(updatedMap: MemosUrgencyLevelMap) {
-    this._memoUrgencyLevelMap = updatedMap;
-  }
-
   private _memoSearchText: string = "";
   get memoSearchText() {
     return this._memoSearchText;

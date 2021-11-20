@@ -45,6 +45,7 @@ export const EditMemoContent = observer((props: EditMemoContentProps) => {
       <div className={classes.editMemoContent}>
         {_isContentInEditMode ? (
           <textarea
+            disabled={memo.isDone}
             onBlur={toggleContentEditModeHandler}
             autoFocus
             onFocus={onFocusHandler}

@@ -53,7 +53,6 @@ export const ControlPanel = (props: ControlPanelProps) => {
   const deleteMemoFromMapHandler = () => {
     memosCrudActions.deleteSingleMemoFromMap(memo.uuid);
     memoUIActions.deleteSingleMemoCollapseState(memo.uuid);
-    memoUIActions.deleteSingleMemoUrgencyLevelState(memo.uuid);
   };
 
   const popDeleteConfirmation = () => {

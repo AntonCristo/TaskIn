@@ -8,35 +8,11 @@ import {
 import { EditMemoProfile } from "src/stores";
 import {
   MemosSortingProfile,
-  MemosUrgencyLevelMap,
   SortingOption,
 } from "src/stores/memos-store/memos-ui-store";
 
 export const onChangeMemoSearchText = action((memoSearchText: string) => {
   memoStore.uiStoreInstance.memoSearchText = memoSearchText;
-});
-
-export const calculateSingleMemoUrgencyLevelColor = action((memoUUID: Uuid) => {
-  const copyOfUrgencyLevelMap: MemosUrgencyLevelMap = JSON.parse(
-    JSON.stringify(memoStore.uiStoreInstance.memoUrgencyLevelMap)
-  );
-
-  const memoRef = memoStore.dataStoreInstance.memosMap[memoUUID];
-
-  copyOfUrgencyLevelMap[memoUUID as string] =
-    memoStore.uiStoreInstance.getMemoUrgencyLevel(memoRef);
-
-  memoStore.uiStoreInstance.memoUrgencyLevelMap = copyOfUrgencyLevelMap;
-});
-
-export const deleteSingleMemoUrgencyLevelState = action((memoUUID: Uuid) => {
-  const copyOfUrgencyLevelMap: MemosUrgencyLevelMap = JSON.parse(
-    JSON.stringify(memoStore.uiStoreInstance.memoUrgencyLevelMap)
-  );
-
-  delete copyOfUrgencyLevelMap[memoUUID];
-
-  memoStore.uiStoreInstance.memoUrgencyLevelMap = copyOfUrgencyLevelMap;
 });
 
 export const initSingleMemoCollapseState = action((memoUUID: Uuid) => {

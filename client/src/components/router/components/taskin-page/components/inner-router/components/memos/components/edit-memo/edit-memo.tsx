@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import { Uuid } from "src/client-types";
 import { Button, Spinner } from "src/shared";
 import { memoStore } from "src/stores";
-import { memosCrudActions, memoUIActions } from "src/actions";
+import { memosCrudActions } from "src/actions";
 
 import {
   EditMemoTitle,
@@ -30,10 +30,6 @@ export const EditMemo = observer((props: EditMemoProps) => {
         <Spinner />
       </div>
     );
-  } else {
-    setTimeout(() => {
-      memoUIActions.calculateSingleMemoUrgencyLevelColor(memoUUID);
-    }, 0);
   }
 
   const ensureTitleIsNotEmptyBeforeReturning = () => {

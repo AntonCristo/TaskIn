@@ -14,7 +14,6 @@ export const AddMemoCard = observer(() => {
   const addNewMemoToMapWithoutValidation = () => {
     const newMemoUUID = memosCrudActions.addNewValidatedMemoToMap();
     memoUIActions.initSingleMemoCollapseState(newMemoUUID);
-    memoUIActions.calculateSingleMemoUrgencyLevelColor(newMemoUUID);
 
     setTimeout(() => {
       memoUIActions.scrollToViewNewAddedMemo(newMemoUUID);
