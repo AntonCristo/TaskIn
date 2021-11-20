@@ -21,13 +21,6 @@ export const TaskinPage = observer(() => {
   if (memoStore.dataStoreInstance.memosMap) {
     [...Object.keys(memoStore.dataStoreInstance.memosMap)].forEach(
       (memoUUID) => {
-        if (
-          !memoStore.uiStoreInstance.memoUrgencyLevelMap[memoUUID] &&
-          !memoStore.dataStoreInstance.memosMap[memoUUID].isDeleted &&
-          !memoStore.dataStoreInstance.memosMap[memoUUID].isDone
-        ) {
-          memoUIActions.calculateSingleMemoUrgencyLevelColor(memoUUID);
-        }
         if (!memoStore.uiStoreInstance.memosCollapseStateMap[memoUUID]) {
           memoUIActions.initSingleMemoCollapseState(memoUUID);
         }
