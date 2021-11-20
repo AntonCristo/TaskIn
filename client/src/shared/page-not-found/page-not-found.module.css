@@ -1,0 +1,23 @@
+.pageNotFound {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+.pageNotFoundText {
+  color: #807f80;
+  text-shadow: 1px 0px 1px #000;
+}
+.notFoundCode {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+@media screen and (max-width: 800px) {
+  .pageNotFound {
+    font-size: 36px;
+  }
+}

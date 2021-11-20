@@ -1,5 +1,6 @@
 import { observer } from "mobx-react";
 import { locationStore } from "src/stores";
+import { PageNotFound } from "src/shared";
 
 import { Memos } from "./components";
 
@@ -12,6 +13,6 @@ export const InnerRouter = observer(() => {
     case "FOLDERS":
       return <div>folders[not implemented]</div>;
     default:
-      return <div>404 not found</div>;
+      return <PageNotFound />;
   }
 });

@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
-
 import { locationStore } from "src/stores";
+import { PageNotFound } from "src/shared";
+
 import { Home, TaskinPage } from "./components";
 
 type RouterProps = {};
@@ -18,5 +19,5 @@ export const Router = observer((props: RouterProps) => {
     return <TaskinPage />;
   }
 
-  return <div>404 not found</div>;
+  return <PageNotFound />;
 });
