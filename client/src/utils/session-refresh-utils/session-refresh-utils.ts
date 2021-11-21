@@ -17,9 +17,10 @@ type MemoUiElements =
 
 type SessionPersistState = {
   MEMO_UI_STORE: MemoUiElements[];
+  // Ready for additinal stores
 };
 
-export const SESSION_UI_STATE_MOCK: SessionPersistState = {
+export const SESSION_UI_STATE_TEMPLATE: SessionPersistState = {
   MEMO_UI_STORE: [
     { key: "DISPLAY_CLASS", value: "IN_PROGRESS" },
     { key: "QUICK_SEARCH", value: "" },
@@ -35,7 +36,7 @@ export const getSessionPersistedUIState = () => {
   if (!sessionUIStateAsString) {
     sessionStorage.setItem(
       SESSION_REFRESH_KEY,
-      JSON.stringify(SESSION_UI_STATE_MOCK)
+      JSON.stringify(SESSION_UI_STATE_TEMPLATE)
     );
     return null;
   }
@@ -47,7 +48,7 @@ export const setSessionPersistedUIState = (
   stateToPersistInSessionStorage: SessionPersistState
 ) => {
   const currentUIStateInSessionStorage: SessionPersistState =
-    getSessionPersistedUIState() || SESSION_UI_STATE_MOCK;
+    getSessionPersistedUIState() || SESSION_UI_STATE_TEMPLATE;
 
   const updateOrCurrent: SessionPersistState = {
     ...currentUIStateInSessionStorage,
