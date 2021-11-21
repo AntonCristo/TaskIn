@@ -1,5 +1,6 @@
 import { action } from "mobx";
 import { Memo, ValueOf } from "src/client-types";
+import { customError } from "src/errors";
 import { MemosDataMap, memoStore } from "src/stores";
 
 export const updateMemosDataMap = action((memosDataMapUpdate: MemosDataMap) => {
@@ -39,8 +40,9 @@ export const updateSingleMemo = action(
     const memoFromMap: Memo | undefined = copyOfMemosDataMap[memoUUID];
 
     if (!memoFromMap) {
-      throw Error(
-        "[updateSingleMemo]:: updated memo does not exist in store map"
+      throw customError.errorWithScopeAndMessage(
+        "updateSingleMemo",
+        "updated memo does not exist in store map"
       );
     }
 

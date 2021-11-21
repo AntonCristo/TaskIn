@@ -10,6 +10,7 @@ import {
 import clearTrashIcon from "src/assets/svg/delete_forever_24dp.svg";
 import newMemoIcon from "src/assets/svg/add_circle_24dp.svg";
 import deleteIcon from "src/assets/svg/delete_24dp.svg";
+import { customError } from "src/errors";
 
 import { MenuWrapper, UserMenuHeader } from "./components";
 import { popMoveAllCompletedToTrashConfirmation } from "./menus-definition/memos-menu-definition";
@@ -61,7 +62,9 @@ export const DropdownMenu = observer(() => {
         });
         break;
       default:
-        break;
+        throw customError.unexpectedSwitchDefaultCaseError(
+          "memoMenusDynamicOptions"
+        );
     }
 
     return dynamicActionsExtenstion;
@@ -89,7 +92,7 @@ export const DropdownMenu = observer(() => {
           />
         );
       default:
-        throw Error("[DropdownMenu]:: default case should never happen!");
+        throw customError.unexpectedSwitchDefaultCaseError("DropdownMenu");
     }
   };
 

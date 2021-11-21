@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 
 import classes from "./date.module.css";
 import { TEN_YEARS_IN_MS } from "src/constants";
+import { customError } from "src/errors";
 
 type DateProps = {
   date: number;
@@ -23,14 +24,14 @@ export const Date = (props: DateProps) => {
     minDate = dayjs().valueOf(),
   } = props;
 
-  const _onChange =
-    editMode && onChange
-      ? onChange
-      : () => {
-          throw Error(
-            "[Date]:: Date component is not in edit mode, or/and 'onChange' handler was not provided"
-          );
-        };
+  const badPropsErrorHandler = () => {
+    throw customError.errorWithScopeAndMessage(
+      "Date",
+      "Date component is not in edit mode, or/and 'onChange' handler was not provided"
+    );
+  };
+
+  const _onChange = editMode && onChange ? onChange : badPropsErrorHandler;
 
   return (
     <div
