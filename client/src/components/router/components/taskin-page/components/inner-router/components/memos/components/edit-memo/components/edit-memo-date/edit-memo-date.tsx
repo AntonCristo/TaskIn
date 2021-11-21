@@ -1,13 +1,14 @@
 import { ChangeEvent, CSSProperties } from "react";
 import { observer } from "mobx-react";
+import dayjs from "dayjs";
 import { Memo } from "src/client-types";
 import editIcon from "src/assets/svg/edit_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
 import { Button, Date } from "src/shared";
 import { memosCrudActions, memoUIActions } from "src/actions";
 import { memoStore } from "src/stores";
-import dayjs from "dayjs";
 import { ONE_DAY_IN_MS } from "src/constants";
+import { customError } from "src/errors";
 
 import classes from "./edit-memo-date.module.css";
 
@@ -41,9 +42,7 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
       _editMemoDisplayTitle = "Due date:";
       break;
     default:
-      throw Error(
-        "[EditMemoDate]:: default case should never happen, check everything"
-      );
+      throw customError.unexpectedSwitchDefaultCaseError("EditMemoDate");
   }
 
   const toggleDateEditModeHandler = () => {

@@ -10,12 +10,17 @@ import progressIcon from "src/assets/svg/hourglass_24dp.svg";
 import completedIcon from "src/assets/svg/done_24dp.svg";
 import trashIcon from "src/assets/svg/delete_24dp.svg";
 import { setSessionPersistedUIState } from "src/utils";
+import { customError } from "src/errors";
 
 const onClickHandler = (event: MouseEvent<HTMLDivElement>) => {
   const clickedAssistanceButton =
     event.currentTarget.getAttribute("data-assist");
   if (!clickedAssistanceButton) {
-    throw Error("[onClickHandler]:: somthing unexpected happen, debug!");
+    throw customError.extractValueFromClickEventError(
+      "onClickHandler",
+      event,
+      "data-assist"
+    );
   }
 
   setSessionPersistedUIState({

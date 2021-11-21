@@ -6,6 +6,7 @@ import { userStore } from "src/stores";
 import { memosCrudActions } from "src/actions";
 import { v4 as uuid } from "uuid";
 import { getSessionPersistedUIState, userUtils } from "src/utils";
+import { customError } from "src/errors";
 
 export type MemosDataMap = { [x: string]: Memo };
 
@@ -94,8 +95,7 @@ export class MemosDataStore {
           return;
         })
         .catch((err) => {
-          console.log(err);
-          throw Error("[initMemosDataStore]:: somthing went wrong,check log");
+          throw customError.errorWithScopeAndMessage("initMemosDataStore", err);
         });
   };
 
@@ -138,9 +138,7 @@ export class MemosDataStore {
       case "TRASH":
         return memosMapAsArray.filter((memo) => memo.isDeleted);
       default:
-        throw Error(
-          "[getMemosAsArray]:: default case should never happen, check everything!!!"
-        );
+        throw customError.unexpectedSwitchDefaultCaseError("getMemosAsArray");
     }
   };
 

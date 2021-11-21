@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { action, makeAutoObservable } from "mobx";
 import { Memo, UrgencyColor } from "src/client-types";
+import { customError } from "src/errors";
 import { getSessionPersistedUIState } from "src/utils";
 
 export type MemosUrgencyLevelMap = {
@@ -111,9 +112,7 @@ export class MemosUIStore {
           memo1.title > memo2.title ? 1 : -1
         );
       default:
-        throw Error(
-          "[getSortedMemos]:: default case should never happen, check everything!!!"
-        );
+        throw customError.unexpectedSwitchDefaultCaseError("_sortMemosByTitle");
     }
   };
 
@@ -128,8 +127,8 @@ export class MemosUIStore {
           memo1.creationDate > memo2.creationDate ? 1 : -1
         );
       default:
-        throw Error(
-          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        throw customError.unexpectedSwitchDefaultCaseError(
+          "_sortMemosByCreationDate"
         );
     }
   };
@@ -145,8 +144,8 @@ export class MemosUIStore {
           memo1.dueDate > memo2.dueDate ? 1 : -1
         );
       default:
-        throw Error(
-          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        throw customError.unexpectedSwitchDefaultCaseError(
+          "_sortMemosByDueDate"
         );
     }
   };
@@ -174,8 +173,8 @@ export class MemosUIStore {
             : -1
         );
       default:
-        throw Error(
-          "[getSortedMemos]:: default case should never happen, check everything!!!"
+        throw customError.unexpectedSwitchDefaultCaseError(
+          "_sortMemosByUrgencyLevel"
         );
     }
   };
@@ -197,9 +196,7 @@ export class MemosUIStore {
       case "URGENCY_LEVEL":
         return this._sortMemosByUrgencyLevel(copyOfMemos);
       default:
-        throw Error(
-          "[getSortedMemos]:: default case should never happen, check everything!!!"
-        );
+        throw customError.unexpectedSwitchDefaultCaseError("getSortedMemos");
     }
   };
 
