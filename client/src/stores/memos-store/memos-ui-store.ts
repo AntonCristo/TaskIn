@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { makeAutoObservable } from "mobx";
 import { Memo, UrgencyColor } from "src/client-types";
+import { getSessionPersistedUIState } from "src/utils";
 
 export type MemosUrgencyLevelMap = {
   [x: string]: UrgencyColor | undefined;
@@ -43,7 +44,18 @@ export class MemosUIStore {
     this._memosCollapseStateMap = updatedMap;
   }
 
-  private _memoSearchText: string = "";
+  private _initQuickSearchFromSession = () => {
+    const sessionQuickSearchElement =
+      getSessionPersistedUIState()?.MEMO_UI_STORE?.find(
+        (uiElement) => uiElement.key === "QUICK_SEARCH"
+      );
+
+    const quickSearchValue = sessionQuickSearchElement?.value as string;
+
+    return quickSearchValue ? quickSearchValue : "";
+  };
+
+  private _memoSearchText: string = this._initQuickSearchFromSession() || "";
   get memoSearchText() {
     return this._memoSearchText;
   }
@@ -65,10 +77,22 @@ export class MemosUIStore {
     this._editMemoProfile = editUpdate;
   }
 
-  private _sortingProfile: MemosSortingProfile = {
-    sort: null,
-    sortDirection: "DOWN",
+  private _initSortingProfileFromSession = () => {
+    const sessionSortElement =
+      getSessionPersistedUIState()?.MEMO_UI_STORE?.find(
+        (uiElement) => uiElement.key === "SORT"
+      );
+
+    const sortValue = sessionSortElement?.value as MemosSortingProfile;
+
+    return sortValue ? sortValue : null;
   };
+
+  private _sortingProfile: MemosSortingProfile =
+    this._initSortingProfileFromSession() || {
+      sort: null,
+      sortDirection: "DOWN",
+    };
   get sortingProfile() {
     return this._sortingProfile;
   }

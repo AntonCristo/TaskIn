@@ -9,6 +9,7 @@ import myMemosIcon from "src/assets/svg/memo_24dp.svg";
 import progressIcon from "src/assets/svg/hourglass_24dp.svg";
 import completedIcon from "src/assets/svg/done_24dp.svg";
 import trashIcon from "src/assets/svg/delete_24dp.svg";
+import { setSessionPersistedUIState } from "src/utils";
 
 const onClickHandler = (event: MouseEvent<HTMLDivElement>) => {
   const clickedAssistanceButton =
@@ -16,6 +17,15 @@ const onClickHandler = (event: MouseEvent<HTMLDivElement>) => {
   if (!clickedAssistanceButton) {
     throw Error("[onClickHandler]:: somthing unexpected happen, debug!");
   }
+
+  setSessionPersistedUIState({
+    MEMO_UI_STORE: [
+      {
+        key: "DISPLAY_CLASS",
+        value: clickedAssistanceButton as MemosDisplayClass,
+      },
+    ],
+  });
   routerLocationSetter("/taskin/memos");
 
   mobileToggleMainMenuVisibility();

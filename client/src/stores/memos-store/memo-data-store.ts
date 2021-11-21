@@ -5,7 +5,7 @@ import { memosService } from "src/services";
 import { userStore } from "src/stores";
 import { memosCrudActions } from "src/actions";
 import { v4 as uuid } from "uuid";
-import { userUtils } from "src/utils";
+import { getSessionPersistedUIState, userUtils } from "src/utils";
 
 export type MemosDataMap = { [x: string]: Memo };
 
@@ -59,7 +59,19 @@ export class MemosDataStore {
     );
   }
 
-  private _memosDisplayClass: MemosDisplayClass = "IN_PROGRESS";
+  private _initDisplayClassFromSession = () => {
+    const sessionDisplayClassElement =
+      getSessionPersistedUIState()?.MEMO_UI_STORE?.find(
+        (uiElement) => uiElement.key === "DISPLAY_CLASS"
+      );
+
+    const displayClassValue =
+      sessionDisplayClassElement?.value as MemosDisplayClass;
+
+    return displayClassValue ? displayClassValue : null;
+  };
+  private _memosDisplayClass: MemosDisplayClass =
+    this._initDisplayClassFromSession() || "IN_PROGRESS";
   get memosDisplayClass() {
     return this._memosDisplayClass;
   }
