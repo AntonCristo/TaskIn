@@ -79,3 +79,12 @@ export const deleteMemosLocatedInTrash = action(() => {
     deleteSingleMemoFromMap(memoInTrash.uuid);
   });
 });
+
+export const moveCompletedMemosToTrashTrash = action(() => {
+  const completedMemos =
+    memoStore.dataStoreInstance.getMemosMapAsArrayByDisplayClass("COMPLETED");
+
+  completedMemos?.forEach((completedMemo) => {
+    deleteSingleMemoFromMap(completedMemo.uuid);
+  });
+});

@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { makeAutoObservable } from "mobx";
+import { action, makeAutoObservable } from "mobx";
 import { Memo, UrgencyColor } from "src/client-types";
 import { getSessionPersistedUIState } from "src/utils";
 
@@ -225,4 +225,13 @@ export class MemosUIStore {
       return UrgencyColor.High;
     }
   };
+
+  public nullifyUIStateOnLogout = action(() => {
+    this._memoSearchText = "";
+    this._memosCollapseStateMap = {};
+    this._sortingProfile = {
+      sort: null,
+      sortDirection: "DOWN",
+    };
+  });
 }

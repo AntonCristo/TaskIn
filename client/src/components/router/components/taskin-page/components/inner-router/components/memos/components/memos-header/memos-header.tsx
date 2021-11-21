@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, MouseEvent } from "react";
 import { observer } from "mobx-react";
 import { memoUIActions, setDropdownMenuByNameOrNull } from "src/actions";
 import { Button, ControlledInput } from "src/shared";
@@ -41,8 +41,12 @@ export const MemosHeader = observer(() => {
     });
   };
 
-  const onMoreActionsMenuClicked = () => {
-    setDropdownMenuByNameOrNull("/taskin/memos-memosMenu");
+  const onMoreActionsMenuClicked = (event?: MouseEvent<HTMLDivElement>) => {
+    setDropdownMenuByNameOrNull(
+      "/taskin/memos-memosMenu",
+      event!.clientY,
+      event!.clientX
+    );
   };
 
   return (

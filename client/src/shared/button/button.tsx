@@ -1,11 +1,11 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useState, MouseEvent } from "react";
 
 import classes from "./button.module.css";
 
 type ButtonProps = {
   title: string;
   icon?: string;
-  onClick: () => void;
+  onClick: (event?: MouseEvent<HTMLDivElement>) => void;
   isDisabled?: boolean;
   styleOverride?: CSSProperties;
 };
@@ -28,7 +28,11 @@ export const Button = (props: ButtonProps) => {
     setIsMouseDown(false);
   };
 
-  const _onClick = isDisabled ? () => {} : onClick;
+  function _onClick(event: MouseEvent<HTMLDivElement>) {
+    if (!isDisabled) {
+      onClick(event);
+    }
+  }
 
   return (
     <div

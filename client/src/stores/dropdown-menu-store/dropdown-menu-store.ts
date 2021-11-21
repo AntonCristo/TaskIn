@@ -18,6 +18,17 @@ class DropdownMenuStore {
   set activeDropdownMenu(activeMenu: TaskinDropDownMenuName) {
     this._activeDropdownMenu = activeMenu;
   }
+
+  private _activeMenuLocation = {
+    top: 0,
+    left: 0,
+  };
+  get activeMenuLocation() {
+    return this._activeMenuLocation;
+  }
+  set activeMenuLocation(menuLocationUpdate) {
+    this._activeMenuLocation = menuLocationUpdate;
+  }
 }
 
 export const dropdownMenuStore = new DropdownMenuStore();

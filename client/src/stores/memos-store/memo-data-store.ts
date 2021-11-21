@@ -144,7 +144,8 @@ export class MemosDataStore {
     }
   };
 
-  public nullifyMemosMapOnLogout = action(() => {
+  public nullifyDataOnLogout = action(() => {
     this._memosMap = null;
+    this._memosDisplayClass = "IN_PROGRESS";
   });
 }
