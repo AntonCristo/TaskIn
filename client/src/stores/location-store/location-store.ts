@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import { customError } from "src/errors";
 
 export type TaskinRoutes = "MEMOS" | "FOLDERS" | "ERROR";
 class LocationStore {
@@ -24,8 +25,8 @@ class LocationStore {
       case "FOLDERS":
         return "Folders";
       default:
-        throw Error(
-          "[NavigationMenu]:: default case should never happen, check !!!"
+        throw customError.unexpectedSwitchDefaultCaseError(
+          "translateTaskinSystemRoutesToUserDisplay"
         );
     }
   };
@@ -39,8 +40,8 @@ class LocationStore {
       case "FOLDERS":
         return "folders";
       default:
-        throw Error(
-          "[NavigationMenu]:: default case should never happen, check !!!"
+        throw customError.unexpectedSwitchDefaultCaseError(
+          "translateTaskinSystemRoutesToUrlValue"
         );
     }
   };

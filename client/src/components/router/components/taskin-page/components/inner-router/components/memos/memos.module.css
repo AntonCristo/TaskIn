@@ -1,4 +1,5 @@
 .memos {
   position: relative;
   height: calc(100% - 60px);
+  background-color: #fff;
 }

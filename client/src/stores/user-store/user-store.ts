@@ -1,5 +1,6 @@
 import { action } from "mobx";
 import { User } from "src/client-types";
+import { customError } from "src/errors";
 
 const USER_TEMPLATE: User = {
   version: "0.1",
@@ -22,8 +23,10 @@ class UserStore {
 
       localStorage.setItem("userData", JSON.stringify(newUserTemplate));
     } catch (error) {
-      console.log(error);
-      throw Error("[saveGoogleUserData]:: Check console.log");
+      throw customError.errorWithScopeAndMessage(
+        "saveGoogleUserData",
+        `${error}`
+      );
     }
   };
 

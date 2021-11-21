@@ -2,6 +2,7 @@ import { MouseEvent } from "react";
 import { SortingOption } from "src/stores/memos-store/memos-ui-store";
 import checkedIcon from "src/assets/svg/check_box_checked_24dp.svg";
 import uncheckedIcon from "src/assets/svg/check_box_uncehcked_24dp.svg";
+import { customError } from "src/errors";
 
 import classes from "./sorting-option-item.module.css";
 
@@ -25,7 +26,7 @@ export const SortingOptionItem = (props: SortingOptionItemProps) => {
       case "URGENCY_LEVEL":
         return "By urgency level";
       default:
-        throw Error("[SortingOptionItem]:: default case should never happen");
+        throw customError.unexpectedSwitchDefaultCaseError("SortingOptionItem");
     }
   };
 

@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import { memosCrudActions } from "src/actions";
 import { Memo } from "src/client-types";
+import { customError } from "src/errors";
 
 import { HashtagOption } from "./components";
 
@@ -18,7 +19,11 @@ export const HashtagsPicker = (props: HashtagsPickerProps) => {
     const copyOfMemosHashtags: string[] = [...memo.hashtag];
     const clickedHashtag = event.currentTarget.getAttribute("data-hashtag");
     if (!clickedHashtag) {
-      throw Error("[HashtagsPicker]:: Unexpected error, check everything!!!");
+      throw customError.extractValueFromClickEventError(
+        "onChangeMemoHashtagsHandler",
+        event,
+        "data-hashtag"
+      );
     }
     if (copyOfMemosHashtags.includes(clickedHashtag)) {
       memosCrudActions.updateSingleMemo(
