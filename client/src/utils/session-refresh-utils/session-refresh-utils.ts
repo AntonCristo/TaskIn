@@ -68,3 +68,10 @@ export const setSessionPersistedUIState = (
 
   sessionStorage.setItem(SESSION_REFRESH_KEY, JSON.stringify(updateOrCurrent));
 };
+
+export const resetPerssistedSessionStateOnLogout = () => {
+  sessionStorage.setItem(
+    SESSION_REFRESH_KEY,
+    JSON.stringify(SESSION_UI_STATE_TEMPLATE)
+  );
+};

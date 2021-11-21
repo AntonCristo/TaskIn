@@ -30,6 +30,14 @@ export const popClearTrashConfirmation = () => {
   );
 };
 
+export const popMoveAllCompletedToTrashConfirmation = () => {
+  notificationActions.popNotificationForUser(
+    "Move All to the trash ?",
+    "Are you sure you want to move ALL your completed memos to the trash ?",
+    memosCrudActions.moveCompletedMemosToTrashTrash
+  );
+};
+
 export const addNewMemoToMapWithoutValidation = () => {
   const newMemoUUID = memosCrudActions.addNewValidatedMemoToMap();
   memoUIActions.initSingleMemoCollapseState(newMemoUUID);
