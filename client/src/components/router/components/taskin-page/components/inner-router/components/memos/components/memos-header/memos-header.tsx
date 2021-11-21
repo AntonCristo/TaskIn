@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, MouseEvent } from "react";
 import { observer } from "mobx-react";
 import { memoUIActions, setDropdownMenuByNameOrNull } from "src/actions";
 import { Button, ControlledInput } from "src/shared";
@@ -6,6 +6,7 @@ import { memoStore } from "src/stores";
 import searchIcon from "src/assets/svg/search_24dp.svg";
 import clearTextIcon from "src/assets/svg/close_black_24dp.svg";
 import moreIcon from "src/assets/svg/more_vert_24dp.svg";
+import { setSessionPersistedUIState } from "src/utils";
 
 import classes from "./memos-header.module.css";
 
@@ -28,14 +29,24 @@ export const MemosHeader = observer(() => {
 
   const searchMemoTextChangeHandler = (typedValue: string) => {
     memoUIActions.onChangeMemoSearchText(typedValue);
+    setSessionPersistedUIState({
+      MEMO_UI_STORE: [{ key: "QUICK_SEARCH", value: typedValue }],
+    });
   };
 
   const clearMemoTextSearchHandler = () => {
     memoUIActions.onChangeMemoSearchText("");
+    setSessionPersistedUIState({
+      MEMO_UI_STORE: [{ key: "QUICK_SEARCH", value: "" }],
+    });
   };
 
-  const onMoreActionsMenuClicked = () => {
-    setDropdownMenuByNameOrNull("/taskin/memos-memosMenu");
+  const onMoreActionsMenuClicked = (event?: MouseEvent<HTMLDivElement>) => {
+    setDropdownMenuByNameOrNull(
+      "/taskin/memos-memosMenu",
+      event!.clientY,
+      event!.clientX
+    );
   };
 
   return (

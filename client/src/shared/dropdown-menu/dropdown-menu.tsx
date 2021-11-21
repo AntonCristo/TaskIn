@@ -9,8 +9,10 @@ import {
 } from "src/shared/dropdown-menu/menus-definition";
 import clearTrashIcon from "src/assets/svg/delete_forever_24dp.svg";
 import newMemoIcon from "src/assets/svg/add_circle_24dp.svg";
+import deleteIcon from "src/assets/svg/delete_24dp.svg";
 
 import { MenuWrapper, UserMenuHeader } from "./components";
+import { popMoveAllCompletedToTrashConfirmation } from "./menus-definition/memos-menu-definition";
 
 import classes from "./dropdown-menu.module.css";
 
@@ -22,11 +24,11 @@ export type MenuListItem = {
 };
 
 export const DropdownMenu = observer(() => {
-  const { activeDropdownMenu } = dropdownMenuStore;
+  const { activeDropdownMenu, activeMenuLocation } = dropdownMenuStore;
   const { dataStoreInstance } = memoStore;
 
   const onOutsideClickedHandler = () => {
-    setDropdownMenuByNameOrNull(null);
+    setDropdownMenuByNameOrNull(null, 0, 0);
   };
 
   const memoMenusDynamicOptions = () => {
@@ -40,6 +42,14 @@ export const DropdownMenu = observer(() => {
           onClick: addNewMemoToMapWithoutValidation,
           text: "Add Memo",
           icon: newMemoIcon,
+        });
+        break;
+      case "COMPLETED":
+        dynamicActionsExtenstion.push({
+          disabled: false,
+          text: "Delete All",
+          onClick: popMoveAllCompletedToTrashConfirmation,
+          icon: deleteIcon,
         });
         break;
       case "TRASH":
@@ -62,7 +72,10 @@ export const DropdownMenu = observer(() => {
       case "/taskin-userMenu":
         return (
           <MenuWrapper
-            position={{ top: "60px", right: "15px" }}
+            position={{
+              top: `${activeMenuLocation.top}px`,
+              left: `${activeMenuLocation.left - 190}px`,
+            }}
             listItems={userMenuListItems}
           >
             <UserMenuHeader />

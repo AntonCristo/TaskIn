@@ -10,6 +10,7 @@ import { Button, Switch } from "src/shared";
 import refreshIcon from "src/assets/svg/refresh_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
 import returnIcon from "src/assets/svg/return_24dp.svg";
+import { setSessionPersistedUIState } from "src/utils";
 
 import { SortingOptionItem, SortDescription } from "./components";
 
@@ -45,6 +46,14 @@ export const SortMemos = observer(() => {
 
   const resetSortHandler = () => {
     memoUIActions.setMemosSortingProfile(null, "DOWN");
+    setSessionPersistedUIState({
+      MEMO_UI_STORE: [
+        {
+          key: "SORT",
+          value: { sort: null, sortDirection: "DOWN" },
+        },
+      ],
+    });
     routerLocationSetter("/taskin/memos");
   };
 
@@ -58,6 +67,14 @@ export const SortMemos = observer(() => {
 
   const applySortHandler = () => {
     memoUIActions.setMemosSortingProfile(sortingRuleLocal, sortDirectionLocal);
+    setSessionPersistedUIState({
+      MEMO_UI_STORE: [
+        {
+          key: "SORT",
+          value: { sort: sortingRuleLocal, sortDirection: sortDirectionLocal },
+        },
+      ],
+    });
     routerLocationSetter("/taskin/memos");
   };
 

@@ -30,7 +30,7 @@ export const MenuWrapper = observer((props: MenuWrapperProps) => {
       ) : null}
       {listItems.map((listItem, index) => {
         const resetOpenMenuAndExecuteClick = () => {
-          setDropdownMenuByNameOrNull(null);
+          setDropdownMenuByNameOrNull(null, 0, 0);
           listItem.onClick();
         };
 

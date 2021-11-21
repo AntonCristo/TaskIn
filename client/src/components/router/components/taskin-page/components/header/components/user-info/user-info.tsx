@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import { observer } from "mobx-react";
 import { dropdownMenuStore, userStore } from "src/stores";
 import { setDropdownMenuByNameOrNull } from "src/actions";
@@ -26,8 +26,12 @@ export const UserInfo = observer(() => {
     setCurrentImgIconValue(user);
   };
 
-  const onUserInfoClickedHandler = () => {
-    setDropdownMenuByNameOrNull("/taskin-userMenu");
+  const onUserInfoClickedHandler = (event: MouseEvent<HTMLDivElement>) => {
+    setDropdownMenuByNameOrNull(
+      "/taskin-userMenu",
+      event.clientY,
+      event.clientX
+    );
   };
 
   return (
