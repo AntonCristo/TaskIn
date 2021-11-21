@@ -9,3 +9,11 @@ export const mobileToggleMainMenuVisibility = action(() => {
     mainMenuStore.isOpen = !isOpen;
   }
 });
+
+export const showMainMenu = action(() => {
+  mainMenuStore.isOpen = true;
+});
+
+export const hideMainMenu = action(() => {
+  mainMenuStore.isOpen = false;
+});
