@@ -5,20 +5,20 @@ class NotificationStore {
     makeAutoObservable(this);
   }
 
-  private _header: string = "";
-  get header() {
-    return this._header;
-  }
-  set header(newHeader: string) {
-    this._header = newHeader;
-  }
-
   private _content: string = "";
   get content() {
     return this._content;
   }
   set content(newContent: string) {
     this._content = newContent;
+  }
+
+  private _highlightedText: string = "";
+  get highlightedText() {
+    return this._highlightedText;
+  }
+  set highlightedText(text: string) {
+    this._highlightedText = text;
   }
 
   private _confirmationCallback: Function | null = null;

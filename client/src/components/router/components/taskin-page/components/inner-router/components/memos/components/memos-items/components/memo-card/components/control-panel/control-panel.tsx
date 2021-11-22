@@ -42,10 +42,10 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const popIsMemoDoneConfirmation = () => {
     notificationActions.popNotificationForUser(
-      memo.isDone ? "Mark as not done ?" : "Mark as done ?",
+      memo.title,
       memo.isDone
-        ? `"${memo.title.toUpperCase()}" wil be marked as NOT DONE,\nare you sure ?`
-        : `Mark "${memo.title}" as DONE ?`,
+        ? `Will return to progress section.\nContinue?`
+        : `Mark as completed?`,
       isMemoDoneToggler
     );
   };
@@ -57,10 +57,10 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const popDeleteConfirmation = () => {
     notificationActions.popNotificationForUser(
-      memo.isDeleted ? "Delete permanently ?" : "Delete ?",
+      memo.title,
       memo.isDeleted
-        ? `"${memo.title}" will be permanently removed,\nare you sure?`
-        : `Are you sure you want to delete this memo? "${memo.title}"`,
+        ? "Will be permanently removed.\nContinue?"
+        : "Are you sure you want to delete this memo?",
       deleteMemoFromMapHandler
     );
   };
@@ -71,10 +71,10 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const popRestoreDeletedConfirmation = () => {
     notificationActions.popNotificationForUser(
-      "Restore deleted ?",
-      `"${memo.title.toUpperCase()}" wil be restored to ${
+      memo.title,
+      `Wil be moved to ${
         memo.isDone ? `"Completed"` : `"In progress"`
-      } section,\nare you sure ?`,
+      } section.\nContinue?`,
       restoreDeletedMemo
     );
   };

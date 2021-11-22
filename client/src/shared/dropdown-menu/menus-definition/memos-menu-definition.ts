@@ -24,7 +24,7 @@ const SortMemos = () => {
 
 export const popClearTrashConfirmation = () => {
   notificationActions.popNotificationForUser(
-    "Clear trash ?",
+    "",
     "Are you sure you want to clear your deleted memos ?",
     memosCrudActions.deleteMemosLocatedInTrash
   );
@@ -32,7 +32,7 @@ export const popClearTrashConfirmation = () => {
 
 export const popMoveAllCompletedToTrashConfirmation = () => {
   notificationActions.popNotificationForUser(
-    "Move All to the trash ?",
+    "",
     "Are you sure you want to move ALL your completed memos to the trash ?",
     memosCrudActions.moveCompletedMemosToTrashTrash
   );

@@ -38,7 +38,7 @@ export const SortMemos = observer(() => {
 
   const popResetSortConfirmation = () => {
     notificationActions.popNotificationForUser(
-      "Reset sort?",
+      "",
       `Are you sure you want to reset this sort?`,
       resetSortHandler
     );
@@ -59,7 +59,7 @@ export const SortMemos = observer(() => {
 
   const popApplySortConfirmation = () => {
     notificationActions.popNotificationForUser(
-      "Apply sort?",
+      "",
       `Are you sure you want to apply this sort?`,
       applySortHandler
     );
