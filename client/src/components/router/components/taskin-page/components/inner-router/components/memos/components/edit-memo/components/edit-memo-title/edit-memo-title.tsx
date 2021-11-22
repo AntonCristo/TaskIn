@@ -5,6 +5,7 @@ import { memoStore } from "src/stores";
 
 import classes from "./edit-memo-title.module.css";
 import { observer } from "mobx-react";
+import { WithTooltip } from "src/shared";
 
 type EditMemoProps = {
   memo: Memo;
@@ -40,12 +41,14 @@ export const EditMemoTitle = observer((props: EditMemoProps) => {
             placeholder="Empty title..."
           />
         ) : (
-          <div
-            onClick={toggleTitleEditModeHandler}
-            className={classes.titleAsLabel}
-          >
-            {memo.title || "Empty title..."}
-          </div>
+          <WithTooltip tip={memo.title}>
+            <div
+              onClick={toggleTitleEditModeHandler}
+              className={classes.titleAsLabel}
+            >
+              {memo.title || "Empty title..."}
+            </div>
+          </WithTooltip>
         )}
       </div>
     </div>

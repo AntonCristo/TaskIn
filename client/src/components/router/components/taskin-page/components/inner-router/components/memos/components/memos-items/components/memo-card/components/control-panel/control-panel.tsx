@@ -129,12 +129,14 @@ export const ControlPanel = (props: ControlPanelProps) => {
               isDisabled={memo.isDeleted}
               styleOverride={controlPanelButtonsStyleOverride}
               title=""
+              tooltipText={memo.isDone ? "Mark as Undone" : "Mark as Done"}
               icon={memo.isDone ? removeDoneIcon : doneIcon}
               onClick={popIsMemoDoneConfirmation}
             />
             <Button
               styleOverride={controlPanelToggleCollapseButtonStyleOverride}
               title=""
+              tooltipText={isCollapsed ? "Expand Memo" : "Collapse Memo"}
               icon={isCollapsed ? expandMoreIcon : expandLessIcon}
               onClick={toggleMemoCollapsedState}
             />
@@ -143,6 +145,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
         <Button
           styleOverride={controlPanelButtonsStyleOverride}
           title={memo.isDeleted ? "Delete" : ""}
+          tooltipText={memo.isDeleted ? "" : "Delete"}
           icon={deleteIcon}
           onClick={popDeleteConfirmation}
         />

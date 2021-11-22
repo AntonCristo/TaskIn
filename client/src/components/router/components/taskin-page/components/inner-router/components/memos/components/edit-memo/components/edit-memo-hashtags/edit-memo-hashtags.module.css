@@ -17,6 +17,7 @@
   flex-wrap: wrap;
 }
 .hashtagMark {
+  cursor: pointer;
   width: 25px;
   height: 25px;
   margin: 3px;

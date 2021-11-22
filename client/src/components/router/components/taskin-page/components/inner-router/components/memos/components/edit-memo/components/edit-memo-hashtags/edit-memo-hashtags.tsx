@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { Button, LabelBox } from "src/shared";
+import { Button, LabelBox, WithTooltip } from "src/shared";
 import { Memo } from "src/client-types";
 import editIcon from "src/assets/svg/edit_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
@@ -53,7 +53,14 @@ export const EditMemoHashtags = observer((props: EditMemoHashtagsProps) => {
         </div>
       ) : (
         <div className={classes.hashtagsList}>
-          <div className={classes.hashtagMark}>#</div>
+          <WithTooltip tip="Filters/Hashtags">
+            <div
+              onClick={toggleHashtagEditModeHandler}
+              className={classes.hashtagMark}
+            >
+              #
+            </div>
+          </WithTooltip>
           {memo.hashtag?.map((tag, index) => {
             return <LabelBox key={tag + index} text={"#" + tag} />;
           })}

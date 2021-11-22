@@ -1,9 +1,11 @@
 import { CSSProperties, useState, MouseEvent } from "react";
+import { WithTooltip } from "..";
 
 import classes from "./button.module.css";
 
 type ButtonProps = {
   title: string;
+  tooltipText?: string;
   icon?: string;
   onClick: (event?: MouseEvent<HTMLDivElement>) => void;
   isDisabled?: boolean;
@@ -14,6 +16,7 @@ export const Button = (props: ButtonProps) => {
   const [isMouseDown, setIsMouseDown] = useState(false);
   const {
     title,
+    tooltipText = "",
     onClick,
     isDisabled = false,
     styleOverride = {},
@@ -35,28 +38,30 @@ export const Button = (props: ButtonProps) => {
   }
 
   return (
-    <div
-      onMouseDown={mouseIsDownHandler}
-      onMouseUp={mouseIsNOTDownHandler}
-      style={styleOverride}
-      onClick={_onClick}
-      className={[
-        classes.defaultButtonStyle,
-        isMouseDown && classes.clickedButtonAnimation,
-        //disabled class should stay last in the array
-        isDisabled && classes.disabled,
-      ].join(" ")}
-    >
-      <div>{title}</div>
-      <div>
-        {icon ? (
-          <img
-            className={title ? classes.buttonIconWithTitle : ""}
-            src={icon}
-            alt="button-icon"
-          />
-        ) : null}
+    <WithTooltip tip={tooltipText}>
+      <div
+        onMouseDown={mouseIsDownHandler}
+        onMouseUp={mouseIsNOTDownHandler}
+        style={styleOverride}
+        onClick={_onClick}
+        className={[
+          classes.defaultButtonStyle,
+          isMouseDown && classes.clickedButtonAnimation,
+          //disabled class should stay last in the array
+          isDisabled && classes.disabled,
+        ].join(" ")}
+      >
+        <div>{title}</div>
+        <div>
+          {icon ? (
+            <img
+              className={title ? classes.buttonIconWithTitle : ""}
+              src={icon}
+              alt="button-icon"
+            />
+          ) : null}
+        </div>
       </div>
-    </div>
+    </WithTooltip>
   );
 };

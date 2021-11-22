@@ -25,11 +25,11 @@ export type MenuListItem = {
 };
 
 export const DropdownMenu = observer(() => {
-  const { activeDropdownMenu, activeMenuLocation } = dropdownMenuStore;
+  const { activeDropdownMenu } = dropdownMenuStore;
   const { dataStoreInstance } = memoStore;
 
   const onOutsideClickedHandler = () => {
-    setDropdownMenuByNameOrNull(null, 0, 0);
+    setDropdownMenuByNameOrNull(null);
   };
 
   const memoMenusDynamicOptions = () => {
@@ -76,8 +76,8 @@ export const DropdownMenu = observer(() => {
         return (
           <MenuWrapper
             position={{
-              top: `${activeMenuLocation.top}px`,
-              left: `${activeMenuLocation.left - 190}px`,
+              top: `${70}px`,
+              right: `${15}px`,
             }}
             listItems={userMenuListItems}
           >

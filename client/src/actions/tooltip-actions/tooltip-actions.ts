@@ -6,7 +6,7 @@ const TOOLTIP_MAX_WIDTH = 300;
 export const showTooltip = action(
   (title: string, top: number, left: number, leaveDelayInMs?: number) => {
     tooltipStore.title = title;
-    tooltipStore.leftPosition = left - TOOLTIP_MAX_WIDTH / 4;
+    tooltipStore.leftPosition = left - TOOLTIP_MAX_WIDTH / 6;
     tooltipStore.topPosition = top;
     tooltipStore.leaveDelayInMs = leaveDelayInMs || 0;
   }
