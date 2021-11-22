@@ -6,12 +6,12 @@ import { NotificationBox } from "./components";
 import classes from "./notification.module.css";
 
 export const Notification = observer(() => {
-  const { content, header, confirmationCallback } = notificationStore;
+  const { content, confirmationCallback, highlightedText } = notificationStore;
 
-  return header && content ? (
+  return content ? (
     <div className={classes.notificationWrapper}>
       <NotificationBox
-        header={header}
+        highlightedText={highlightedText}
         content={content}
         confirmationCallback={confirmationCallback}
       />

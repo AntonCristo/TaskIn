@@ -1,41 +1,20 @@
-import { MouseEvent } from "react";
 import { Button } from "src/shared";
-import { tooltipActions } from "src/actions";
-import { tooltipStore } from "src/stores";
 import { notificationActions } from "src/actions";
 
 import classes from "./notification-box.module.css";
 
 type NotificationBoxProps = {
   confirmationCallback?: Function | null;
-  header: string;
+  highlightedText: string;
   content: string;
 };
 
 const buttonStyleOVerride = {
   border: "none",
-  color: "#807f80",
-  textShadow: "0px 0px 2px rgba(0,0,0,0.3)",
 };
 
 export const NotificationBox = (props: NotificationBoxProps) => {
-  const { content, header, confirmationCallback } = props;
-  const { title } = tooltipStore;
-
-  const _notificationHeader = header || "Notification";
-
-  const onMouseEnterHandler = (event: MouseEvent<HTMLDivElement>) => {
-    !title &&
-      tooltipActions.showTooltip(
-        _notificationHeader,
-        event.clientY,
-        event.clientX
-      );
-  };
-
-  const onMouseLeaveHandler = () => {
-    tooltipActions.resetTooltip();
-  };
+  const { content, confirmationCallback, highlightedText } = props;
 
   const onNotificationApprovedHandler = () => {
     confirmationCallback && confirmationCallback();
@@ -48,14 +27,81 @@ export const NotificationBox = (props: NotificationBoxProps) => {
 
   return (
     <div className={classes.notificationBox}>
-      <div
-        onMouseLeave={onMouseLeaveHandler}
-        onMouseEnter={onMouseEnterHandler}
-        className={classes.header}
-      >
-        {_notificationHeader}
+      <div className={classes.body}>
+        <div title={highlightedText} className={classes.highlightedText}>
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+          {highlightedText}
+        </div>
+        <div>
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+          {content}
+        </div>
       </div>
-      <div className={classes.body}>{content}</div>
       <div className={classes.footer}>
         {confirmationCallback ? (
           <Button
@@ -64,11 +110,7 @@ export const NotificationBox = (props: NotificationBoxProps) => {
             onClick={onNotificationCanceledHandler}
           />
         ) : null}
-        <Button
-          styleOverride={buttonStyleOVerride}
-          title="OK"
-          onClick={onNotificationApprovedHandler}
-        />
+        <Button title="OK" onClick={onNotificationApprovedHandler} />
       </div>
     </div>
   );
