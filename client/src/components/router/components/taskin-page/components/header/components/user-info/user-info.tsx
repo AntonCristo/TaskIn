@@ -27,11 +27,7 @@ export const UserInfo = observer(() => {
   };
 
   const onUserInfoClickedHandler = (event: MouseEvent<HTMLDivElement>) => {
-    setDropdownMenuByNameOrNull(
-      "/taskin-userMenu",
-      event.clientY,
-      event.clientX
-    );
+    setDropdownMenuByNameOrNull("/taskin-userMenu");
   };
 
   return (

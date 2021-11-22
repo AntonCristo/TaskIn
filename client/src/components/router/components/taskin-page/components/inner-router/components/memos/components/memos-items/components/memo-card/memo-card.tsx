@@ -1,10 +1,10 @@
-import { MouseEvent } from "react";
 import { observer } from "mobx-react";
-import { routerLocationSetter, tooltipActions } from "src/actions";
+import { routerLocationSetter } from "src/actions";
 import { Memo } from "src/client-types";
 import { MAX_MEMO_CONTENT_LENGTH } from "src/constants";
-import { memoStore, tooltipStore } from "src/stores";
+import { memoStore } from "src/stores";
 import { textUtils } from "src/utils";
+import { WithTooltip } from "src/shared";
 
 import { MemoDotPins, ControlPanel, CompletedMark } from "./components";
 
@@ -17,7 +17,6 @@ type MemoCardProps = {
 export const MemoCard = observer((props: MemoCardProps) => {
   const { memo } = props;
   const { uiStoreInstance } = memoStore;
-  const { title } = tooltipStore;
 
   const isCollapsed = uiStoreInstance.memosCollapseStateMap[memo.uuid];
   const backgroundColorByUrgencyLevel =
@@ -25,15 +24,6 @@ export const MemoCard = observer((props: MemoCardProps) => {
 
   const onMemoCardClickedToEditHandler = () => {
     routerLocationSetter(`/taskin/memos/uuid=${memo.uuid}`);
-  };
-
-  const onMouseEnterHandler = (event: MouseEvent<HTMLDivElement>) => {
-    !title &&
-      tooltipActions.showTooltip(memo.title, event.clientY, event.clientX);
-  };
-
-  const onMouseLeaveHandler = () => {
-    tooltipActions.resetTooltip();
   };
 
   return (
@@ -47,13 +37,9 @@ export const MemoCard = observer((props: MemoCardProps) => {
         ].join(" ")}
       >
         <MemoDotPins />
-        <div
-          onMouseEnter={onMouseEnterHandler}
-          onMouseLeave={onMouseLeaveHandler}
-          className={classes.memoTitle}
-        >
-          {memo.title}
-        </div>
+        <WithTooltip tip={memo.title}>
+          <div className={classes.memoTitle}>{memo.title}</div>
+        </WithTooltip>
         {isCollapsed || !memo.content ? null : (
           <div className={classes.memoContent}>
             {textUtils.sliceTextAndAddEllipsis(

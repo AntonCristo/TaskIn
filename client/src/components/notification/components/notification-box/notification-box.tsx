@@ -1,5 +1,6 @@
 import { Button } from "src/shared";
 import { notificationActions } from "src/actions";
+import { WithTooltip } from "src/shared";
 
 import classes from "./notification-box.module.css";
 
@@ -28,9 +29,9 @@ export const NotificationBox = (props: NotificationBoxProps) => {
   return (
     <div className={classes.notificationBox}>
       <div className={classes.body}>
-        <div title={highlightedText} className={classes.highlightedText}>
-          {highlightedText}
-        </div>
+        <WithTooltip tip={highlightedText}>
+          <div className={classes.highlightedText}>{highlightedText}</div>
+        </WithTooltip>
         <div>{content}</div>
       </div>
       <div className={classes.footer}>

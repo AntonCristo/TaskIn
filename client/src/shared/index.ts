@@ -8,3 +8,4 @@ export * from "./tootltip";
 export * from "./switch";
 export * from "./label-box";
 export * from "./page-not-found";
+export * from "./with-tooltip";

@@ -15,6 +15,7 @@
   border-radius: 6px;
   padding: 6px;
   overflow-y: scroll;
+  color: #000;
 }
 .contentAsLabel:hover {
   cursor: pointer;
@@ -31,6 +32,7 @@
   line-height: 20px;
   font-family: "Ubuntu-regular";
   padding: 6px;
+  color: #000;
 }
 .editMemoContent > textarea:focus {
   outline: none;

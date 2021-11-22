@@ -42,11 +42,7 @@ export const MemosHeader = observer(() => {
   };
 
   const onMoreActionsMenuClicked = (event?: MouseEvent<HTMLDivElement>) => {
-    setDropdownMenuByNameOrNull(
-      "/taskin/memos-memosMenu",
-      event!.clientY,
-      event!.clientX
-    );
+    setDropdownMenuByNameOrNull("/taskin/memos-memosMenu");
   };
 
   return (
@@ -67,6 +63,7 @@ export const MemosHeader = observer(() => {
           styleOverride={buttonStylesOverride.headerMenuButton}
           icon={moreIcon}
           title=""
+          tooltipText="Memos Actions"
           onClick={onMoreActionsMenuClicked}
         />
       </div>
