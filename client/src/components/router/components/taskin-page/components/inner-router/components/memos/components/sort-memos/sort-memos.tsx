@@ -109,7 +109,7 @@ export const SortMemos = observer(() => {
           <Button
             styleOverride={buttonStyleOVerride}
             icon={returnIcon}
-            title="Return"
+            title="Close"
             onClick={returnToMemosPageHandler}
           />
           <Button

@@ -26,7 +26,11 @@ export const Memos = observer(() => {
           memoUUID={_memoUUIDFromUrl}
         />
       ) : null}
-      {_isSortDialogOpen ? <SortMemos /> : null}
+      {_isSortDialogOpen ? (
+        <div className={classes.sortDialogContainer}>
+          <SortMemos />
+        </div>
+      ) : null}
     </div>
   );
 });
