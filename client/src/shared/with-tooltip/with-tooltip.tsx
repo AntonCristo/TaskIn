@@ -28,10 +28,13 @@ export const WithTooltip = observer((props: WithTooltipProps) => {
     tooltipActions.resetTooltip();
   };
 
-  const updatedProps = React.cloneElement(children as ReactElement, {
-    onMouseEnter: onMouseEnterHandler,
-    onMouseLeave: onMouseLeaveHandler,
-  });
+  const childrenWithInjectedTooltipProps = React.cloneElement(
+    children as ReactElement,
+    {
+      onMouseEnter: onMouseEnterHandler,
+      onMouseLeave: onMouseLeaveHandler,
+    }
+  );
 
-  return <>{updatedProps}</>;
+  return <>{childrenWithInjectedTooltipProps}</>;
 });
