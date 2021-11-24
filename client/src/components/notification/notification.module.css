@@ -10,3 +10,6 @@
   align-items: center;
   justify-content: center;
 }
+.notificationWrapper:focus {
+  outline: none;
+}
