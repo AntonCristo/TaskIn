@@ -1,5 +1,4 @@
 import { Button } from "src/shared";
-import { notificationActions } from "src/actions";
 import { WithTooltip } from "src/shared";
 
 import classes from "./notification-box.module.css";
@@ -8,6 +7,8 @@ type NotificationBoxProps = {
   confirmationCallback?: Function | null;
   highlightedText: string;
   content: string;
+  approve: () => void;
+  cancel: () => void;
 };
 
 const buttonStyleOVerride = {
@@ -15,16 +16,8 @@ const buttonStyleOVerride = {
 };
 
 export const NotificationBox = (props: NotificationBoxProps) => {
-  const { content, confirmationCallback, highlightedText } = props;
-
-  const onNotificationApprovedHandler = () => {
-    confirmationCallback && confirmationCallback();
-    notificationActions.closeNotificationPopper();
-  };
-
-  const onNotificationCanceledHandler = () => {
-    notificationActions.closeNotificationPopper();
-  };
+  const { content, confirmationCallback, highlightedText, approve, cancel } =
+    props;
 
   return (
     <div className={classes.notificationBox}>
@@ -39,10 +32,10 @@ export const NotificationBox = (props: NotificationBoxProps) => {
           <Button
             styleOverride={buttonStyleOVerride}
             title="Cancel"
-            onClick={onNotificationCanceledHandler}
+            onClick={cancel}
           />
         ) : null}
-        <Button title="OK" onClick={onNotificationApprovedHandler} />
+        <Button title="OK" onClick={approve} />
       </div>
     </div>
   );
