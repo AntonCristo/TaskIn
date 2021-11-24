@@ -1,4 +1,4 @@
-import { CSSProperties, useState, MouseEvent } from "react";
+import { CSSProperties, useState, MouseEvent, KeyboardEvent } from "react";
 import { WithTooltip } from "..";
 
 import classes from "./button.module.css";
@@ -37,9 +37,21 @@ export const Button = (props: ButtonProps) => {
     }
   }
 
+  const onKeyDownHandler = (event: KeyboardEvent<HTMLDivElement>) => {
+    switch (event.code) {
+      case "Enter":
+        onClick();
+        return;
+      default:
+        return;
+    }
+  };
+
   return (
     <WithTooltip tip={tooltipText}>
       <div
+        tabIndex={0}
+        onKeyDown={onKeyDownHandler}
         onMouseDown={mouseIsDownHandler}
         onMouseUp={mouseIsNOTDownHandler}
         style={styleOverride}

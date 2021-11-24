@@ -25,7 +25,6 @@ type ControlPanelProps = {
 const controlPanelButtonsStyleOverride: CSSProperties = {
   minWidth: "40px",
   border: "none",
-  boxShadow: "0px 0px 6px rgba(0, 0, 0, 0.2)",
 };
 
 const controlPanelToggleCollapseButtonStyleOverride: CSSProperties = {

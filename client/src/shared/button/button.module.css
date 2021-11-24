@@ -15,6 +15,10 @@
   align-items: center;
   justify-content: center;
 }
+.defaultButtonStyle:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
 .buttonIconWithTitle {
   margin-left: 6px;
 }
