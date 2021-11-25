@@ -26,8 +26,9 @@ export const Notification = observer(() => {
     }
   };
 
+  //[useEffect]:: gain focus abilities on render
   useEffect(() => {
-    notificationWrapperRef && notificationWrapperRef.current?.focus();
+    notificationWrapperRef.current && notificationWrapperRef.current?.focus();
   }, [notificationWrapperRef]);
 
   return content ? (

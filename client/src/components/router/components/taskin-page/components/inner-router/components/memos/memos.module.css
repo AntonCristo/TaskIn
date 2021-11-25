@@ -3,7 +3,7 @@
   height: calc(100% - 60px);
   background-color: #fff;
 }
-.sortDialogContainer {
+.dialogContainer {
   position: absolute;
   top: 0;
   left: 0;

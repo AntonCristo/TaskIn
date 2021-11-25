@@ -14,6 +14,8 @@ type MemoCardProps = {
   memo: Memo;
 };
 
+const DELETED_MEMO_BACKGROUND_COLOR = "#dcdcdc";
+
 export const MemoCard = observer((props: MemoCardProps) => {
   const { memo } = props;
   const { uiStoreInstance } = memoStore;
@@ -30,7 +32,11 @@ export const MemoCard = observer((props: MemoCardProps) => {
     <div data-memo={memo.uuid} className={classes.relativeWrapper}>
       <div
         onClick={memo.isDeleted ? () => {} : onMemoCardClickedToEditHandler}
-        style={{ backgroundColor: backgroundColorByUrgencyLevel }}
+        style={{
+          backgroundColor:
+            (memo.isDeleted && DELETED_MEMO_BACKGROUND_COLOR) ||
+            backgroundColorByUrgencyLevel,
+        }}
         className={[
           classes.memoCard,
           memo.isDone && classes.completedMemoOpacity,
