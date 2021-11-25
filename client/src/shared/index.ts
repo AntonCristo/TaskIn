@@ -9,3 +9,4 @@ export * from "./switch";
 export * from "./label-box";
 export * from "./page-not-found";
 export * from "./with-tooltip";
+export * from "./box";

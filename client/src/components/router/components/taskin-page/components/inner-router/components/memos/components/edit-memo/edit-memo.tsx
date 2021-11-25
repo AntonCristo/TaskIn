@@ -1,9 +1,14 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Uuid } from "src/client-types";
 import { Button, Spinner } from "src/shared";
 import { memoStore } from "src/stores";
-import { memosCrudActions } from "src/actions";
+import {
+  memosCrudActions,
+  memoUIActions,
+  routerLocationSetter,
+} from "src/actions";
+import { browserEventUtils } from "src/utils";
 import returnIcon from "src/assets/svg/return_24dp.svg";
 
 import {
@@ -18,12 +23,17 @@ import classes from "./edit-memo.module.css";
 
 type EditMemoProps = {
   memoUUID: Uuid;
-  returnFromEditPage: () => void;
 };
 
 export const EditMemo = observer((props: EditMemoProps) => {
-  const { memoUUID, returnFromEditPage } = props;
+  const { memoUUID } = props;
   const { dataStoreInstance, uiStoreInstance } = memoStore;
+
+  useEffect(() => {
+    return () => {
+      memoUIActions.resetEditMemoProfile();
+    };
+  }, []);
 
   const _memoFromMap = dataStoreInstance.memosMap[memoUUID];
   if (!_memoFromMap) {
@@ -38,6 +48,7 @@ export const EditMemo = observer((props: EditMemoProps) => {
 
   const buttonStyleOverride: CSSProperties = {
     marginTop: "auto",
+    marginLeft: "auto",
     border: `2px solid ${_memoUrgencyLevelColor}`,
     backgroundColor: _memoUrgencyLevelColor,
   };
@@ -50,11 +61,14 @@ export const EditMemo = observer((props: EditMemoProps) => {
         `Memo ${Date.now().toString().slice(6)}`
       );
 
-    returnFromEditPage();
+    routerLocationSetter("/taskin/memos");
   };
 
   return (
-    <div className={classes.editMemo}>
+    <div
+      onClick={browserEventUtils.preventParentClickEventHandler}
+      className={classes.editMemo}
+    >
       <EditMemoTitle memo={_memoFromMap} />
       <EditMemoHashtags memo={_memoFromMap} />
       <EditMemoContent memo={_memoFromMap} />

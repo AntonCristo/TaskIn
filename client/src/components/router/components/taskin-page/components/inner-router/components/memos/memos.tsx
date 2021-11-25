@@ -1,9 +1,15 @@
 import React, { RefObject, useEffect, KeyboardEvent } from "react";
 import { locationStore } from "src/stores";
-import { routerLocationSetter, memoUIActions } from "src/actions";
+import { routerLocationSetter } from "src/actions";
 import { observer } from "mobx-react";
 
-import { MemosHeader, MemosItems, EditMemo, SortMemos } from "./components";
+import {
+  MemosHeader,
+  MemosItems,
+  EditMemo,
+  SortMemos,
+  FilterMemos,
+} from "./components";
 
 import classes from "./memos.module.css";
 
@@ -14,9 +20,9 @@ export const Memos = observer(() => {
   const _memoUUIDFromUrl = reduceMemoUUIDFromUrl();
   const _isEditMemoPageOpen = !!_memoUUIDFromUrl;
   const _isSortDialogOpen = router_view === "/taskin/memos/sort";
+  const _isFilterDialogOpen = router_view === "/taskin/memos/filter";
 
-  const closeEditMemoDialog = () => {
-    memoUIActions.resetEditMemoProfile();
+  const closeDialog = () => {
     routerLocationSetter("/taskin/memos");
   };
 
@@ -38,24 +44,34 @@ export const Memos = observer(() => {
       {_isEditMemoPageOpen ? (
         <div
           tabIndex={0}
+          onClick={closeDialog}
           onKeyDown={onKeyDownHandler}
           ref={dialogContainerRef}
           className={classes.dialogContainer}
         >
-          <EditMemo
-            returnFromEditPage={closeEditMemoDialog}
-            memoUUID={_memoUUIDFromUrl}
-          />{" "}
+          <EditMemo memoUUID={_memoUUIDFromUrl} />{" "}
         </div>
       ) : null}
       {_isSortDialogOpen ? (
         <div
           tabIndex={0}
+          onClick={closeDialog}
           onKeyDown={onKeyDownHandler}
           ref={dialogContainerRef}
           className={classes.dialogContainer}
         >
           <SortMemos />
+        </div>
+      ) : null}
+      {_isFilterDialogOpen ? (
+        <div
+          tabIndex={0}
+          onClick={closeDialog}
+          onKeyDown={onKeyDownHandler}
+          ref={dialogContainerRef}
+          className={classes.dialogContainer}
+        >
+          <FilterMemos />
         </div>
       ) : null}
     </div>

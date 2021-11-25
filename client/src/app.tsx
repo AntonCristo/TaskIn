@@ -1,12 +1,12 @@
 import { DropdownMenu, Tootltip } from "./shared";
-import { browserHistoryUtils } from "./utils";
+import { browserEventUtils } from "./utils";
 
 import { Router, Notification } from "./components";
 
 import classes from "./app.module.css";
 
 const App = () => {
-  browserHistoryUtils.browserBackButtonEventListener();
+  browserEventUtils.browserBackButtonEventListener();
 
   return (
     <div className={classes.app}>
