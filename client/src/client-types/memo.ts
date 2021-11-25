@@ -1,4 +1,4 @@
-export enum UrgencyColor {
+export const enum UrgencyColor {
   Low = "#73bfa1",
   Medium = "#ffc900",
   High = "#ff4833",

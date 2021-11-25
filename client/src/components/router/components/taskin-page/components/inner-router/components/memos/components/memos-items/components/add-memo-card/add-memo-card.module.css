@@ -17,7 +17,9 @@
   font-family: "Ubuntu-bold";
   font-style: italic;
 }
+.addMemoCard:focus,
 .addMemoCard:hover {
+  outline: none;
   box-shadow: inset 1px 1px 6px -1px #73bfa1;
   opacity: 1;
 }

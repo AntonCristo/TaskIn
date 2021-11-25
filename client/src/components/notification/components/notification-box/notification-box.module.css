@@ -34,9 +34,6 @@
   font-size: 18px;
   cursor: default;
 }
-::-webkit-scrollbar {
-  display: none;
-}
 .footer {
   padding: 15px;
   height: 50px;

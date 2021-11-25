@@ -1,6 +1,6 @@
 .editMemoContentWrapper {
   position: relative;
-  width: 60%;
+  width: 100%;
   background-color: #fff;
   border-radius: 6px;
   margin-bottom: 20px;
@@ -14,8 +14,9 @@
   white-space: pre-wrap;
   border-radius: 6px;
   padding: 6px;
-  overflow-y: scroll;
+  overflow-y: auto;
   color: #000;
+  word-break: break-all;
 }
 .contentAsLabel:hover {
   cursor: pointer;
@@ -27,6 +28,8 @@
   height: 240px;
   resize: none;
   border: none;
+  white-space: pre-wrap;
+  word-break: break-all;
   background-color: transparent;
   font-size: 16px;
   line-height: 20px;
@@ -36,10 +39,4 @@
 }
 .editMemoContent > textarea:focus {
   outline: none;
-}
-
-@media screen and (max-width: 800px) {
-  .editMemoContentWrapper {
-    width: 100%;
-  }
 }
