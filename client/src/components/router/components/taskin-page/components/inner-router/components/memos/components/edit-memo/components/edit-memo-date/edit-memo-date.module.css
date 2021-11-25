@@ -3,11 +3,12 @@
   align-items: center;
   margin-bottom: 10px;
   height: 30px;
-  width: 60%;
+  width: 100%;
 }
 .editMemoTitle {
   font-size: 16px;
   width: 250px;
+  text-decoration: underline;
 }
 .editMemoDateComponent {
   width: 250px;
