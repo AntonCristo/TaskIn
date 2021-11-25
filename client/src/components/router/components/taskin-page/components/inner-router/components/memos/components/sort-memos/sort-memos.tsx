@@ -6,11 +6,11 @@ import {
   notificationActions,
   routerLocationSetter,
 } from "src/actions";
-import { Button, Switch } from "src/shared";
+import { Box, Button, Switch } from "src/shared";
 import refreshIcon from "src/assets/svg/refresh_24dp.svg";
 import doneIcon from "src/assets/svg/done_24dp.svg";
 import returnIcon from "src/assets/svg/return_24dp.svg";
-import { setSessionPersistedUIState } from "src/utils";
+import { browserEventUtils, setSessionPersistedUIState } from "src/utils";
 
 import { SortingOptionItem, SortDescription } from "./components";
 
@@ -103,8 +103,11 @@ export const SortMemos = observer(() => {
   };
 
   return (
-    <div className={classes.sortMemosWrapper}>
-      <div>
+    <div
+      className={classes.helperDiv}
+      onClick={browserEventUtils.preventParentClickEventHandler}
+    >
+      <Box>
         <div className={classes.header}>
           <Button
             styleOverride={buttonStyleOVerride}
@@ -143,14 +146,14 @@ export const SortMemos = observer(() => {
             </div>
           </div>
         </div>
+        <SortDescription />
         <Button
-          styleOverride={buttonStyleOVerride}
+          styleOverride={{ ...buttonStyleOVerride, marginTop: "20px" }}
           icon={doneIcon}
           title="Apply Sort"
           onClick={popApplySortConfirmation}
         />
-      </div>
-      <SortDescription />
+      </Box>
     </div>
   );
 });

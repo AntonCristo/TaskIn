@@ -18,8 +18,12 @@ const expandAllMemos = () => {
   memoUIActions.shouldCollapseAllMemos(false);
 };
 
-const SortMemos = () => {
+const sortMemos = () => {
   routerLocationSetter("/taskin/memos/sort");
+};
+
+const filterMemos = () => {
+  routerLocationSetter("/taskin/memos/filter");
 };
 
 export const popClearTrashConfirmation = () => {
@@ -45,14 +49,14 @@ export const addNewMemoToMapWithoutValidation = () => {
 
 export const memosMenuListItems: MenuListItem[] = [
   {
-    disabled: true,
-    onClick: () => {},
+    disabled: false,
+    onClick: filterMemos,
     text: "Filter",
     icon: filterIcon,
   },
   {
     disabled: false,
-    onClick: SortMemos,
+    onClick: sortMemos,
     text: "Sort",
     icon: sortIcon,
   },
