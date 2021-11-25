@@ -36,10 +36,17 @@ export const Memos = observer(() => {
       <MemosHeader />
       <MemosItems />
       {_isEditMemoPageOpen ? (
-        <EditMemo
-          returnFromEditPage={closeEditMemoDialog}
-          memoUUID={_memoUUIDFromUrl}
-        />
+        <div
+          tabIndex={0}
+          onKeyDown={onKeyDownHandler}
+          ref={dialogContainerRef}
+          className={classes.dialogContainer}
+        >
+          <EditMemo
+            returnFromEditPage={closeEditMemoDialog}
+            memoUUID={_memoUUIDFromUrl}
+          />{" "}
+        </div>
       ) : null}
       {_isSortDialogOpen ? (
         <div

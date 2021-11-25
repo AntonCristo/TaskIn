@@ -1,6 +1,8 @@
 .datesDiffMessage {
-  width: 200px;
+  width: fit-content;
+  max-width: 300px;
   padding: 6px 10px;
+  margin-top: 14px;
   font-family: "Ubuntu-regular";
   font-size: 14px;
   display: flex;
