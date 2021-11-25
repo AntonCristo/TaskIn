@@ -76,8 +76,8 @@ export const DropdownMenu = observer(() => {
         return (
           <MenuWrapper
             position={{
-              top: `${70}px`,
-              right: `${15}px`,
+              top: "70px",
+              right: "15px",
             }}
             listItems={userMenuListItems}
           >
