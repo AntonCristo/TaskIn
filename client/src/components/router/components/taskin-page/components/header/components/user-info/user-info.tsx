@@ -4,6 +4,9 @@ import { dropdownMenuStore, userStore } from "src/stores";
 import { setDropdownMenuByNameOrNull } from "src/actions";
 import user from "src/assets/svg/account_circle_24dp.svg";
 import arrowDown from "src/assets/svg/arrow_drop_down_24dp.svg";
+import { WithTooltip } from "src/shared";
+import { textUtils } from "src/utils";
+import { MAX_CHARS_ALLOWED_FOR_USER_FULL_NAME } from "src/constants";
 
 import classes from "./user-info.module.css";
 
@@ -30,6 +33,12 @@ export const UserInfo = observer(() => {
     setDropdownMenuByNameOrNull("/taskin-userMenu");
   };
 
+  const [isUserFullNameSliced, userFullName] =
+    textUtils.sliceTextAndAddEllipsis(
+      _user.fullName,
+      MAX_CHARS_ALLOWED_FOR_USER_FULL_NAME
+    );
+
   return (
     <div
       onClick={onUserInfoClickedHandler}
@@ -48,7 +57,12 @@ export const UserInfo = observer(() => {
         }
         alt=""
       />
-      <span className={classes.userFullName}>{_user.fullName}</span>
+      <WithTooltip
+        showTooltip={isUserFullNameSliced as boolean}
+        tip={_user.fullName}
+      >
+        <span className={classes.userFullName}>{userFullName}</span>
+      </WithTooltip>
     </div>
   );
 });
