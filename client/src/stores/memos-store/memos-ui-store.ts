@@ -3,34 +3,11 @@ import { action, makeAutoObservable } from "mobx";
 import { Memo, UrgencyColor } from "src/client-types";
 import { customError } from "src/errors";
 import { getSessionPersistedUIState } from "src/utils";
-
-export type MemosUrgencyLevelMap = {
-  [x: string]: UrgencyColor | undefined;
-};
-
-export type MemosCollapseStateMap = {
-  [x: string]: boolean;
-};
-
-export type EditMemoProfile = {
-  title: boolean;
-  content: boolean;
-  creationDate: boolean;
-  dueDate: boolean;
-  hashtag: boolean;
-};
-
-export type SortingOption =
-  | "TITLE"
-  | "CREATION_DATE"
-  | "DUE_DATE"
-  | "URGENCY_LEVEL"
-  | null;
-
-export type MemosSortingProfile = {
-  sort: SortingOption;
-  sortDirection: "UP" | "DOWN";
-};
+import {
+  EditMemoProfile,
+  MemosCollapseStateMap,
+  MemosSortingProfile,
+} from "./ui-store-types";
 
 export class MemosUIStore {
   constructor() {

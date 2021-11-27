@@ -1,5 +1,5 @@
 import { MemosDisplayClass } from "src/stores";
-import { MemosSortingProfile } from "src/stores/memos-store/memos-ui-store";
+import { MemosSortingProfile } from "src/stores/memos-store/ui-store-types";
 
 type MemoUiElements =
   | {
