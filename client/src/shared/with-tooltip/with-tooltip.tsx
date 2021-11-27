@@ -7,11 +7,12 @@ import { tooltipActions } from "src/actions";
 type WithTooltipProps = {
   children: ReactNode;
   tip: string;
+  showTooltip?: boolean;
   afterMouseLeaveDelayInMs?: number;
 };
 
 export const WithTooltip = observer((props: WithTooltipProps) => {
-  const { children, tip, afterMouseLeaveDelayInMs } = props;
+  const { children, tip, showTooltip = true, afterMouseLeaveDelayInMs } = props;
   const { title } = tooltipStore;
 
   const onMouseEnterHandler = (event: MouseEvent<HTMLDivElement>) => {
@@ -22,6 +23,10 @@ export const WithTooltip = observer((props: WithTooltipProps) => {
         event.clientX,
         afterMouseLeaveDelayInMs
       );
+
+    setTimeout(() => {
+      tooltipActions.resetTooltip();
+    }, 4000);
   };
 
   const onMouseLeaveHandler = () => {
@@ -36,5 +41,9 @@ export const WithTooltip = observer((props: WithTooltipProps) => {
     }
   );
 
-  return <>{childrenWithInjectedTooltipProps}</>;
+  return showTooltip ? (
+    <>{childrenWithInjectedTooltipProps}</>
+  ) : (
+    <>{children}</>
+  );
 });

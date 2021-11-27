@@ -21,6 +21,9 @@
   color: #807f80;
   text-align: center;
 }
+.body > div:nth-child(2) {
+  text-align: left;
+}
 .highlightedText {
   position: sticky;
   top: 0;
@@ -33,6 +36,7 @@
   text-overflow: ellipsis;
   font-size: 18px;
   cursor: default;
+  padding-bottom: 10px;
 }
 .footer {
   padding: 15px;
