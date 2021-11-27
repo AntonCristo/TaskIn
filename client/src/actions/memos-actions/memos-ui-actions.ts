@@ -9,7 +9,7 @@ import { EditMemoProfile } from "src/stores";
 import {
   MemosSortingProfile,
   SortingOption,
-} from "src/stores/memos-store/memos-ui-store";
+} from "src/stores/memos-store/ui-store-types";
 
 export const onChangeMemoSearchText = action((memoSearchText: string) => {
   memoStore.uiStoreInstance.memoSearchText = memoSearchText;

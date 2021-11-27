@@ -10,6 +10,7 @@ export const InnerRouter = observer(() => {
   switch (reduceActiveRouteFromUrl()) {
     case "MEMOS":
       return <Memos />;
+    case "LIST":
     case "FOLDERS":
       return <div>folders[not implemented]</div>;
     default:

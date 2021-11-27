@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
-import { SortingOption } from "src/stores/memos-store/memos-ui-store";
+import { SortingOption } from "src/stores/memos-store/ui-store-types";
 import checkedIcon from "src/assets/svg/check_box_checked_24dp.svg";
 import uncheckedIcon from "src/assets/svg/check_box_uncehcked_24dp.svg";
 import { customError } from "src/errors";
