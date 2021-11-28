@@ -1,0 +1,7 @@
+.resetUrgencyFilterIcon {
+  cursor: pointer;
+  width: 20px;
+}
+.resetUrgencyFilterIcon:hover {
+  opacity: 0.6;
+}

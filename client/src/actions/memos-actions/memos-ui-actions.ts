@@ -1,5 +1,5 @@
 import { action } from "mobx";
-import { Uuid, ValueOf } from "src/client-types";
+import { UrgencyColor, Uuid, ValueOf } from "src/client-types";
 import {
   memoStore,
   MemosCollapseStateMap,
@@ -137,6 +137,29 @@ export const setFilterProfileByKeyAndValue = action(
     switch (key) {
       case "title":
         copyOfFilterProfile.title = value as string;
+        break;
+      case "urgencyLevel":
+        const urgencyLevelUpdate = value as UrgencyColor;
+        if (!copyOfFilterProfile.urgencyLevel) {
+          copyOfFilterProfile.urgencyLevel = [urgencyLevelUpdate];
+          break;
+        }
+
+        if (copyOfFilterProfile.urgencyLevel.includes(urgencyLevelUpdate)) {
+          copyOfFilterProfile.urgencyLevel =
+            copyOfFilterProfile.urgencyLevel.filter(
+              (uc) => uc !== urgencyLevelUpdate
+            );
+
+          if (!copyOfFilterProfile.urgencyLevel.length) {
+            clearFilterProfileByKey(key);
+            return;
+          }
+          break;
+        }
+
+        copyOfFilterProfile.urgencyLevel.push(urgencyLevelUpdate);
+
         break;
       //TODO: add filter profile by key type
       default:

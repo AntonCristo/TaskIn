@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import { Memo } from "src/client-types";
 import { Spinner } from "src/shared";
 import { memoStore } from "src/stores";
+import { FilterProfile } from "src/stores/memos-store/ui-store-types";
 
 import { MemoCard, AddMemoCard } from "./components";
 
@@ -21,20 +22,33 @@ export const MemosItems = observer(() => {
   }
 
   const memosRenderPipeline = () => {
-    const filteredMemos = uiStoreInstance.getFilteredMemos(memosFromDataStore);
+    const filterExclude: (keyof FilterProfile)[] = [];
+    switch (memoStore.dataStoreInstance.memosDisplayClass) {
+      case "TRASH":
+      case "COMPLETED":
+        filterExclude.push("urgencyLevel");
+        break;
+      default:
+        break;
+    }
+
+    const filteredMemos = uiStoreInstance.getFilteredMemos(
+      memosFromDataStore,
+      filterExclude
+    );
 
     const sortedMemos = uiStoreInstance.getSortedMemos(filteredMemos);
 
     return Array.from(new Set<Memo>([...sortedMemos]));
   };
 
-  const renderPipelineResults = memosRenderPipeline();
+  const memosRenderPipelineResults = memosRenderPipeline();
 
   return (
     <div className={classes.memosItems}>
       <AddMemoCard />
-      {renderPipelineResults.length
-        ? renderPipelineResults.map((memo, index) => (
+      {memosRenderPipelineResults.length
+        ? memosRenderPipelineResults.map((memo, index) => (
             <MemoCard key={memo.uuid} memo={memo} />
           ))
         : null}

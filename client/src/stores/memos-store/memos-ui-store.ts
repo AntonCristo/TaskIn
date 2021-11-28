@@ -209,11 +209,27 @@ export class MemosUIStore {
     this._filterProfile = {};
   });
 
-  private _filterByTitle = (memos: Memo[], title: string) => {
-    return memos.filter((memo) => memo.title.toLowerCase().includes(title));
+  private _filterByTitle = (memos: Memo[], titleInFilter: string) => {
+    return memos.filter((memo) =>
+      memo.title.toLowerCase().includes(titleInFilter)
+    );
   };
 
-  public getFilteredMemos = (memos: Memo[]) => {
+  private _filterByUrgencyLevel = (
+    memos: Memo[],
+    urgencyLevelsInFilter: UrgencyColor[]
+  ) => {
+    return memos.filter((memo) =>
+      urgencyLevelsInFilter.includes(
+        this.getMemoUrgencyLevel(memo) as UrgencyColor
+      )
+    );
+  };
+
+  public getFilteredMemos = (
+    memos: Memo[],
+    exclude?: (keyof FilterProfile)[]
+  ) => {
     const activeFilterKeys = Object.keys(
       this._filterProfile
     ) as (keyof FilterProfile)[];
@@ -227,15 +243,25 @@ export class MemosUIStore {
     }
 
     activeFilterKeys.forEach((filterKey) => {
-      switch (filterKey) {
-        case "title":
-          memosAfterFilter = this._filterByTitle(
-            memosAfterFilter,
-            this._filterProfile[filterKey] || ""
-          );
-          break;
-        default:
-          break;
+      if (exclude && exclude.length && exclude.includes(filterKey)) {
+        //exclude filtration
+      } else {
+        switch (filterKey) {
+          case "title":
+            memosAfterFilter = this._filterByTitle(
+              memosAfterFilter,
+              this._filterProfile[filterKey] || ""
+            );
+            break;
+          case "urgencyLevel":
+            memosAfterFilter = this._filterByUrgencyLevel(
+              memosAfterFilter,
+              this._filterProfile[filterKey] || []
+            );
+            break;
+          default:
+            break;
+        }
       }
     });
 
