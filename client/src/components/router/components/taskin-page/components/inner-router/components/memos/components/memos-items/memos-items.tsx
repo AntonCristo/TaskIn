@@ -21,16 +21,11 @@ export const MemosItems = observer(() => {
   }
 
   const memosRenderPipeline = () => {
-    const sortedMemos =
-      memoStore.uiStoreInstance.getSortedMemos(memosFromDataStore);
+    const filteredMemos = uiStoreInstance.getFilteredMemos(memosFromDataStore);
 
-    const titleSearchResults = sortedMemos.filter((memo) =>
-      memo.title
-        .toLowerCase()
-        .includes(uiStoreInstance.memoSearchText.toLowerCase())
-    );
+    const sortedMemos = uiStoreInstance.getSortedMemos(filteredMemos);
 
-    return Array.from(new Set<Memo>([...titleSearchResults]));
+    return Array.from(new Set<Memo>([...sortedMemos]));
   };
 
   const renderPipelineResults = memosRenderPipeline();

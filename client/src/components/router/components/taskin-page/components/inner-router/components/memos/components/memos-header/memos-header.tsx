@@ -27,17 +27,21 @@ export const MemosHeader = observer(() => {
     },
   };
 
-  const searchMemoTextChangeHandler = (typedValue: string) => {
-    memoUIActions.onChangeMemoSearchText(typedValue);
+  const searchMemoTitleChangeHandler = (typedValue: string) => {
+    memoUIActions.setFilterProfileByKeyAndValue("title", typedValue);
     setSessionPersistedUIState({
-      MEMO_UI_STORE: [{ key: "QUICK_SEARCH", value: typedValue }],
+      MEMO_UI_STORE: [
+        { key: "FILTER", value: memoStore.uiStoreInstance.filterProfile },
+      ],
     });
   };
 
-  const clearMemoTextSearchHandler = () => {
-    memoUIActions.onChangeMemoSearchText("");
+  const clearMemoTitleSearchHandler = () => {
+    memoUIActions.setFilterProfileByKeyAndValue("title");
     setSessionPersistedUIState({
-      MEMO_UI_STORE: [{ key: "QUICK_SEARCH", value: "" }],
+      MEMO_UI_STORE: [
+        { key: "FILTER", value: memoStore.uiStoreInstance.filterProfile },
+      ],
     });
   };
 
@@ -51,13 +55,15 @@ export const MemosHeader = observer(() => {
         <Button
           styleOverride={buttonStylesOverride.headerButton}
           title=""
-          icon={uiStoreInstance.memoSearchText ? clearTextIcon : searchIcon}
-          onClick={clearMemoTextSearchHandler}
+          icon={
+            uiStoreInstance.filterProfile.title ? clearTextIcon : searchIcon
+          }
+          onClick={clearMemoTitleSearchHandler}
         />
         <ControlledInput
           placeholder="find memo..."
-          value={uiStoreInstance.memoSearchText}
-          onChange={searchMemoTextChangeHandler}
+          value={uiStoreInstance.filterProfile.title || ""}
+          onChange={searchMemoTitleChangeHandler}
         />
         <Button
           styleOverride={buttonStylesOverride.headerMenuButton}

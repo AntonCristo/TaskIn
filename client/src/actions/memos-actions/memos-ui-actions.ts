@@ -7,13 +7,10 @@ import {
 } from "src/stores";
 import { EditMemoProfile } from "src/stores";
 import {
+  FilterProfile,
   MemosSortingProfile,
   SortingOption,
 } from "src/stores/memos-store/ui-store-types";
-
-export const onChangeMemoSearchText = action((memoSearchText: string) => {
-  memoStore.uiStoreInstance.memoSearchText = memoSearchText;
-});
 
 export const initSingleMemoCollapseState = action((memoUUID: Uuid) => {
   const copyOfCollapseStateMap: MemosCollapseStateMap = JSON.parse(
@@ -109,3 +106,43 @@ export const scrollToViewNewAddedMemo = action((newMemo: Uuid) => {
     inline: "center",
   });
 });
+
+export const clearFilterProfile = action(() => {
+  memoStore.uiStoreInstance.filterProfile = {};
+});
+
+export const clearFilterProfileByKey = action(
+  (keyToRemove: keyof FilterProfile) => {
+    const copyOfFilterProfile: FilterProfile = JSON.parse(
+      JSON.stringify(memoStore.uiStoreInstance.filterProfile)
+    );
+
+    delete copyOfFilterProfile[keyToRemove];
+
+    memoStore.uiStoreInstance.filterProfile = copyOfFilterProfile;
+  }
+);
+
+export const setFilterProfileByKeyAndValue = action(
+  (key: keyof FilterProfile, value?: ValueOf<FilterProfile>) => {
+    let copyOfFilterProfile: FilterProfile = JSON.parse(
+      JSON.stringify(memoStore.uiStoreInstance.filterProfile)
+    );
+
+    if (!value || !value.length) {
+      clearFilterProfileByKey(key);
+      return;
+    }
+
+    switch (key) {
+      case "title":
+        copyOfFilterProfile.title = value as string;
+        break;
+      //TODO: add filter profile by key type
+      default:
+        return;
+    }
+
+    memoStore.uiStoreInstance.filterProfile = copyOfFilterProfile;
+  }
+);
