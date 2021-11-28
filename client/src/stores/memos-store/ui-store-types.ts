@@ -27,3 +27,9 @@ export type MemosSortingProfile = {
   sort: SortingOption;
   sortDirection: "UP" | "DOWN";
 };
+
+export type FilterProfile = {
+  title?: string;
+  urgencyLevel?: UrgencyColor[];
+  hashtag?: string[];
+};

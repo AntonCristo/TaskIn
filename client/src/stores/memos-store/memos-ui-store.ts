@@ -5,6 +5,7 @@ import { customError } from "src/errors";
 import { getSessionPersistedUIState } from "src/utils";
 import {
   EditMemoProfile,
+  FilterProfile,
   MemosCollapseStateMap,
   MemosSortingProfile,
 } from "./ui-store-types";
@@ -20,25 +21,6 @@ export class MemosUIStore {
   }
   set memosCollapseStateMap(updatedMap: MemosCollapseStateMap) {
     this._memosCollapseStateMap = updatedMap;
-  }
-
-  private _initQuickSearchFromSession = () => {
-    const sessionQuickSearchElement =
-      getSessionPersistedUIState()?.MEMO_UI_STORE?.find(
-        (uiElement) => uiElement.key === "QUICK_SEARCH"
-      );
-
-    const quickSearchValue = sessionQuickSearchElement?.value as string;
-
-    return quickSearchValue ? quickSearchValue : "";
-  };
-
-  private _memoSearchText: string = this._initQuickSearchFromSession() || "";
-  get memoSearchText() {
-    return this._memoSearchText;
-  }
-  set memoSearchText(textUpdate: string) {
-    this._memoSearchText = textUpdate;
   }
 
   private _editMemoProfile: EditMemoProfile = {
@@ -65,7 +47,6 @@ export class MemosUIStore {
 
     return sortValue ? sortValue : null;
   };
-
   private _sortingProfile: MemosSortingProfile =
     this._initSortingProfileFromSession() || {
       sort: null,
@@ -76,6 +57,26 @@ export class MemosUIStore {
   }
   set sortingProfile(sortUpdate: MemosSortingProfile) {
     this._sortingProfile = sortUpdate;
+  }
+
+  private _initFilterProfileFromSession = () => {
+    const sessionSortElement =
+      getSessionPersistedUIState()?.MEMO_UI_STORE?.find(
+        (uiElement) => uiElement.key === "FILTER"
+      );
+
+    const filterValue = sessionSortElement?.value as FilterProfile;
+
+    return Object.keys(filterValue).length ? filterValue : null;
+  };
+  private _filterProfile: FilterProfile =
+    this._initFilterProfileFromSession() || {};
+  get filterProfile() {
+    return this._filterProfile;
+  }
+  set filterProfile(filterProfileUpdate: FilterProfile) {
+    console.log(JSON.stringify(filterProfileUpdate));
+    this._filterProfile = filterProfileUpdate;
   }
 
   private _sortMemosByTitle = (memos: Memo[]) => {
@@ -201,11 +202,44 @@ export class MemosUIStore {
   };
 
   public nullifyUIStateOnLogout = action(() => {
-    this._memoSearchText = "";
     this._memosCollapseStateMap = {};
     this._sortingProfile = {
       sort: null,
       sortDirection: "DOWN",
     };
+    this._filterProfile = {};
   });
+
+  private _filterByTitle = (memos: Memo[], title: string) => {
+    return memos.filter((memo) => memo.title.toLowerCase().includes(title));
+  };
+
+  public getFilteredMemos = (memos: Memo[]) => {
+    const activeFilterKeys = Object.keys(
+      this._filterProfile
+    ) as (keyof FilterProfile)[];
+
+    let memosAfterFilter: Memo[] = memos.map((memo) =>
+      JSON.parse(JSON.stringify(memo))
+    );
+
+    if (!activeFilterKeys.length) {
+      return memos;
+    }
+
+    activeFilterKeys.forEach((filterKey) => {
+      switch (filterKey) {
+        case "title":
+          memosAfterFilter = this._filterByTitle(
+            memosAfterFilter,
+            this._filterProfile[filterKey] || ""
+          );
+          break;
+        default:
+          break;
+      }
+    });
+
+    return memosAfterFilter;
+  };
 }
