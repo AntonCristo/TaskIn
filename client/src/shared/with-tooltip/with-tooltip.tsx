@@ -1,4 +1,4 @@
-import React, { ReactElement, MouseEvent } from "react";
+import React, { ReactElement, MouseEvent, useEffect } from "react";
 import { observer } from "mobx-react";
 import { ReactNode } from "react";
 import { tooltipStore } from "src/stores";
@@ -23,10 +23,6 @@ export const WithTooltip = observer((props: WithTooltipProps) => {
         event.clientX,
         afterMouseLeaveDelayInMs
       );
-
-    setTimeout(() => {
-      tooltipActions.resetTooltip();
-    }, 4000);
   };
 
   const onMouseLeaveHandler = () => {
@@ -40,6 +36,12 @@ export const WithTooltip = observer((props: WithTooltipProps) => {
       onMouseLeave: onMouseLeaveHandler,
     }
   );
+
+  useEffect(() => {
+    return () => {
+      tooltipActions.resetTooltip();
+    };
+  }, []);
 
   return showTooltip ? (
     <>{childrenWithInjectedTooltipProps}</>

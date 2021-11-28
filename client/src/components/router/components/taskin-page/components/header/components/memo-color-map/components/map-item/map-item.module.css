@@ -9,6 +9,7 @@
   justify-content: center;
   cursor: default;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
 }
 .mapItem .percent {
   font-size: 10px;
@@ -30,7 +31,7 @@
   justify-content: center;
   font-family: "Ubuntu-regular";
 }
-
-.mapItem:hover {
-  transform: scale(1.1, 1.1);
+.mapItemActiveAsFilter {
+  transform: scale(1.16, 1.16);
+  font-weight: 600;
 }
