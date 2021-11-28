@@ -75,7 +75,6 @@ export class MemosUIStore {
     return this._filterProfile;
   }
   set filterProfile(filterProfileUpdate: FilterProfile) {
-    console.log(JSON.stringify(filterProfileUpdate));
     this._filterProfile = filterProfileUpdate;
   }
 
