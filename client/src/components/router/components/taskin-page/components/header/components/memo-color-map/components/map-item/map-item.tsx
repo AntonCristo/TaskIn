@@ -41,6 +41,8 @@ export const MapItem = observer((props: MapItemProps) => {
   };
 
   const toggleUrgencyColorAsFilter = () => {
+    memoStore.dataStoreInstance.memosDisplayClass !== "IN_PROGRESS" &&
+      memoUIActions.setMemosDisplayClass("IN_PROGRESS");
     memoUIActions.setFilterProfileByKeyAndValue("urgencyLevel", urgencyColor);
     setSessionPersistedUIState({
       MEMO_UI_STORE: [

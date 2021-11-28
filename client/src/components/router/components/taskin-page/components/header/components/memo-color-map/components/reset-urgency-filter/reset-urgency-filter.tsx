@@ -12,6 +12,8 @@ export const ResetUrgencyFilter = observer(() => {
   const _isUrgencyLevelActiveInFilter =
     !!uiStoreInstance.filterProfile.urgencyLevel?.length;
   const onResetClickHandler = () => {
+    memoStore.dataStoreInstance.memosDisplayClass !== "IN_PROGRESS" &&
+      memoUIActions.setMemosDisplayClass("IN_PROGRESS");
     memoUIActions.clearFilterProfileByKey("urgencyLevel");
   };
 
