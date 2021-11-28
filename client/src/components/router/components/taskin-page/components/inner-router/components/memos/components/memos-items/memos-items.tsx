@@ -21,20 +21,23 @@ export const MemosItems = observer(() => {
     );
   }
 
-  const memosRenderPipeline = () => {
-    const filterExclude: (keyof FilterProfile)[] = [];
-    switch (memoStore.dataStoreInstance.memosDisplayClass) {
-      case "TRASH":
-      case "COMPLETED":
-        filterExclude.push("urgencyLevel");
-        break;
-      default:
-        break;
+  const setFilterExcludeArray = () => {
+    const exclude: (keyof FilterProfile)[] = [];
+
+    if (
+      memoStore.dataStoreInstance.memosDisplayClass === "TRASH" ||
+      memoStore.dataStoreInstance.memosDisplayClass === "COMPLETED"
+    ) {
+      exclude.push("urgencyLevel");
     }
 
+    return exclude;
+  };
+
+  const memosRenderPipeline = () => {
     const filteredMemos = uiStoreInstance.getFilteredMemos(
       memosFromDataStore,
-      filterExclude
+      setFilterExcludeArray()
     );
 
     const sortedMemos = uiStoreInstance.getSortedMemos(filteredMemos);
