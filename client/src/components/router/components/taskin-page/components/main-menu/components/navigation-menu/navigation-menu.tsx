@@ -4,6 +4,7 @@ import { locationStore, TaskinRoutes } from "src/stores";
 import { routerLocationSetter } from "src/actions";
 import foldersIcon from "src/assets/svg/folder_24dp.svg";
 import myMemosIcon from "src/assets/svg/memo_24dp.svg";
+import listIcon from "src/assets/svg/list_24dp.svg";
 import { mobileToggleMainMenuVisibility } from "src/actions";
 
 import classes from "./navigation-menu.module.css";
@@ -22,6 +23,7 @@ export const NavigationMenu = observer(() => {
 
   const navigationItems: NavigationItem[] = [
     { route: "MEMOS", icon: myMemosIcon },
+    { route: "LIST", icon: listIcon },
     { route: "FOLDERS", icon: foldersIcon },
   ];
 
@@ -48,7 +50,7 @@ export const NavigationMenu = observer(() => {
           <li
             key={index}
             onClick={
-              index === 1
+              index !== 0
                 ? () => alert("This route is not active yet")
                 : onNavigationItemClickHandler
             }

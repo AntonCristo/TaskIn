@@ -1,11 +1,10 @@
 import { MemosDisplayClass } from "src/stores";
-import { MemosSortingProfile } from "src/stores/memos-store/memos-ui-store";
+import {
+  FilterProfile,
+  MemosSortingProfile,
+} from "src/stores/memos-store/ui-store-types";
 
 type MemoUiElements =
-  | {
-      key: "QUICK_SEARCH";
-      value: string;
-    }
   | {
       key: "DISPLAY_CLASS";
       value: MemosDisplayClass | null;
@@ -13,7 +12,8 @@ type MemoUiElements =
   | {
       key: "SORT";
       value: MemosSortingProfile | null;
-    };
+    }
+  | { key: "FILTER"; value: FilterProfile };
 
 type SessionPersistState = {
   MEMO_UI_STORE: MemoUiElements[];
@@ -23,7 +23,7 @@ type SessionPersistState = {
 export const SESSION_UI_STATE_TEMPLATE: SessionPersistState = {
   MEMO_UI_STORE: [
     { key: "DISPLAY_CLASS", value: "IN_PROGRESS" },
-    { key: "QUICK_SEARCH", value: "" },
+    { key: "FILTER", value: {} },
     { key: "SORT", value: { sort: null, sortDirection: "UP" } },
   ],
 };

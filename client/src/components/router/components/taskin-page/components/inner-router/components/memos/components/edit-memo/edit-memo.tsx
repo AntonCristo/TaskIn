@@ -49,6 +49,7 @@ export const EditMemo = observer((props: EditMemoProps) => {
   const buttonStyleOverride: CSSProperties = {
     marginTop: "auto",
     marginLeft: "auto",
+    minHeight: "24px",
     border: `2px solid ${_memoUrgencyLevelColor}`,
     backgroundColor: _memoUrgencyLevelColor,
   };

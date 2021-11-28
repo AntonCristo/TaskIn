@@ -3,34 +3,12 @@ import { action, makeAutoObservable } from "mobx";
 import { Memo, UrgencyColor } from "src/client-types";
 import { customError } from "src/errors";
 import { getSessionPersistedUIState } from "src/utils";
-
-export type MemosUrgencyLevelMap = {
-  [x: string]: UrgencyColor | undefined;
-};
-
-export type MemosCollapseStateMap = {
-  [x: string]: boolean;
-};
-
-export type EditMemoProfile = {
-  title: boolean;
-  content: boolean;
-  creationDate: boolean;
-  dueDate: boolean;
-  hashtag: boolean;
-};
-
-export type SortingOption =
-  | "TITLE"
-  | "CREATION_DATE"
-  | "DUE_DATE"
-  | "URGENCY_LEVEL"
-  | null;
-
-export type MemosSortingProfile = {
-  sort: SortingOption;
-  sortDirection: "UP" | "DOWN";
-};
+import {
+  EditMemoProfile,
+  FilterProfile,
+  MemosCollapseStateMap,
+  MemosSortingProfile,
+} from "./ui-store-types";
 
 export class MemosUIStore {
   constructor() {
@@ -43,25 +21,6 @@ export class MemosUIStore {
   }
   set memosCollapseStateMap(updatedMap: MemosCollapseStateMap) {
     this._memosCollapseStateMap = updatedMap;
-  }
-
-  private _initQuickSearchFromSession = () => {
-    const sessionQuickSearchElement =
-      getSessionPersistedUIState()?.MEMO_UI_STORE?.find(
-        (uiElement) => uiElement.key === "QUICK_SEARCH"
-      );
-
-    const quickSearchValue = sessionQuickSearchElement?.value as string;
-
-    return quickSearchValue ? quickSearchValue : "";
-  };
-
-  private _memoSearchText: string = this._initQuickSearchFromSession() || "";
-  get memoSearchText() {
-    return this._memoSearchText;
-  }
-  set memoSearchText(textUpdate: string) {
-    this._memoSearchText = textUpdate;
   }
 
   private _editMemoProfile: EditMemoProfile = {
@@ -88,7 +47,6 @@ export class MemosUIStore {
 
     return sortValue ? sortValue : null;
   };
-
   private _sortingProfile: MemosSortingProfile =
     this._initSortingProfileFromSession() || {
       sort: null,
@@ -99,6 +57,25 @@ export class MemosUIStore {
   }
   set sortingProfile(sortUpdate: MemosSortingProfile) {
     this._sortingProfile = sortUpdate;
+  }
+
+  private _initFilterProfileFromSession = () => {
+    const sessionSortElement =
+      getSessionPersistedUIState()?.MEMO_UI_STORE?.find(
+        (uiElement) => uiElement.key === "FILTER"
+      );
+
+    const filterValue = sessionSortElement?.value as FilterProfile;
+
+    return Object.keys(filterValue).length ? filterValue : null;
+  };
+  private _filterProfile: FilterProfile =
+    this._initFilterProfileFromSession() || {};
+  get filterProfile() {
+    return this._filterProfile;
+  }
+  set filterProfile(filterProfileUpdate: FilterProfile) {
+    this._filterProfile = filterProfileUpdate;
   }
 
   private _sortMemosByTitle = (memos: Memo[]) => {
@@ -224,11 +201,70 @@ export class MemosUIStore {
   };
 
   public nullifyUIStateOnLogout = action(() => {
-    this._memoSearchText = "";
     this._memosCollapseStateMap = {};
     this._sortingProfile = {
       sort: null,
       sortDirection: "DOWN",
     };
+    this._filterProfile = {};
   });
+
+  private _filterByTitle = (memos: Memo[], titleInFilter: string) => {
+    return memos.filter((memo) =>
+      memo.title.toLowerCase().includes(titleInFilter)
+    );
+  };
+
+  private _filterByUrgencyLevel = (
+    memos: Memo[],
+    urgencyLevelsInFilter: UrgencyColor[]
+  ) => {
+    return memos.filter((memo) =>
+      urgencyLevelsInFilter.includes(
+        this.getMemoUrgencyLevel(memo) as UrgencyColor
+      )
+    );
+  };
+
+  public getFilteredMemos = (
+    memos: Memo[],
+    exclude?: (keyof FilterProfile)[]
+  ) => {
+    const activeFilterKeys = Object.keys(
+      this._filterProfile
+    ) as (keyof FilterProfile)[];
+
+    let memosAfterFilter: Memo[] = memos.map((memo) =>
+      JSON.parse(JSON.stringify(memo))
+    );
+
+    if (!activeFilterKeys.length) {
+      return memos;
+    }
+
+    activeFilterKeys.forEach((filterKey) => {
+      if (exclude && exclude.length && exclude.includes(filterKey)) {
+        //exclude filtration
+      } else {
+        switch (filterKey) {
+          case "title":
+            memosAfterFilter = this._filterByTitle(
+              memosAfterFilter,
+              this._filterProfile[filterKey] || ""
+            );
+            break;
+          case "urgencyLevel":
+            memosAfterFilter = this._filterByUrgencyLevel(
+              memosAfterFilter,
+              this._filterProfile[filterKey] || []
+            );
+            break;
+          default:
+            break;
+        }
+      }
+    });
+
+    return memosAfterFilter;
+  };
 }

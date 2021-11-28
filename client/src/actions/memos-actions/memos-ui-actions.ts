@@ -1,5 +1,5 @@
 import { action } from "mobx";
-import { Uuid, ValueOf } from "src/client-types";
+import { UrgencyColor, Uuid, ValueOf } from "src/client-types";
 import {
   memoStore,
   MemosCollapseStateMap,
@@ -7,13 +7,10 @@ import {
 } from "src/stores";
 import { EditMemoProfile } from "src/stores";
 import {
+  FilterProfile,
   MemosSortingProfile,
   SortingOption,
-} from "src/stores/memos-store/memos-ui-store";
-
-export const onChangeMemoSearchText = action((memoSearchText: string) => {
-  memoStore.uiStoreInstance.memoSearchText = memoSearchText;
-});
+} from "src/stores/memos-store/ui-store-types";
 
 export const initSingleMemoCollapseState = action((memoUUID: Uuid) => {
   const copyOfCollapseStateMap: MemosCollapseStateMap = JSON.parse(
@@ -109,3 +106,80 @@ export const scrollToViewNewAddedMemo = action((newMemo: Uuid) => {
     inline: "center",
   });
 });
+
+export const clearFilterProfile = action(() => {
+  memoStore.uiStoreInstance.filterProfile = {};
+});
+
+export const clearFilterProfileByKey = action(
+  (keyToRemove: keyof FilterProfile) => {
+    const copyOfFilterProfile: FilterProfile = JSON.parse(
+      JSON.stringify(memoStore.uiStoreInstance.filterProfile)
+    );
+
+    delete copyOfFilterProfile[keyToRemove];
+
+    memoStore.uiStoreInstance.filterProfile = copyOfFilterProfile;
+  }
+);
+
+const urgencyLevelHelper = (
+  value: UrgencyColor,
+  copyOfFilterProfileReference: FilterProfile
+) => {
+  const urgencyLevelUpdate = value as UrgencyColor;
+  if (!copyOfFilterProfileReference.urgencyLevel) {
+    copyOfFilterProfileReference.urgencyLevel = [urgencyLevelUpdate];
+    return copyOfFilterProfileReference;
+  }
+
+  if (copyOfFilterProfileReference.urgencyLevel.includes(urgencyLevelUpdate)) {
+    copyOfFilterProfileReference.urgencyLevel =
+      copyOfFilterProfileReference.urgencyLevel.filter(
+        (uc) => uc !== urgencyLevelUpdate
+      );
+
+    if (!copyOfFilterProfileReference.urgencyLevel.length) {
+      clearFilterProfileByKey("urgencyLevel");
+      return;
+    }
+    return copyOfFilterProfileReference;
+  }
+
+  copyOfFilterProfileReference.urgencyLevel.push(urgencyLevelUpdate);
+  return copyOfFilterProfileReference;
+};
+
+export const setFilterProfileByKeyAndValue = action(
+  (key: keyof FilterProfile, value: ValueOf<FilterProfile>) => {
+    let copyOfFilterProfile: FilterProfile = JSON.parse(
+      JSON.stringify(memoStore.uiStoreInstance.filterProfile)
+    );
+
+    switch (key) {
+      case "title":
+        copyOfFilterProfile.title = value as string;
+        break;
+      case "urgencyLevel":
+        const helperResult = urgencyLevelHelper(
+          value as UrgencyColor,
+          copyOfFilterProfile
+        );
+
+        if (!helperResult) {
+          //this case handles when setter function
+          // deletes the key from the filter profile
+          return;
+        } else {
+          copyOfFilterProfile = helperResult;
+        }
+
+        break;
+      //TODO: add filter profile by key type
+      default:
+        return;
+    }
+
+    memoStore.uiStoreInstance.filterProfile = copyOfFilterProfile;
+  }
+);

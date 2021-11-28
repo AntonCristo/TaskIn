@@ -1,5 +1,9 @@
+import { observer } from "mobx-react";
+import { memoUIActions } from "src/actions";
 import { UrgencyColor } from "src/client-types";
 import { WithTooltip } from "src/shared";
+import { memoStore } from "src/stores";
+import { setSessionPersistedUIState } from "src/utils";
 
 import classes from "./map-item.module.css";
 
@@ -10,14 +14,18 @@ type MapItemProps = {
   total: number;
 };
 
-export const MapItem = (props: MapItemProps) => {
-  //TODO: add tooltip for urgency level
+export const MapItem = observer((props: MapItemProps) => {
   const {
     urgencyColor,
     percentOfThisUrgencyFromTotal,
     counterOfThisUrgency,
     total,
   } = props;
+
+  const _isUrgencyColorActiveAsFilter =
+    memoStore.uiStoreInstance.filterProfile.urgencyLevel?.includes(
+      urgencyColor
+    );
 
   const tooltipByUrgencyColor = () => {
     switch (urgencyColor) {
@@ -32,23 +40,36 @@ export const MapItem = (props: MapItemProps) => {
     }
   };
 
+  const toggleUrgencyColorAsFilter = () => {
+    memoUIActions.setFilterProfileByKeyAndValue("urgencyLevel", urgencyColor);
+    setSessionPersistedUIState({
+      MEMO_UI_STORE: [
+        { key: "FILTER", value: memoStore.uiStoreInstance.filterProfile },
+      ],
+    });
+  };
+
   return (
-    <WithTooltip tip={tooltipByUrgencyColor()}>
-      <div
-        style={{ backgroundColor: `${urgencyColor}` }}
-        className={classes.mapItem}
-      >
-        <div className={classes.percent}>
-          {isNaN(percentOfThisUrgencyFromTotal)
-            ? null
-            : percentOfThisUrgencyFromTotal * 100 === 100
-            ? "100%"
-            : `${(percentOfThisUrgencyFromTotal * 100).toFixed(1)}%`}
-        </div>
+    <div
+      onClick={toggleUrgencyColorAsFilter}
+      style={{ backgroundColor: `${urgencyColor}` }}
+      className={[
+        classes.mapItem,
+        _isUrgencyColorActiveAsFilter && classes.mapItemActiveAsFilter,
+      ].join(" ")}
+    >
+      <div className={classes.percent}>
+        {isNaN(percentOfThisUrgencyFromTotal)
+          ? null
+          : percentOfThisUrgencyFromTotal * 100 === 100
+          ? "100%"
+          : `${(percentOfThisUrgencyFromTotal * 100).toFixed(1)}%`}
+      </div>
+      <WithTooltip tip={tooltipByUrgencyColor()}>
         <div className={classes.counter}>
           {counterOfThisUrgency}/{total}
         </div>
-      </div>
-    </WithTooltip>
+      </WithTooltip>
+    </div>
   );
-};
+});

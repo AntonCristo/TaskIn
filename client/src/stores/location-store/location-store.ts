@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { customError } from "src/errors";
 
-export type TaskinRoutes = "MEMOS" | "FOLDERS" | "ERROR";
+export type TaskinRoutes = "MEMOS" | "LIST" | "FOLDERS" | "ERROR";
 class LocationStore {
   constructor() {
     makeAutoObservable(this);
@@ -22,6 +22,8 @@ class LocationStore {
     switch (taskinSystemRoute) {
       case "MEMOS":
         return "Scheduled Memos";
+      case "LIST":
+        return "Lists";
       case "FOLDERS":
         return "Folders";
       default:
@@ -37,6 +39,8 @@ class LocationStore {
     switch (taskinSystemRoute) {
       case "MEMOS":
         return "memos";
+      case "LIST":
+        return "lists";
       case "FOLDERS":
         return "folders";
       default:
@@ -55,6 +59,8 @@ class LocationStore {
     switch (activeRouteValue) {
       case "memos":
         return "MEMOS";
+      case "lists":
+        return "LIST";
       case "folders":
         return "FOLDERS";
       default:

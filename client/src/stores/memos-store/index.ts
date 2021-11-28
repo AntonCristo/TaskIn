@@ -4,4 +4,4 @@ export type {
   MemosCollapseStateMap,
   EditMemoProfile,
   SortingOption,
-} from "./memos-ui-store";
+} from "./ui-store-types";

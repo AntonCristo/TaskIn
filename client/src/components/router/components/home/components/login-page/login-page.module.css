@@ -8,6 +8,9 @@
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.1);
 }
+.loginPage:focus {
+  outline: none;
+}
 .loginPageButtonWrapper {
   position: absolute;
   right: 20px;
