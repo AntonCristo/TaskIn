@@ -28,7 +28,10 @@ export const MemosHeader = observer(() => {
   };
 
   const searchMemoTitleChangeHandler = (typedValue: string) => {
-    memoUIActions.setFilterProfileByKeyAndValue("title", typedValue);
+    typedValue
+      ? memoUIActions.setFilterProfileByKeyAndValue("title", typedValue)
+      : memoUIActions.clearFilterProfileByKey("title");
+
     setSessionPersistedUIState({
       MEMO_UI_STORE: [
         { key: "FILTER", value: memoStore.uiStoreInstance.filterProfile },
@@ -37,7 +40,7 @@ export const MemosHeader = observer(() => {
   };
 
   const clearMemoTitleSearchHandler = () => {
-    memoUIActions.setFilterProfileByKeyAndValue("title");
+    memoUIActions.clearFilterProfileByKey("title");
     setSessionPersistedUIState({
       MEMO_UI_STORE: [
         { key: "FILTER", value: memoStore.uiStoreInstance.filterProfile },

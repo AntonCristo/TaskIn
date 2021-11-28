@@ -12,7 +12,7 @@ export const ResetUrgencyFilter = observer(() => {
   const _isUrgencyLevelActiveInFilter =
     !!uiStoreInstance.filterProfile.urgencyLevel?.length;
   const onResetClickHandler = () => {
-    memoUIActions.setFilterProfileByKeyAndValue("urgencyLevel");
+    memoUIActions.clearFilterProfileByKey("urgencyLevel");
   };
 
   return _isUrgencyLevelActiveInFilter ? (

@@ -123,42 +123,56 @@ export const clearFilterProfileByKey = action(
   }
 );
 
+const urgencyLevelHelper = (
+  value: UrgencyColor,
+  copyOfFilterProfileReference: FilterProfile
+) => {
+  const urgencyLevelUpdate = value as UrgencyColor;
+  if (!copyOfFilterProfileReference.urgencyLevel) {
+    copyOfFilterProfileReference.urgencyLevel = [urgencyLevelUpdate];
+    return copyOfFilterProfileReference;
+  }
+
+  if (copyOfFilterProfileReference.urgencyLevel.includes(urgencyLevelUpdate)) {
+    copyOfFilterProfileReference.urgencyLevel =
+      copyOfFilterProfileReference.urgencyLevel.filter(
+        (uc) => uc !== urgencyLevelUpdate
+      );
+
+    if (!copyOfFilterProfileReference.urgencyLevel.length) {
+      clearFilterProfileByKey("urgencyLevel");
+      return;
+    }
+    return copyOfFilterProfileReference;
+  }
+
+  copyOfFilterProfileReference.urgencyLevel.push(urgencyLevelUpdate);
+  return copyOfFilterProfileReference;
+};
+
 export const setFilterProfileByKeyAndValue = action(
-  (key: keyof FilterProfile, value?: ValueOf<FilterProfile>) => {
+  (key: keyof FilterProfile, value: ValueOf<FilterProfile>) => {
     let copyOfFilterProfile: FilterProfile = JSON.parse(
       JSON.stringify(memoStore.uiStoreInstance.filterProfile)
     );
-
-    if (!value || !value.length) {
-      clearFilterProfileByKey(key);
-      return;
-    }
 
     switch (key) {
       case "title":
         copyOfFilterProfile.title = value as string;
         break;
       case "urgencyLevel":
-        const urgencyLevelUpdate = value as UrgencyColor;
-        if (!copyOfFilterProfile.urgencyLevel) {
-          copyOfFilterProfile.urgencyLevel = [urgencyLevelUpdate];
-          break;
+        const helperResult = urgencyLevelHelper(
+          value as UrgencyColor,
+          copyOfFilterProfile
+        );
+
+        if (!helperResult) {
+          //this case handles when setter function
+          // deletes the key from the filter profile
+          return;
+        } else {
+          copyOfFilterProfile = helperResult;
         }
-
-        if (copyOfFilterProfile.urgencyLevel.includes(urgencyLevelUpdate)) {
-          copyOfFilterProfile.urgencyLevel =
-            copyOfFilterProfile.urgencyLevel.filter(
-              (uc) => uc !== urgencyLevelUpdate
-            );
-
-          if (!copyOfFilterProfile.urgencyLevel.length) {
-            clearFilterProfileByKey(key);
-            return;
-          }
-          break;
-        }
-
-        copyOfFilterProfile.urgencyLevel.push(urgencyLevelUpdate);
 
         break;
       //TODO: add filter profile by key type
