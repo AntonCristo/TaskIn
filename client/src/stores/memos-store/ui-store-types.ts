@@ -32,4 +32,6 @@ export type FilterProfile = {
   title?: string;
   urgencyLevel?: UrgencyColor[];
   hashtag?: string[];
+  dueDate?: number;
+  creationDate?: number;
 };
