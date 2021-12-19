@@ -17,7 +17,6 @@
   font-family: "Ubuntu-bold";
   font-style: italic;
 }
-.addMemoCard:focus,
 .addMemoCard:hover {
   outline: none;
   box-shadow: inset 1px 1px 6px -1px #73bfa1;
@@ -37,7 +36,7 @@
     margin-right: 0;
   }
   .addMemoCard:hover {
-    box-shadow: inset 1px 1px 6px -1px #73bfa1;
+    box-shadow: 1px 1px 6px -1px rgba(0, 0, 0, 0.6);
     opacity: 1;
   }
 }
