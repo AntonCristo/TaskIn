@@ -34,6 +34,7 @@
     height: 40px;
     flex-direction: row;
     width: 100%;
+    margin-right: 0;
   }
   .addMemoCard:hover {
     box-shadow: inset 1px 1px 6px -1px #73bfa1;

@@ -81,7 +81,10 @@ export const EditMemoDate = observer((props: EditMemoDateProps) => {
       >
         {_editMemoDisplayTitle}
       </div>
-      <div className={classes.editMemoDateComponent}>
+      <div
+        onClick={_isDateInEditMode ? () => {} : toggleDateEditModeHandler}
+        className={classes.editMemoDateComponent}
+      >
         <Date
           onChange={onMemoDateChangeHandler}
           editMode={_isDateInEditMode}
