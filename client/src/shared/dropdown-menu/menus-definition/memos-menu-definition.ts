@@ -45,6 +45,10 @@ export const popMoveAllCompletedToTrashConfirmation = () => {
 export const addNewMemoToMapWithoutValidation = () => {
   const newMemoUUID = memosCrudActions.addNewValidatedMemoToMap();
   memoUIActions.initSingleMemoCollapseState(newMemoUUID);
+
+  setTimeout(() => {
+    memoUIActions.scrollToViewNewAddedMemo(newMemoUUID);
+  }, 0);
 };
 
 export const memosMenuListItems: MenuListItem[] = [
