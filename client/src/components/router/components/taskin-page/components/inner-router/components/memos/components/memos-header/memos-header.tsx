@@ -21,7 +21,7 @@ export const MemosHeader = observer(() => {
     },
     headerMenuButton: {
       border: "none",
-      minWidth: "20px",
+      minWidth: "30px",
       marginLeft: "auto",
       marginRight: "5px",
     },
