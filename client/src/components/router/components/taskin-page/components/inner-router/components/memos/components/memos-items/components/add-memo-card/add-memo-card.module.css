@@ -29,16 +29,11 @@
 
 @media screen and (max-width: 800px) {
   .addMemoCard {
-    position: absolute;
-    z-index: 200;
-    bottom: 10px;
-    left: calc(50% - 150px);
     background-color: #fff;
     opacity: 1;
     height: 40px;
     flex-direction: row;
-    width: 300px;
-    margin-bottom: 0;
+    width: 100%;
   }
   .addMemoCard:hover {
     box-shadow: inset 1px 1px 6px -1px #73bfa1;
