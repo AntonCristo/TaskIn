@@ -1,19 +1,15 @@
 .footerParagraph {
   margin-top: 37px;
   font-family: "Ubuntu-regular";
-  font-size: 20px;
+  font-style: italic;
+  font-size: 24px;
   color: #3d3d39;
-}
-.footerParagraph > strong:nth-child(1) {
-  color: #3d3d39;
-}
-.footerParagraph > strong:nth-child(2) {
-  color: #ff853b;
+  text-align: center;
 }
 
 @media screen and (max-width: 1600px) {
   .footerParagraph {
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 20px;
   }
 }
